@@ -3,6 +3,37 @@ require 'factories'
 
 describe RumorsController do
 
+	describe "DELETE 'destroy'" do
+		before(:each) do
+			@rumor = Factory(:rumor)
+		end
+
+		it "should properly delete a rumor" do
+			lambda do
+				delete :destroy, :id => @rumor.id
+			end.should change(Rumor, :count).by(-1)
+		end
+
+		it "should display a flash message" do
+			delete :destroy, :id => @rumor.id
+			flash[:success] =~ /success/i
+			response.should redirect_to '/'
+		end
+	end
+
+	describe "PUT 'update'" do
+		before(:each) do
+			@rumor = Factory(:rumor)
+		end
+
+		it "should properly update the rumor" do
+			@attr = { :content => "Here is something new", :location => "12.14N,13.34E" }
+			put :update, :id => @rumor.id, :rumor => @attr
+			@rumor.content =~ /here is/i
+			flash[:success] =~ /success/i
+		end
+	end
+
   describe "fail creations" do
       
     before(:each) do

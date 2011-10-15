@@ -1,0 +1,11 @@
+<tr>
+	<td class="rumor">
+		<span class="content"><%= rumor.content %></span>
+		<span class="location">
+			Spread around:  <%= rumor.latitude %>, <%= rumor.longitude %>
+		</span>
+		<span class="timestamp">
+			Spread <%= time_ago_in_words(rumor.created_at) %> ago.
+		</span>
+	</td>
+</tr>

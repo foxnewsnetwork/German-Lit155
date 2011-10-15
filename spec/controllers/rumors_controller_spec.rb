@@ -27,7 +27,7 @@ describe RumorsController do
 		end
 
 		it "should properly update the rumor" do
-			@attr = { :content => "Here is something new", :location => "12.14N,13.34E" }
+			@attr = { :content => "Here is something new", :longitude => 13.12, :latitude => 31.13 }
 			put :update, :id => @rumor.id, :rumor => @attr
 			@rumor.content =~ /here is/i
 			flash[:success] =~ /success/i
@@ -37,7 +37,7 @@ describe RumorsController do
   describe "fail creations" do
       
     before(:each) do
-      @attr = { :content => '' , :location => "42.123N,12.412W" }
+      @attr = { :content => '' , :longitude => 13.12, :latitude => 31.13 }
     end
     
     it "should not create a blank rumor" do
@@ -60,7 +60,7 @@ describe RumorsController do
   describe "successful creations" do
     before(:each) do
       @attr = { :content => "here is a rumor" , 
-      :location => "51.231N,21.321W" }
+      :longitude => 13.12, :latitude => 31.13 }
     end
     
     it "should make create an rumor given correct input" do

@@ -11,11 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004044840) do
+ActiveRecord::Schema.define(:version => 20111005222933) do
 
   create_table "rumors", :force => true do |t|
     t.text     "content"
-    t.string   "location"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
     t.integer  "zoom_level", :default => 1
     t.integer  "parent_id"
     t.string   "pic"

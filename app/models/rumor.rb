@@ -1,11 +1,10 @@
 class Rumor < ActiveRecord::Base
-  attr_accessible :content, :location, :pic
+  attr_accessible :content, :latitude, :longitude, :pic, :gmaps
 
-  location_regex = /\A[0-9]{1,3}.?[0-9]{0,6}[(N|S)]{1}\s?,\s?[0-9]{1,3}.?[0-9]{0,6}[(W|E)]{1}\z/i
   validates :content , :presence => true , 
 			:length => { :within => 1..512 }
-  validates :location , :presence => true ,
-      :format => { :with => location_regex }
-
-  
+  validates :latitude , :presence => true 
+  validates :longitude , :presence => true 
+	
+	acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
 end

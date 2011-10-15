@@ -1,0 +1,14 @@
+<%= form_for @rumor do |r| %>
+	<%= render 'shared/error_messages', :object => r.object %>
+	<div class="content">
+		<%= r.label :content, "Rumor" %>
+		<%= r.text_area :content %>
+	</div>
+	<div class="location">
+		<%= r.label :latitude, "Latitude" %>
+		<%= r.text_field :latitude %>
+		<%= r.label :longitude, "Longitude" %>
+		<%= r.text_field :longitude %>
+	</div>
+	<%= r.submit %>
+<% end %>

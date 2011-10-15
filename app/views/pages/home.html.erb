@@ -1,2 +1,6 @@
 <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= render 'shared/rumor_form' , :rumor => @rumor %>
+<% @rumors.each do |rumor| %>
+	<%= render 'rumors/rumor', :rumor => rumor %>
+<% end %>
+<%= render 'shared/maps' , :location => @location %>

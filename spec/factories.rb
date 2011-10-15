@@ -1,9 +1,13 @@
 Factory.define :rumor do |rumor|
   rumor.content "Here is a rumor"
-  rumor.location "41.231N,12.12W"
+  rumor.latitude 41.23 #remember, this is N/S
+	rumor.longitude 12.13 #remember, this is W/E
 end
 
-Factory.sequence :location do |n|
-  "#{n}.31N,#{n}.41W"
+Factory.sequence :latitude do |n|
+	n + 0.12
 end
 
+Factory.sequence :longitude do |n|
+	2*n + 0.12
+end

@@ -3,7 +3,8 @@ class PagesController < ApplicationController
 		@rumor = Rumor.new
 		@rumors = Rumor.all
     temp = @rumors.first
-		@location = { :zoom => temp.zoom_level, :lat => temp.latitude , :lng => temp.longitude }
+		@location = get_coordinates
+		@initial_zoom = 13
   end
 
   def about

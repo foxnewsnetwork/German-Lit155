@@ -2,12 +2,25 @@
 	function initialize(){
 		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
 		var myOptions = {
-			zoom: <%= location[:zoom] %>,
+			zoom: <%= initial_zoom %>,
 			center: mylatlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP					
 		 };
 		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	}
+
+		<% for j in 0..rumors.count-1 %>
+			<% rumor = rumors[j] %>
+			var myloc = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude]) 
+			markersArray.push(
+				marker = new google.maps.Marker({
+					position: myloc,
+					map: map
+				});
+			);
+		<% end %>
+	};
+
+						
 </script>
 <style type="text/css">
   html { height: 100% }

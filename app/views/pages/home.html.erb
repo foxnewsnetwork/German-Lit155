@@ -3,4 +3,4 @@
 <% @rumors.each do |rumor| %>
 	<%= render 'rumors/rumor', :rumor => rumor %>
 <% end %>
-<%= render 'shared/maps' , :location => @location %>
+<%= render 'shared/maps' , :location => @location, :initial_zoom => @initial_zoom, :rumors => @rumors %>

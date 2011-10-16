@@ -3,6 +3,10 @@ class RumorsController < ApplicationController
 
   def create
     @rmr = Rumor.new(params[:rumor])
+		loc = get_coordinates
+    
+		@rmr.latitude = loc[:lat]
+		@rmr.longitude = loc[:lng]
     if @rmr.save
 	    flash[:success] = "Rumor successfully spread"
     else

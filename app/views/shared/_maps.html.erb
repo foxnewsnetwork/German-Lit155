@@ -1,26 +1,50 @@
+<%= location[:lat] %>, <%= location[:lng] %> <br />
+<%= ip %><br />
+<ul>
+<% rumors.each do |rumor| %>
+  <li><%= rumor[:latitude] %>, <%= rumor[:longitude] %></li>
+<% end %>
+</ul>
 <script type="text/javascript">
-	function initialize(){
+	var map;
+  var markersArray = [];
+  
+  function initialize(){
 		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
 		var myOptions = {
 			zoom: <%= initial_zoom %>,
 			center: mylatlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP					
 		 };
-		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
 		<% for j in 0..rumors.count-1 %>
 			<% rumor = rumors[j] %>
-			var myloc = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude]) 
-			markersArray.push(
-				marker = new google.maps.Marker({
-					position: myloc,
-					map: map
-				});
-			);
+      var location = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude] %> );
+      addMarkers(location, "<%= rumor.title %>" );
 		<% end %>
-	};
+    
+    showMarkers();
+	}
 
-						
+	function addMarkers(location, title){
+    markersArray.push(
+      new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title
+      })
+    );
+  }
+  
+  function showMarkers(){
+    if (markersArray) {
+      for (i in markersArray) {
+        markersArray[i].setMap(map);
+      }
+    }
+  }
+  					
 </script>
 <style type="text/css">
   html { height: 100% }

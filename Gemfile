@@ -4,6 +4,8 @@ gem 'rails', '3.0.10'
 gem 'gravatar_image_tag', '~>1.0.0'
 gem 'will_paginate' , "~> 3.0.0"
 gem "gmaps4rails", "~> 1.3.0"
+gem "geokit"
+gem "geokit-rails3", "~>0.1.5"
 
 group :development do
   gem 'rspec-rails', '2.0.1'

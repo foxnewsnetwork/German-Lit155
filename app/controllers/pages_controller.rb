@@ -4,7 +4,8 @@ class PagesController < ApplicationController
 		@rumors = Rumor.all
     temp = @rumors.first
 		@location = get_coordinates
-		@initial_zoom = 13
+    @ip = get_ip
+		@initial_zoom = 14
   end
 
   def about

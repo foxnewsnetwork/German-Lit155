@@ -1,6 +1,16 @@
-<h1>Pages#home</h1>
-<%= render 'shared/rumor_form' , :rumor => @rumor %>
-<% @rumors.each do |rumor| %>
-	<%= render 'rumors/rumor', :rumor => rumor %>
-<% end %>
+<div id='left'>
+<div id='side_bar' class='link'>
+
+    <%= render 'shared/rumor_form' , :rumor => @rumor %>
+    <br>
+
+    <%= render 'shared/debug', :location => @location, :rumors => @rumors, :ip => @ip %>
+    <table class="rumor">
+    <% @rumors.each do |rumor| %>
+  	  <%= render 'rumors/rumor', :rumor => rumor %>
+    <% end %>
+    </table>
+</div>
+</div>
+
 <%= render 'shared/maps' , :location => @location, :initial_zoom => @initial_zoom, :rumors => @rumors , :ip => @ip %>

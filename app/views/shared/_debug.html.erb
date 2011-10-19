@@ -1,0 +1,8 @@
+my loc: <%= location[:lat] %>, <%= location[:lng] %> <br />
+my ip: <%= ip %><br />
+<ul>
+<% rumors.each do |rumor| %>
+  <li><%= rumor[:latitude] %>, <%= rumor[:longitude] %></li>
+<% end %>
+</ul>
+

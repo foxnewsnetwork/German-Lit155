@@ -1,5 +1,9 @@
 module SearchHelper
 
+	def sphinx_search(keywords)
+		return Rumor.search(keywords)
+	end
+
   # This function will be the most ambitious son-of-a-bitch thing I write today
   # Takes a string of essentially anything
   # returns an array of rumor_id ordered by proximity to the keywords with added weight on creation date

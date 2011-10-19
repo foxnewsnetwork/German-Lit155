@@ -9,6 +9,15 @@ class Rumor < ActiveRecord::Base
 	acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
   
   before_save :stagger_location
+
+	# Sphinx-use index section
+	define_index do
+    # Fields
+    indexes content
+    
+    # Attributes
+    has created_at, updated_at, parent_id, latitude, longitude
+	end
   
   # returns the first 50 characters or the first 5 words of a rumor
   def title
@@ -39,7 +48,7 @@ class Rumor < ActiveRecord::Base
     # location had better be a hash for :lat and :lng
     # we stagger for a radius of 0.5 km on the earth surface
     def stagger_location
-      scale_constant = 1.567e-4 # theta = 0.5km / 6378km 
+      scale_constant = 9.567e-4 # theta = what I want to look good 
       d_a = [rand(20) - 10.0, rand(20) - 10.0] # two random numbers between -10 and 10
       d_p = [d_a[0]/10.0 , d_a[1]/10.0] # two random numbers between -1 and 1
 

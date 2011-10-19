@@ -1,7 +1,7 @@
 <%= form_for @rumor do |r| %>
 	<%= render 'shared/error_messages', :object => r.object %>
 	<div class="content">
-		<%= r.label :content, "Rumor" %>
+<!--		<%= r.label :content, "Rumor" %>-->
 		<%= r.text_area :content %>
 	</div>
 	<%= r.submit %>

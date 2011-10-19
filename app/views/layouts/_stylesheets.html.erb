@@ -1,0 +1,161 @@
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+  <style type="text/css" media="screen"> 
+  /*    #side_bar {font:15px Helvetica,sans-serif; background:#eee} */
+  /*    #side_bar li:hover {font:15px Helvetica,sans-serif; background:#555; color:#fff; cursor:hand; } */
+  /*    .link, .visited {font:15px Helvetica,sans-serif;  color:#F00; text-decoration:none; } */
+  /*    .hover {font:15px Helvetica,sans-serif; text-decoration:underline; } */
+
+      a:link {
+        font:15px Helvetica,sans-serif; 
+        color:#395A7C; 
+        font-weight: bold; 
+        text-decoration:none;
+      } /* unvisited link */
+
+      a:visited {
+        font:15px Helvetica,sans-serif; 
+        color:#000000; 
+        font-weight: bold;
+      } /* visited link */
+
+      a:hover {
+        font:15px Helvetica,sans-serif; 
+        color:#0000FF;  
+        font-weight: bold; 
+        text-decoration:none; 
+      } /* mouse over link */
+
+      a:active {
+        font:15px Helvetica,sans-serif; 
+        color:#395A7C; 
+        font-weight: bold;
+      } /* selected link */
+      
+      /*Full Screen Map Code*/
+      html, body {
+        font:15px Helvetica,sans-serif; 
+        width: 100%; 
+        height: 100%
+      }
+
+      body {
+        font:15px Helvetica,sans-serif;
+        margin-top: 0px; 
+        margin-right: 0px; 
+        margin-left: 0px; 
+        margin-bottom: 0px}
+      /*End Full Screen Map Code*/
+      
+      p {
+        font:15px Helvetica,sans-serif; 
+        font-weight:bold;
+      }
+
+      #side_bar {
+        top: 0px; 
+        /*position:absolute; */
+        border:0px; 
+        solid black;
+        overflow:auto;
+        height:100%; 
+        padding:0px 15px;
+      }
+      /*
+      input.btn {
+        background-color:white;
+        border-style:solid;
+        font-weight:bold;
+        height:20px;
+        text-decoration:none;
+        border-color:#395A7C;
+        color:#395A7C;
+      }
+      input:hover.btn {
+        color:#0066CC;
+        border-color:#0066CC;
+      }*/
+
+      #map_canvas { 
+        height: 100%;
+        width: 70%;
+        margin-left: 30%;
+      }
+
+      #new_rumor {
+        display:inline; 
+      }
+
+      #new_rumor #rumor_content {
+        margin-top: 1em;
+        height: 4em;
+      }
+      
+      #left {
+        float:left;
+        width: 30%;
+        height: 100%;
+      }
+      #right {
+        margin-left: 70%;
+        width: 50%;
+      }
+
+      h1.rumor {
+        margin-bottom: 0.3em;
+      }
+      
+      table.rumor {
+        margin-top: 1em;
+      }
+
+      table.rumor tr {
+        height: 70px;
+      }
+
+    table.rumor tr td.gravatar {
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    width: 50px;
+    }
+    table.rumor tr td.rumor {
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 10px;
+    }
+    table.rumor tr td.rumor span.timestamp {
+    display: block;
+    font-size: 85%;
+    color: #666;
+    }
+
+    table.rumor tr td.rumor span.location {
+      display: block;
+      font-size: 85%;
+      color: #666;
+    }
+    div.user_info img {
+    padding-right: 0.1em;
+    }
+    div.user_info a { 
+    text-decoration: none;
+    }
+    div.user_info span.user_name {
+    position: absolute;
+    }
+
+    div.user_info span.rumor {
+    font-size: 80%;
+    }
+    form.new_rumor {
+    margin-bottom: 2em;
+    }
+    form.new_rumor textarea {
+    height: 4em;
+    margin-bottom: 0;
+    }
+
+
+  </style> 

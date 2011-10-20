@@ -1,7 +1,9 @@
 .bundle
 db/*.sqlite3
 db/sphinx/
+db/sphinx/development/
 log/*.log
+log/*.pid
 *.log
 tmp/
 doc/

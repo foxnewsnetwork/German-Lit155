@@ -23,8 +23,12 @@ class RumorsController < ApplicationController
     rumor = Rumor.find_by_id(params[:id])
     rumor.destroy
     flash[:success] = "Rumor successfully deleted"
-    redirect_to '/'
-  end
+    @rumors = Rumor.all
+
+      respond_to do |format|
+         format.html {redirect_to "/"}
+         format.js
+       end  end
   
   def new
     @rumor = Rumor.new

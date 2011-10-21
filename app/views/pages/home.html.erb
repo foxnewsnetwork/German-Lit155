@@ -5,11 +5,12 @@
     <br>
 
     <%= render 'shared/debug', :location => @location, :rumors => @rumors, :ip => @ip %>
+
     <table class="rumor">
-    <% @rumors.each do |rumor| %>
-  	  <%= render 'rumors/rumor', :rumor => rumor %>
-    <% end %>
+      <%= render @rumors%>
+
     </table>
+
 </div>
 </div>
 

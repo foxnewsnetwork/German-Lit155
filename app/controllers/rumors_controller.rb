@@ -12,7 +12,11 @@ class RumorsController < ApplicationController
     else
 	    flash[:failure] = "Something went wrong"
     end
-    redirect_to '/'
+    @rumors = Rumor.all
+    respond_to do |format|
+         format.html {redirect_to "/"}
+         format.js
+       end
   end
 
   def destroy

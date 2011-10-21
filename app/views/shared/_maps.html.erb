@@ -14,7 +14,7 @@
 		<% for j in 0..rumors.count-1 %>
 			<% rumor = rumors[j] %>
       var location = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude] %> );
-      addMarkers(location, "<%= rumor.title %>" );
+      addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>" );
 		<% end %>
     
     showMarkers();

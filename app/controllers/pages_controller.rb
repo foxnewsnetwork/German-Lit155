@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 		@location = get_coordinates
     @ip = get_ip
 		@initial_zoom = 14
+
   end
 
   def about

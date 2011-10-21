@@ -1,4 +1,4 @@
-<%= form_for @rumor do |r| %>
+<%= form_for @rumor, :remote => true do |r| %>
 	<%= render 'shared/error_messages', :object => r.object %>
 	<div class="content">
 <!--		<%= r.label :content, "Rumor" %>-->

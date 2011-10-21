@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   def home
 		@rumor = Rumor.new
-		@rumors = Rumor.all
+		keywords = params[:keywords]
+		@rumors = keywords.nil? ? Rumor.all : Rumor.search(keywords)
     temp = @rumors.first
 		@location = get_coordinates
     @ip = get_ip

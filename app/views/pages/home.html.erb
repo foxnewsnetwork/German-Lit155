@@ -2,6 +2,8 @@
 <div id='side_bar' class='link'>
 
     <%= render 'shared/rumor_form' , :rumor => @rumor %>
+		<br />
+		<%= render 'shared/search' %>
     <br>
 
     <%= render 'shared/debug', :location => @location, :rumors => @rumors, :ip => @ip %>

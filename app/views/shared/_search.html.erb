@@ -1,8 +1,6 @@
-<%= form_for @search do |s| %>
-	<%= render 'shared/error_messages', :object => s.object %>
+<%= form_for('/', :method => "post") do %>
 	<div class="content">
-		<%= s.label :content, "Search: " %>
-		<%= s.text_field :content %>
+		<%= search_field_tag('keywords') %>
 	</div>
-	<%= r.submit %>
+	<%= submit_tag('Search Rumorr') %>
 <% end %>

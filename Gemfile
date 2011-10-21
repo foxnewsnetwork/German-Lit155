@@ -7,6 +7,7 @@ gem "gmaps4rails", "~> 1.3.0"
 gem "geokit"
 gem "geokit-rails3", "~>0.1.5"
 gem "thinking-sphinx", "~>2.0.9"
+gem "flying-sphinx" , "~>0.6.0"
 
 group :development do
   gem 'rspec-rails', '2.0.1'

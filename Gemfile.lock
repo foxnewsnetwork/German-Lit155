@@ -139,6 +139,6 @@ DEPENDENCIES
   rails (= 3.0.10)
   rspec (= 2.0.1)
   rspec-rails (= 2.0.1)
-  thinking-sphinx (~> 2.0.9)
+  thinking-sphinx (~> 2.0.4)
   webrat (= 0.7.1)
   will_paginate (~> 3.0.0)

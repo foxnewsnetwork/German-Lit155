@@ -5,7 +5,8 @@ class Rumor < ActiveRecord::Base
 			:length => { :within => 1..512 }
   validates :latitude , :presence => true 
   validates :longitude , :presence => true 
-	
+  default_scope :order => 'created_at DESC'
+
 	acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
   
   before_save :stagger_location

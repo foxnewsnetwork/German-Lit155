@@ -14,7 +14,7 @@
         border:0px; 
         solid black;
         overflow:auto;
-        height:100%; 
+        height:95%; 
         padding:0px 15px;
       }
       #side_bar a:link {
@@ -89,7 +89,7 @@
       }*/
 
       #map_canvas { 
-        height: 100%;
+        height: 95%;
         width: 70%;
         margin-left: 30%;
       }
@@ -106,7 +106,7 @@
       #left {
         float:left;
         width: 30%;
-        height: 100%;
+        height: 95%;
       }
       #right {
         margin-left: 70%;
@@ -173,4 +173,85 @@
         height: 4em;
         margin-bottom: 0;
       }
+
+      /* toolbar */
+      #toolbar {
+        font:15px Helvetica,sans-serif; 
+        background-color: #000;
+        color: #fff;
+        -moz-box-shadow: 0px 0px 5px #150517;
+        -webkit-box-shadow: 0px 0px 5px #150517;
+        box-shadow: 0px 0px 5px #150517; 
+        text-align: center;
+        line-height: 2em;
+        height:5%;
+      }
+  
+      #toolbar a:link {
+        font:15px Helvetica,sans-serif; 
+        color:#fff; 
+        font-weight: bold; 
+        text-decoration:none;
+      } 
+
+      #toolbar a:hover {
+        display: inline-block;
+        line-height: 1;
+        padding: 9px 9px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        background-color: #39c;
+        /*-moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;*/
+      }
+      /* buttons */
+      .button {
+        display: inline-block;
+        line-height: 1;
+        padding: 8px 8px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        background-color: #000;
+      }
+  
+      input.button, button.button {
+        border: 0px none;
+      }
+      /* toolbar buttons */
+      .tb_button {
+        display: inline-block;
+        line-height: 1;
+        padding: 8px 9px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        background-color: #000;
+      }
+  
+      input.tb_button, button.tb_button {
+        border: 0px none;
+      }
+
+      .buttonwrap {
+        display: inline-block;
+        position: relative;
+        zoom: 1;
+        *display: inline;
+      }
+
+     .corner {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: transparent url(images/corner.png) no-repeat 0 0;
+      }
+.tl { top: 0; left: 0; background-position: left top; }
+.tr { top: 0; right: 0; background-position: right top; }
+.bl { bottom: 0; left: 0; background-position: left bottom; }
+.br { bottom: 0; right: 0; background-position: right bottom; }
+      
   </style> 

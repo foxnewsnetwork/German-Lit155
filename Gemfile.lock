@@ -30,6 +30,7 @@ GEM
     activesupport (3.0.10)
     addressable (2.2.6)
     arel (2.0.10)
+    bcrypt-ruby (3.0.1)
     builder (2.1.2)
     crack (0.3.1)
     diff-lcs (1.1.3)
@@ -66,11 +67,15 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     mime-types (1.16)
+    mocha (0.10.0)
+      metaclass (~> 0.0.1)
     multi_json (1.0.3)
     multipart-post (1.1.3)
     mysql2 (0.2.13)
     net-ssh (2.2.1)
+    nifty-generators (0.4.6)
     nokogiri (1.5.0)
     polyglot (0.3.2)
     rack (1.2.4)
@@ -128,6 +133,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   factory_girl (~> 2.1.0)
   faker (~> 1.0.0)
   flying-sphinx (~> 0.6.0)
@@ -135,7 +141,9 @@ DEPENDENCIES
   geokit-rails3 (~> 0.1.5)
   gmaps4rails (~> 1.3.0)
   gravatar_image_tag (~> 1.0.0)
+  mocha
   mysql2 (~> 0.2.11)
+  nifty-generators
   rails (= 3.0.10)
   rspec (= 2.0.1)
   rspec-rails (= 2.0.1)

@@ -12,6 +12,7 @@ gem "flying-sphinx" , "~>0.6.0"
 group :development do
   gem 'rspec-rails', '2.0.1'
   gem 'faker','~>1.0.0'
+  gem 'nifty-generators'
 end
 
 group :test do
@@ -48,3 +49,5 @@ gem 'mysql2', '~> 0.2.11'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "bcrypt-ruby", :require => "bcrypt"
+gem "mocha", :group => :test

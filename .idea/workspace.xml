@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1040353b-8b05-4c8e-94b6-7d04cf5e967b" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spl" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/German-Lit155.iml" afterPath="$PROJECT_DIR$/.idea/German-Lit155.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/development.sphinx.conf" afterPath="$PROJECT_DIR$/config/development.sphinx.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spa" afterPath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spa" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spd" afterPath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sphinx/development/rumor_core.sph" afterPath="$PROJECT_DIR$/db/sphinx/development/rumor_core.sph" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spi" afterPath="$PROJECT_DIR$/db/sphinx/development/rumor_core.spi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sphinx/development/rumor_core.sps" afterPath="$PROJECT_DIR$/db/sphinx/development/rumor_core.sps" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/rumor.rb" afterPath="$PROJECT_DIR$/app/models/rumor.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/rumors_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/rumors_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/home.html.erb" afterPath="$PROJECT_DIR$/app/views/pages/home.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rumors/create.js.erb" afterPath="$PROJECT_DIR$/app/views/rumors/create.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rumors/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/rumors/destroy.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_maps.html.erb" afterPath="$PROJECT_DIR$/app/views/shared/_maps.html.erb" />
     </list>
     <ignored path="German-Lit155.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,61 +34,16 @@
       <file leaf-file-name="home.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="12" selection-start="314" selection-end="314" vertical-scroll-proportion="-8.125">
+            <state line="18" column="1" selection-start="448" selection-end="448" vertical-scroll-proportion="-11.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchd.development.pid" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/log/searchd.development.pid">
+      <file leaf-file-name="pages_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rumor.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/rumor.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="42" selection-start="307" selection-end="307" vertical-scroll-proportion="0.32012194">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_maps.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/shared/_maps.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="67" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_rumor.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/rumors/_rumor.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="97" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.js.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/rumors/create.js.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="33" selection-start="1" selection-end="63" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="destroy.js.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/rumors/destroy.js.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0">
+            <state line="6" column="4" selection-start="199" selection-end="264" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -100,7 +52,34 @@
       <file leaf-file-name="rumors_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/rumors_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+            <state line="25" column="27" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_maps.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/shared/_maps.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="0" selection-start="2161" selection-end="2161" vertical-scroll-proportion="0.48453608">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.js.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/rumors/create.js.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="109" selection-start="104" selection-end="200" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="destroy.js.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/rumors/destroy.js.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="84" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,14 +109,14 @@
         <option value="$PROJECT_DIR$/app/views/rumors/new.js.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/public/javascripts/rails.js" />
-        <option value="$PROJECT_DIR$/app/views/pages/home.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/rumors/create.js.erb" />
-        <option value="$PROJECT_DIR$/app/views/shared/_maps.html.erb" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/views/rumors/_rumor.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/rumors/destroy.js.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/rumors_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/rumor.rb" />
+        <option value="$PROJECT_DIR$/app/views/pages/home.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/rumors/create.js.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/rumors_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/rumors/destroy.js.erb" />
+        <option value="$PROJECT_DIR$/app/views/shared/_maps.html.erb" />
       </list>
     </option>
   </component>
@@ -174,7 +153,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
       <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
@@ -221,32 +199,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="German-Lit155" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="German-Lit155" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rumors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -279,9 +231,14 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
       <pane id="Scope">
         <subPane subId="Problems">
           <PATH>
@@ -599,92 +556,108 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_footer.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/shared/_rumor_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="36" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="5" selection-start="21" selection-end="21" vertical-scroll-proportion="0.048387095" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_javascripts.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/rails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="13" selection-start="6278" selection-end="6278" vertical-scroll-proportion="4.693609" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="14" selection-start="106" selection-end="106" vertical-scroll-proportion="0.3448276" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/shared/_maps.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="67" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rumors/_rumor.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="97" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rumors/create.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="33" selection-start="1" selection-end="63" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rumors/destroy.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/rumors_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="12" selection-start="314" selection-end="314" vertical-scroll-proportion="-8.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log/searchd.development.pid">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/rumors/_rumor.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="97" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/gmaps4rails.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/_javascripts.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/pages_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/about.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/rumor.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="42" selection-start="307" selection-end="307" vertical-scroll-proportion="0.32012194">
+        <state line="18" column="36" selection-start="533" selection-end="533" vertical-scroll-proportion="0.36585367">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/_search.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="1" selection-start="448" selection-end="448" vertical-scroll-proportion="-11.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/pages_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="4" selection-start="199" selection-end="264" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/rumors/destroy.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="84" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/rumors/create.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="109" selection-start="104" selection-end="200" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/rumors_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="27" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/_maps.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="0" selection-start="2161" selection-end="2161" vertical-scroll-proportion="0.48453608">
           <folding />
         </state>
       </provider>

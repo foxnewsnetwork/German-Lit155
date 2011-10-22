@@ -1,3 +1,6 @@
 
 $(".rumor").html("<%= escape_javascript( render @rumors)%>");
 $("#new_rumor")[0].reset();
+patchMarkers("<%= escape_javascript( "#{@rmr.latitude}") %>","<%= escape_javascript( "#{@rmr.longitude}") %>","<%= escape_javascript( "#{@rmr.title}") %>","<%= escape_javascript("#{@rmr.content}") %>" );
+
+

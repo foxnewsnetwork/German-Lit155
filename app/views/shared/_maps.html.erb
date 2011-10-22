@@ -1,7 +1,8 @@
 <script type="text/javascript">
 	var map;
   var markersArray = [];
-  
+    var infowindow;
+
   function initialize(){
 		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
 		var myOptions = {
@@ -14,30 +15,67 @@
 		<% for j in 0..rumors.count-1 %>
 			<% rumor = rumors[j] %>
       var location = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude] %> );
-      addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>" );
+      addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>","<%= escape_javascript("#{rumor.content}") %>" );
+
+
 		<% end %>
-    
+
     showMarkers();
 	}
 
-	function addMarkers(location, title){
-    markersArray.push(
-      new google.maps.Marker({
+	function addMarkers(location, title,content){
+       var marker =  new google.maps.Marker({
         position: location,
         map: map,
         title: title
-      })
-    );
+      });
+        markersArray.push(marker);
+        google.maps.event.addListener(marker, "click", function() {
+            if (infowindow) infowindow.close();
+            infowindow = new google.maps.InfoWindow({content: content});
+            infowindow.open(map, marker);
+            map.setCenter(location);
+        });
+
   }
-  
+
+    	function patchMarkers(latitude,longitude,title,content){
+          var location = new google.maps.LatLng(latitude,longitude);
+
+            var marker =  new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title
+      });
+
+        markersArray.push(marker);
+        google.maps.event.addListener(marker, "click", function() {
+            if (infowindow) infowindow.close();
+            infowindow = new google.maps.InfoWindow({content: content});
+            infowindow.open(map, marker);
+            map.setCenter(location);
+        });
+       marker.setMap(map);
+  }
   function showMarkers(){
-    if (markersArray) {
+
+      if (markersArray) {
       for (i in markersArray) {
         markersArray[i].setMap(map);
       }
     }
+
   }
-  					
+  function removeMarker(latitude,longitude) {
+      position = new google.maps.LatLng(latitude,longitude);
+   for (i in markersArray){
+       if (markersArray[i].getPosition().equals(position)){
+
+           markersArray[i].setMap(null);
+
+   }
+   }
+  }
 </script>
 <body onload="initialize()" />
 <div id="map_canvas"> </div>

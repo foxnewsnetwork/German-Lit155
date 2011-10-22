@@ -12,7 +12,8 @@ class RumorsController < ApplicationController
     else
 	    flash[:failure] = "Something went wrong"
     end
-
+       @lat = @rmr[:latitude]
+    @long = @rmr[:longitude]
     @rumors = Rumor.all
     respond_to do |format|
          format.html {redirect_to "/"}
@@ -22,12 +23,14 @@ class RumorsController < ApplicationController
 
   def destroy
     rumor = Rumor.find_by_id(params[:id])
-    @lat = rumor.latitude
-    @long = rumor.longitude
+    @lat = rumor[:latitude]
+    @long = rumor[:longitude]
+    @title = rumor.title
     rumor.destroy
     flash[:success] = "Rumor successfully deleted"
     @rumors = Rumor.all
-
+     @count = params[:counter]
+    puts(@count)
       respond_to do |format|
          format.html {redirect_to "/"}
          format.js

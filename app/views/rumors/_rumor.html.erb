@@ -4,7 +4,7 @@
 	<td class="rumor">
 		<span class="content">
       <%= rumor.content %>
-      <%= link_to "delete", rumor, :method => :delete, :confirm => "You sure?" , :remote => true,
+      <%= link_to "delete", rumor_path(rumor, :counter => rumor_counter), :method => :delete, :confirm => "You sure?" , :remote => true,
                                 :title => "Delete #{rumor.title}" %>
       
     </span>
@@ -13,7 +13,7 @@
 			Spread around:  <%= rumor.latitude %>, <%= rumor.longitude %>
 		</span>
 		<span class="timestamp">
-			Spread <%= time_ago_in_words(rumor.created_at) %> ago.
+			Spread <%= time_ago_in_words(rumor.created_at) %> ago. Num <%= rumor_counter %>
 		</span>
 	</td>
 </tr>

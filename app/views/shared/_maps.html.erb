@@ -13,7 +13,7 @@
 		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
 		<% for j in 0..rumors.count-1 %>
-			<% rumor = rumors[j] %>
+			<% rumor = rumors[rumors.count-1-j] %>
       var location = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude] %> );
       addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>","<%= escape_javascript("#{rumor.content}") %>" );
 
@@ -39,24 +39,7 @@
 
   }
 
-    	function patchMarkers(latitude,longitude,title,content){
-          var location = new google.maps.LatLng(latitude,longitude);
 
-            var marker =  new google.maps.Marker({
-        position: location,
-        map: map,
-        title: title
-      });
-
-        markersArray.push(marker);
-        google.maps.event.addListener(marker, "click", function() {
-            if (infowindow) infowindow.close();
-            infowindow = new google.maps.InfoWindow({content: content});
-            infowindow.open(map, marker);
-            map.setCenter(location);
-        });
-       marker.setMap(map);
-  }
   function showMarkers(){
 
       if (markersArray) {
@@ -66,15 +49,30 @@
     }
 
   }
-  function removeMarker(latitude,longitude) {
-      position = new google.maps.LatLng(latitude,longitude);
-   for (i in markersArray){
-       if (markersArray[i].getPosition().equals(position)){
+    	function patchMarkers(latitude,longitude,title,content){
+          var location = new google.maps.LatLng(latitude,longitude);
+            var marker =  new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title
+      });
+        markersArray.push(marker);
+        google.maps.event.addListener(marker, "click", function() {
+            if (infowindow) infowindow.close();
+            infowindow = new google.maps.InfoWindow({content: content});
+            infowindow.open(map, marker);
+            map.setCenter(location);
+        });
+       marker.setMap(map);
+  }
+  function removeMarker(count) {
 
-           markersArray[i].setMap(null);
+      var i = (markersArray.length -1) - count;
+    if(markersArray){
 
-   }
-   }
+       markersArray[i].setMap(null);
+        markersArray.splice(i,1);
+        }
   }
 </script>
 <body onload="initialize()" />

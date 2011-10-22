@@ -20,6 +20,7 @@
     <orderEntry type="library" scope="PROVIDED" name="webrat (v0.7.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.9.4, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v2.0.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nifty-generators (v0.4.6, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v3.0.10, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.16, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl (v2.1.2, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
@@ -31,6 +32,7 @@
     <orderEntry type="library" scope="PROVIDED" name="geokit (v1.6.0, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeresource (v3.0.10, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="abstract (v1.0.0, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.2.19, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.2.4, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v3.0.10, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
@@ -41,6 +43,7 @@
     <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.2, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.0.3, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="geokit-rails3 (v0.1.5, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="metaclass (v0.0.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gravatar_image_tag (v1.0.0, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v2.0.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday (v0.6.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
@@ -50,8 +53,8 @@
     <orderEntry type="library" scope="PROVIDED" name="rails (v3.0.10, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v3.0.10, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gmaps4rails (v1.3.0, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="erubis (v2.6.6, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.2.13, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="erubis (v2.6.6, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="will_paginate (v3.0.2, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rash (v0.3.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.1.3, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
@@ -68,6 +71,7 @@
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.5.0, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="treetop (v1.4.10, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crack (v0.3.1, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mocha (v0.10.0, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday_middleware (v0.6.5, RVM: ruby-1.9.2-p180 [global]) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">

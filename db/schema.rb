@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -15,10 +14,10 @@ ActiveRecord::Schema.define(:version => 20111022005131) do
 
   create_table "rumors", :force => true do |t|
     t.text     "content"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude",   :precision => 15, :scale => 10
+    t.decimal  "longitude",  :precision => 15, :scale => 10
     t.boolean  "gmaps"
-    t.integer  "zoom_level", :default => 1
+    t.integer  "zoom_level",                                 :default => 1
     t.integer  "parent_id"
     t.string   "pic"
     t.datetime "created_at"

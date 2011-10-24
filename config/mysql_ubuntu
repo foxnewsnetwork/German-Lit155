@@ -1,0 +1,2 @@
+mv database.yml database.yml.original
+mv database.yml.ubuntu database.yml

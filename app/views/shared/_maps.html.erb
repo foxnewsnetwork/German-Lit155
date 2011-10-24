@@ -1,7 +1,7 @@
 <script type="text/javascript">
-	var map;
+  var map;
   var markersArray = [];
-    var infowindow;
+  var infowindow;
 
   function initialize(){
 		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
@@ -16,32 +16,72 @@
 			<% rumor = rumors[rumors.count-1-j] %>
       var location = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude] %> );
       addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>","<%= escape_javascript("#{rumor.content}") %>" );
-
-
 		<% end %>
-
+    
+    // add listening for onclick marker adder
+    google.maps.event.addListener(map, 'click', function(event) { 
+      placeMarkerOnClick(event.latLng);
+    });
     showMarkers();
+
 	}
 
-	function addMarkers(location, title,content){
-       var marker =  new google.maps.Marker({
-        position: location,
-        map: map,
-        title: title
-      });
-        markersArray.push(marker);
-        google.maps.event.addListener(marker, "click", function() {
-            if (infowindow) infowindow.close();
-            infowindow = new google.maps.InfoWindow({content: content});
-            infowindow.open(map, marker);
-            map.setCenter(location);
-        });
+  // place the OnClick marker
+  function placeMarkerOnClick(location) {
+      var clickedLocation = new google.maps.LatLng(location);
+      addClickMarkers(location, 'clickables');
+  }
 
+  // changes submission box into submitted text without refresh
+  // currently broken because it refreshes the entire page
+  function changeText(){
+    var tmp = document.getElementById('rumor_content_map').value;
+    document.getElementById('Submit').innerHTML = tmp;
   }
 
 
-  function showMarkers(){
+  // add click maker 
+	function addClickMarkers(location, title){
+      var marker =  new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title,
+      });
+      
+ //     markersArray.push(marker);
+      var lat = location.lat();
+      var lng = location.lng();
+      // add the submit form in the dialog window
+      var content = '<%= render "shared/rumor_form_on_map" %>';
 
+      content = '<%= render "shared/rumor_form_on_map_without_refresh" %>';
+
+      content = content.replace('latValue', lat);
+      content = content.replace('lngValue', lng);
+      //  if (infowindow) infowindow.close();
+      infowindow = new google.maps.InfoWindow({content: content, position: location});
+      infowindow.open(map, marker);
+      map.setCenter(location);
+  }
+
+
+	function addMarkers(location, title,content){
+      var marker =  new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title,
+      });
+
+      markersArray.push(marker);
+      google.maps.event.addListener(marker, "click", function() {
+        if (infowindow) infowindow.close();
+        infowindow = new google.maps.InfoWindow({content: content});
+        infowindow.open(map, marker);
+        map.setCenter(location);
+      });
+  }
+
+  function showMarkers(){
       if (markersArray) {
       for (i in markersArray) {
         markersArray[i].setMap(map);
@@ -49,30 +89,32 @@
     }
 
   }
-    	function patchMarkers(latitude,longitude,title,content){
-          var location = new google.maps.LatLng(latitude,longitude);
-            var marker =  new google.maps.Marker({
-        position: location,
-        map: map,
-        title: title
-      });
-        markersArray.push(marker);
-        google.maps.event.addListener(marker, "click", function() {
-            if (infowindow) infowindow.close();
-            infowindow = new google.maps.InfoWindow({content: content});
-            infowindow.open(map, marker);
-            map.setCenter(location);
-        });
-       marker.setMap(map);
+
+ 	function patchMarkers(latitude,longitude,title,content){
+    var location = new google.maps.LatLng(latitude,longitude);
+    var marker =  new google.maps.Marker({
+      position: location,
+      map: map,
+      title: title,
+    });
+
+    markersArray.push(marker);
+    google.maps.event.addListener(marker, "click", function() {
+      if (infowindow) infowindow.close();
+      infowindow = new google.maps.InfoWindow({content: content});
+      infowindow.open(map, marker);
+      map.setCenter(location);
+    });
+    marker.setMap(map);
   }
+
   function removeMarker(count) {
 
-      var i = (markersArray.length -1) - count;
+    var i = (markersArray.length -1) - count;
     if(markersArray){
-
-       markersArray[i].setMap(null);
-        markersArray.splice(i,1);
-        }
+      markersArray[i].setMap(null);
+      markersArray.splice(i,1);
+    }
   }
 </script>
 <body onload="initialize()" />

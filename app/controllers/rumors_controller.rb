@@ -3,22 +3,27 @@ class RumorsController < ApplicationController
 
   def create
     @rmr = Rumor.new(params[:rumor])
-		loc = get_coordinates
-    
-		@rmr.latitude = loc[:lat]
-		@rmr.longitude = loc[:lng]
+
+    if @rmr.latitude.nil? 
+		  loc = get_coordinates
+  		@rmr.latitude = loc[:lat]
+    	@rmr.longitude = loc[:lng]
+    end
+
     if @rmr.save
 	    flash[:success] = "Rumor successfully spread"
     else
 	    flash[:failure] = "Something went wrong"
     end
-       @lat = @rmr[:latitude]
+
+    @lat = @rmr[:latitude]
     @long = @rmr[:longitude]
     @rumors = Rumor.all
+
     respond_to do |format|
-         format.html {redirect_to "/"}
-         format.js
-       end
+      format.html {redirect_to "/"}
+      format.js
+    end
   end
 
   def destroy

@@ -2,6 +2,8 @@
   var map;
   var markersArray = [];
   var infowindow;
+  var clickmarker;
+  var recentSubMarker;
 
   function initialize(){
 		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
@@ -42,7 +44,7 @@
 
   // add click maker 
 	function addClickMarkers(location, title){
-      var marker =  new google.maps.Marker({
+      clickmarker =  new google.maps.Marker({
         position: location,
         map: map,
         title: title,
@@ -60,11 +62,14 @@
       content = content.replace('lngValue', lng);
       //  if (infowindow) infowindow.close();
       infowindow = new google.maps.InfoWindow({content: content, position: location});
-      infowindow.open(map, marker);
+      infowindow.open(map, clickmarker);
       map.setCenter(location);
   }
-
-
+  // remove the sub dialog
+  function removeClickMarker(){
+    //alert('oh gosh');
+    clickmarker.setMap(null);
+  }
 	function addMarkers(location, title,content){
       var marker =  new google.maps.Marker({
         position: location,
@@ -79,6 +84,7 @@
         infowindow.open(map, marker);
         map.setCenter(location);
       });
+
   }
 
   function showMarkers(){
@@ -106,6 +112,7 @@
       map.setCenter(location);
     });
     marker.setMap(map);
+    
   }
 
   function removeMarker(count) {
@@ -116,6 +123,7 @@
       markersArray.splice(i,1);
     }
   }
+
 </script>
 <body onload="initialize()" />
 <div id="map_canvas"> </div>

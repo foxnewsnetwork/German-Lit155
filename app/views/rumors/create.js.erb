@@ -2,5 +2,7 @@
 $(".rumor").html("<%= escape_javascript( render @rumors)%>");
 $("#new_rumor")[0].reset();
 patchMarkers("<%= escape_javascript( "#{@lat}")%>","<%= escape_javascript( "#{@long}") %>","<%= escape_javascript( "#{@rmr.content}") %>","<%= escape_javascript("#{@rmr.content}") %>" );
-
-
+if (infowindow) infowindow.close();
+removeClickMarker();
+//var currentmarker = markersArray[markersArray.length-1];
+//infowindow.open(map, currentmarker);

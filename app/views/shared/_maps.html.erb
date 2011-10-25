@@ -30,15 +30,14 @@
       addClickMarker(event.latLng);
       //alert('listening for addlcikcmarer finished');
     });
+/*
+    google.maps.event.addListener(clickmarker, 'drag', function() {
+      alert('find');
+      updateMarkerPosition(clickmarker.getPosition());
+    });
+*/
     showMarkers();
-
 	}
-
-  // place the OnClick marker
-  function placeMarkerOnClick(location) {
-      var clickedLocation = new google.maps.LatLng(location);
-      addClickMarkers(location, 'clickables');
-  }
 
   // changes submission box into submitted text without refresh
   // currently broken because it refreshes the entire page
@@ -47,26 +46,36 @@
     document.getElementById('Submit').innerHTML = tmp;
   }
 
+  function updateMarkerPosition(latLng) {
+    document.getElementById('submitLat').value = latLng.lat();
+    document.getElementById('submitLng').value = latLng.lng();
+  }
   // add click maker 
 	function addClickMarker(location){
-      //alert('adding click marker');
-      clickmarker =  new google.maps.Marker({
-        position: location,
-        map: map,
-        title: 'submit me',
-      });
-      var lat = location.lat();
-      var lng = location.lng();
+      // ensures only one submit marker exists at any given time
+      if (clickmarker) {
+        clickmarker.setPosition(location);
+      } else {
+        clickmarker =  new google.maps.Marker({
+          position: location,
+          map: map,
+          title: 'submit me',
+          draggable: true,
+        });
+      }
+
       // add the submit form in the dialog window
       var content = '<%= render "shared/rumor_form_on_map_without_refresh" %>';
-      content = content.replace('latValue', lat);
-      content = content.replace('lngValue', lng);
+      content = content.replace('latValue', location.lat());
+      content = content.replace('lngValue', location.lng());
       if (infowindow) infowindow.close();
       infowindow = new google.maps.InfoWindow({content: content, position: location});
       infowindow.open(map, clickmarker);
       map.setCenter(location);
-      clickmaker.setMap(map); 
-      //alert('added click marker');
+     
+      google.maps.event.addListener(clickmarker, 'dragend', function() {
+        updateMarkerPosition(clickmarker.getPosition());
+      });
   }
 
   // remove the click(submission) marker
@@ -90,8 +99,12 @@
         infowindow = new google.maps.InfoWindow({content: content});
         infowindow.open(map, marker);
         map.setCenter(location);
+
       });
 
+      google.maps.event.addListener(marker, 'rightclick', function() {
+        marker.setMap(null);
+      });
   }
 
   function showMarkers(){

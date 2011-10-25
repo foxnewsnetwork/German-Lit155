@@ -22,29 +22,10 @@
     
     // add listener for onclick marker adder
     google.maps.event.addListener(map, 'click', function(event) { 
-      //alert('am i clicking'); 
-      //removeClickMarker();
-      
-      //map.removeOverlay(clickmarker);
-      //alert('listening for add clickmarker');
       addClickMarker(event.latLng);
-      //alert('listening for addlcikcmarer finished');
     });
-/*
-    google.maps.event.addListener(clickmarker, 'drag', function() {
-      alert('find');
-      updateMarkerPosition(clickmarker.getPosition());
-    });
-*/
     showMarkers();
 	}
-
-  // changes submission box into submitted text without refresh
-  // currently broken because it refreshes the entire page
-  function changeText(){
-    var tmp = document.getElementById('rumor_content_map').value;
-    document.getElementById('Submit').innerHTML = tmp;
-  }
 
   function updateMarkerPosition(latLng) {
     document.getElementById('submitLat').value = latLng.lat();
@@ -72,7 +53,10 @@
       infowindow = new google.maps.InfoWindow({content: content, position: location});
       infowindow.open(map, clickmarker);
       map.setCenter(location);
-     
+   
+     google.maps.event.addListener(clickmarker, 'drag', function() {
+        updateMarkerPosition(clickmarker.getPosition());
+      });     
       google.maps.event.addListener(clickmarker, 'dragend', function() {
         updateMarkerPosition(clickmarker.getPosition());
       });

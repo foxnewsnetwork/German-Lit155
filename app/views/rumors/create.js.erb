@@ -4,5 +4,4 @@ $("#new_rumor")[0].reset();
 patchMarkers("<%= escape_javascript( "#{@lat}")%>","<%= escape_javascript( "#{@long}") %>","<%= escape_javascript( "#{@rmr.content}") %>","<%= escape_javascript("#{@rmr.content}") %>" );
 if (infowindow) infowindow.close();
 removeClickMarker();
-//var currentmarker = markersArray[0];
-//infowindow.open(map, currentmarker);
+showJustSubmitted("<%= escape_javascript( "#{@rmr.content}") %>");

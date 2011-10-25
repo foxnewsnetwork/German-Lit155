@@ -3,7 +3,6 @@
   var markersArray = [];
   var infowindow;
   var clickmarker; 
-  var recentSubMarker;
 
   function initialize(){
 		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
@@ -64,10 +63,8 @@
 
   // remove the click(submission) marker
   function removeClickMarker(){
-    //alert('remove click marker');
     clickmarker.setMap(null);
     clickmarker = null;
-    //alert('end remove clcick marker');
   }
 
 	function addMarkers(location, title,content){
@@ -97,6 +94,7 @@
         markersArray[i].setMap(map);
       }
     }
+
   }
 
  	function patchMarkers(latitude,longitude,title,content){
@@ -114,13 +112,17 @@
       infowindow.open(map, marker);
       map.setCenter(location);
     });
+//    marker.setMap(map);
+  }
 
-    marker.setMap(map);
+  function showJustSubmitted(content){
+    var marker = markersArray[markersArray.length-1];
+    if (infowindow) infowindow.close();
+    infowindow = new google.maps.InfoWindow({content: content});
     infowindow.open(map, marker); 
   }
 
   function removeMarker(count) {
-
     var i = (markersArray.length -1) - count;
     if(markersArray){
       markersArray[i].setMap(null);

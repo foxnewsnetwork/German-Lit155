@@ -2,7 +2,7 @@
   var map;
   var markersArray = [];
   var infowindow;
-  var clickmarker;
+  var clickmarker; 
   var recentSubMarker;
 
   function initialize(){
@@ -20,9 +20,15 @@
       addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>","<%= escape_javascript("#{rumor.content}") %>" );
 		<% end %>
     
-    // add listening for onclick marker adder
+    // add listener for onclick marker adder
     google.maps.event.addListener(map, 'click', function(event) { 
-      placeMarkerOnClick(event.latLng);
+      //alert('am i clicking'); 
+      //removeClickMarker();
+      
+      //map.removeOverlay(clickmarker);
+      //alert('listening for add clickmarker');
+      addClickMarker(event.latLng);
+      //alert('listening for addlcikcmarer finished');
     });
     showMarkers();
 
@@ -41,35 +47,36 @@
     document.getElementById('Submit').innerHTML = tmp;
   }
 
-
   // add click maker 
-	function addClickMarkers(location, title){
+	function addClickMarker(location){
+      //alert('adding click marker');
       clickmarker =  new google.maps.Marker({
         position: location,
         map: map,
-        title: title,
+        title: 'submit me',
       });
-      
- //     markersArray.push(marker);
       var lat = location.lat();
       var lng = location.lng();
       // add the submit form in the dialog window
-      var content = '<%= render "shared/rumor_form_on_map" %>';
-
-      content = '<%= render "shared/rumor_form_on_map_without_refresh" %>';
-
+      var content = '<%= render "shared/rumor_form_on_map_without_refresh" %>';
       content = content.replace('latValue', lat);
       content = content.replace('lngValue', lng);
-      //  if (infowindow) infowindow.close();
+      if (infowindow) infowindow.close();
       infowindow = new google.maps.InfoWindow({content: content, position: location});
       infowindow.open(map, clickmarker);
       map.setCenter(location);
+      clickmaker.setMap(map); 
+      //alert('added click marker');
   }
-  // remove the sub dialog
+
+  // remove the click(submission) marker
   function removeClickMarker(){
-    //alert('oh gosh');
+    //alert('remove click marker');
     clickmarker.setMap(null);
+    clickmarker = null;
+    //alert('end remove clcick marker');
   }
+
 	function addMarkers(location, title,content){
       var marker =  new google.maps.Marker({
         position: location,
@@ -93,7 +100,6 @@
         markersArray[i].setMap(map);
       }
     }
-
   }
 
  	function patchMarkers(latitude,longitude,title,content){
@@ -111,8 +117,9 @@
       infowindow.open(map, marker);
       map.setCenter(location);
     });
+
     marker.setMap(map);
-    
+    infowindow.open(map, marker); 
   }
 
   function removeMarker(count) {

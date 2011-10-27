@@ -1,6 +1,6 @@
 class RumorsController < ApplicationController
   before_filter :check_admin , :only => [ :destroy, :edit, :update ]
-
+  before_filter :authenticate, :only => [ :destroy]
 
   def create
     if logged_in?
@@ -82,7 +82,7 @@ class RumorsController < ApplicationController
 
     def check_admin
       # implement this once we get the user resource and model
-      current_user_admin?
+      redirect_to(root_path) unless current_user_admin?
     end
 
 end

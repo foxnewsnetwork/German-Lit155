@@ -1,6 +1,7 @@
 class RumorsController < ApplicationController
   before_filter :check_admin , :only => [ :destroy, :edit, :update ]
 
+
   def create
     if logged_in?
       @rmr = current_user.rumors.build(params[:rumor])
@@ -81,6 +82,7 @@ class RumorsController < ApplicationController
 
     def check_admin
       # implement this once we get the user resource and model
+      current_user_admin?
     end
 
 end

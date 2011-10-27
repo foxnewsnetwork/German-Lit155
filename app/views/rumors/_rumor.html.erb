@@ -2,9 +2,13 @@
 	<td class="rumor">
 		<span class="content">
       <%= rumor.content %>
-      <%= link_to "delete", rumor_path(rumor, :counter => rumor_counter), :method => :delete, :confirm => "You sure?" , :remote => true,
-                                :title => "Delete #{rumor.title}" %>
-      
+      <% if not(current_user.nil?) %>
+
+        <% if current_user?(rumor.user_id) or current_user_admin? %>
+          <%= link_to "delete", rumor_path(rumor, :counter => rumor_counter), :method => :delete, :confirm => "You sure?" , :remote => true,
+                                 :title => "Delete #{rumor.title}" %>
+        <% end %>
+      <% end %>
     </span>
     <br>
     <% if current_user.nil? %>

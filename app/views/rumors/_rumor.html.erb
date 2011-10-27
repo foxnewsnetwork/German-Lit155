@@ -1,5 +1,3 @@
-
-
 <tr class="rumor">
 	<td class="rumor">
 		<span class="content">
@@ -9,6 +7,21 @@
       
     </span>
     <br>
+    <% if current_user.nil? %>
+  		<span class="location">
+  	    Spread by:  <%= rumor.username %>
+  		</span>
+    <% else %>
+      <% if rumor.user_id == current_user.id %>
+    		<span class="location">
+  	  		Spread by: Me
+  	  	</span>
+      <% else %> 
+     		<span class="location">
+  	  		Spread by:  <%= rumor.username %>
+    		</span>
+      <% end %>
+    <% end %>
 		<span class="location">
 			Spread around:  <%= rumor.latitude %>, <%= rumor.longitude %>
 		</span>

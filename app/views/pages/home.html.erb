@@ -9,8 +9,7 @@
     <%= render 'shared/debug', :location => @location, :rumors => @rumors, :ip => @ip %>
 
     <table class="rumor">
-      <%= render @rumors%>
-
+      <%= render :partial => 'rumors/rumor', :collection => @feed%>
     </table>
 
 </div>

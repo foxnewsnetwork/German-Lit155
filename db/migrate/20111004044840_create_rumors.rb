@@ -14,9 +14,11 @@ class CreateRumors < ActiveRecord::Migration
       t.integer :zoom_level , :default => 1
       t.integer :parent_id
       t.string :pic
+      t.integer :user_id
 
       t.timestamps
     end
+    add_index :rumors, :user_id
   end
 
   def self.down

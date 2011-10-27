@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 		@rumor = Rumor.new
 		keywords = params[:keywords]
 		@rumors = keywords.nil? ? Rumor.all : Rumor.search(keywords)
+    @feed = construct_feed
     temp = @rumors.first
 		@location = get_coordinates
     @ip = get_ip
@@ -15,5 +16,6 @@ class PagesController < ApplicationController
 
   def misc
   end
+
 
 end

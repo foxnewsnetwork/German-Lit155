@@ -10,6 +10,8 @@ class Rumor < ActiveRecord::Base
 	acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
   
   before_save :stagger_location
+  
+  belongs_to :user
 
 	# Sphinx-use index section
 	define_index do

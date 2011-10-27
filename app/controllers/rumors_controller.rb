@@ -2,7 +2,11 @@ class RumorsController < ApplicationController
   before_filter :check_admin , :only => [ :destroy, :edit, :update ]
 
   def create
-    @rmr = Rumor.new(params[:rumor])
+    if logged_in?
+      @rmr = current_user.rumors.build(params[:rumor])
+    else
+      @rmr = Rumor.new(params[:rumor])
+    end
 
     if @rmr.latitude.nil? 
 		  loc = get_coordinates
@@ -19,7 +23,17 @@ class RumorsController < ApplicationController
     @lat = @rmr[:latitude]
     @long = @rmr[:longitude]
     @rumors = Rumor.all
-
+    @users = User.all
+    @feed = construct_feed
+    
+    @IP = Ip.new(:rumor_id => @rmr.id, :ip=>get_ip.to_s)
+    @IP.save
+    #if @IP.save
+    #  flash[:success] = "Rumor successfully spread with IP"
+    #else
+    #  flash[:failure] = "IP did not save"
+    #end
+    
     respond_to do |format|
       format.html {redirect_to "/"}
       format.js
@@ -32,6 +46,8 @@ class RumorsController < ApplicationController
     @long = rumor[:longitude]
     @title = rumor.title
     rumor.destroy
+    ip = Ip.find_by_id(params[:id])
+    ip.destroy
     flash[:success] = "Rumor successfully deleted"
     @rumors = Rumor.all
      @count = params[:counter]

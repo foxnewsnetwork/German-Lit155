@@ -27,4 +27,10 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  def show
+    @user = User.find(params[:id])
+    @microposts = @user.rumors.paginate(:page =>params[:page])
+    @title = @user.name
+  end
 end

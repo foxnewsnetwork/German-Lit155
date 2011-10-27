@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022005131) do
+ActiveRecord::Schema.define(:version => 20111026233028) do
+
+  create_table "ips", :force => true do |t|
+    t.integer  "rumor_id"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rumors", :force => true do |t|
     t.text     "content"
@@ -20,9 +27,12 @@ ActiveRecord::Schema.define(:version => 20111022005131) do
     t.integer  "zoom_level",                                 :default => 1
     t.integer  "parent_id"
     t.string   "pic"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "rumors", ["user_id"], :name => "index_rumors_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"

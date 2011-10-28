@@ -1,6 +1,8 @@
 class RumorsController < ApplicationController
-  before_filter :check_admin , :only => [ :destroy, :edit, :update ]
-  before_filter :authenticate, :only => [ :destroy]
+  
+  before_filter :authenticate, :only => [ :destroy, :edit, :update]
+  before_filter :correct_user, :only => [ :edit, :update]
+  before_filter :check_admin , :only => :destroy
 
   def create
     if logged_in?
@@ -29,11 +31,6 @@ class RumorsController < ApplicationController
     
     @IP = Ip.new(:rumor_id => @rmr.id, :ip=>get_ip.to_s)
     @IP.save
-    #if @IP.save
-    #  flash[:success] = "Rumor successfully spread with IP"
-    #else
-    #  flash[:failure] = "IP did not save"
-    #end
     
     respond_to do |format|
       format.html {redirect_to "/"}
@@ -51,13 +48,15 @@ class RumorsController < ApplicationController
     ip.destroy
     flash[:success] = "Rumor successfully deleted"
     @rumors = Rumor.all
-     @count = params[:counter]
+    @feed = construct_feed
+    @count = params[:counter]
     puts(@count)
-      respond_to do |format|
+    respond_to do |format|
          format.html {redirect_to "/"}
          format.js
-       end  end
-  
+      end  
+    end
+
   def new
     @rumor = Rumor.new
     @title = "Spread a new rumor?"
@@ -79,10 +78,23 @@ class RumorsController < ApplicationController
 	end
 
   private
+    def authenticate
+      deny_access unless logged_in?
+    end
+    
+    def correct_user
+      @user = User.find(params[:id])
+
+      unless current_user?(@user)
+        puts 'Current User did not pass'
+      end
+    end
 
     def check_admin
       # implement this once we get the user resource and model
-      redirect_to(root_path) unless current_user_admin?
+      unless current_user_admin?
+        puts 'Check Admin did not pass'
+      end
     end
 
 end

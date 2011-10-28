@@ -6,7 +6,6 @@ module SessionsHelper
   
   def current_user_admin?
     User.find_by_id(current_user.id).admin
-
   end
 
   def deny_access

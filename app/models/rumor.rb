@@ -49,9 +49,9 @@ class Rumor < ActiveRecord::Base
   private
     	
     # location had better be a hash for :lat and :lng
-    # we stagger for a radius of 0.5 km on the earth surface
+    # we stagger for a radius of some km on the earth surface
     def stagger_location
-      scale_constant = 9.567e-4 # theta = what I want to look good 
+      scale_constant = 9.567e-5# theta = what I want to look good 
       d_a = [rand(20) - 10.0, rand(20) - 10.0] # two random numbers between -10 and 10
       d_p = [d_a[0]/10.0 , d_a[1]/10.0] # two random numbers between -1 and 1
 

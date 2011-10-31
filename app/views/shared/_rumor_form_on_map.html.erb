@@ -1,1 +1,6 @@
-<%= form_for @rumor, :remote => true do |r| %><%= render 'shared/error_messages', :object => r.object %><div class="content"><%= r.text_area :content %></div><input name="rumor[latitude]" type="" value="latValue" /><input name="rumor[longitude]" type="" value="lngValue" /><%= r.submit %><% end %> \
+<%= form_for @rumor, :remote => true do |r| %>
+    <%= render 'shared/error_messages', :object => r.object %>
+    <div class="content"><%= r.text_area :content %>
+    </div><input name="rumor[latitude]" type="" value="latValue" />
+    <input name="rumor[longitude]" type="" value="lngValue" />
+    <%= r.submit %><% end %> \

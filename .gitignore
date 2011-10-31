@@ -1,8 +1,10 @@
 .bundle
 db/*.sqlite3
+db/
 db/sphinx/
 db/sphinx/development/
-config/database.yaml
+config/database.yml
+config/sphinx.yml
 log/*.log
 log/*.pid
 *.log

@@ -6,8 +6,10 @@ class Rumor < ActiveRecord::Base
   validates :latitude , :presence => true 
   validates :longitude , :presence => true 
   default_scope :order => 'created_at DESC'
+  scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
-	acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
+
+  acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
   
   before_save :stagger_location
   
@@ -21,7 +23,13 @@ class Rumor < ActiveRecord::Base
     # Attributes
     has created_at, updated_at, parent_id, latitude, longitude
 	end
-  
+
+  def self.followed_by(user)
+   #area_ids = %(SELECT area_id FROM areas
+   #               WHERE area_id = :user_id)
+   #where("user_id IN (#{following_ids}) OR user_id = :user_id",
+   #         { :user_id => user })
+  end
   # returns the first 50 characters or the first 5 words of a rumor
   def title
     f50 = self.content.length > 50 ? self.content[0..49] : self.content

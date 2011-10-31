@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
   
   has_many :rumor
   has_many :rumors
+  has_many :areas
+
+  def area_feed
+     Rumor.from_users_followed_by(self)
+  end
 
   # login can be either username or email address
   def self.authenticate(login, pass)

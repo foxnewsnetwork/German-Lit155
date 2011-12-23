@@ -1,0 +1,7 @@
+<% rumors.each do | rumor| %>
+	<ul class="rumor-span">
+		<li>Subject: <% rumor.people.each do |person| %><%= "#{person.name}, " %><% end %></li>
+		<li><%= rumor.content %></li>
+		<li><%= rumor.created_at %> </li>
+	</ul>
+<% end %>

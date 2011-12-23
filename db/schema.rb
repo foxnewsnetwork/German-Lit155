@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111222203623) do
+ActiveRecord::Schema.define(:version => 20111223061424) do
 
   create_table "address_records", :force => true do |t|
     t.string   "address"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20111222203623) do
     t.string   "linkedin",                                  :default => "*"
     t.string   "wikipedia",                                 :default => "*"
     t.string   "tumblr",                                    :default => "*"
-    t.decimal  "lat_avg",    :precision => 10, :scale => 0
-    t.decimal  "lng_avg",    :precision => 10, :scale => 0
+    t.decimal  "lat_avg",    :precision => 10, :scale => 0, :default => 0
+    t.decimal  "lng_avg",    :precision => 10, :scale => 0, :default => 0
   end
 
   add_index "people", ["dist"], :name => "index_people_on_dist"

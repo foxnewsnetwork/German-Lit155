@@ -49,12 +49,15 @@ class Rumor < ActiveRecord::Base
 
 		if people.empty?
 			person = Person.build_with_magic( keywords )
-			rumor = person.rumors.new( :content => keywords[:content], :latitude => keywords[:lat], :longitude => keywords[:lng])
+			rumor = person.rumors.new( :content => keywords[:content], :latitude => keywords[:latitude], :longitude => keywords[:longitude])
 			rumor.save!
+			rumor_record = rumor.rumor_records.create( :person_id => person.id )
+			person.update_averages(rumor)
 		else
 			rumor = Rumor.create( :content => keywords[:content], :latitude => keywords[:latitude], :longitude => keywords[:longitude] )
 			people.each do | person |
 				rumor_record = rumor.rumor_records.create( :person_id => person.id )
+				person.update_averages(rumor)
 			end
 		end
 	end
@@ -62,26 +65,16 @@ class Rumor < ActiveRecord::Base
 	def self.search2( keywords )
 		# Step 1: initialize the people who might be of interest
 		people = Person.find_by_magic( keywords )
-		if people.empty?
-			person = Person.build_with_magic( keywords )
-			people.add( person )
-		end
-		# Step 2: Pull out the rumors
-		# TODO: write this function so it's scalable lol
-		rumors = []
-		people.each do | person |
-			rumor = Rumor.find_by_person_id( person.id )
-			rumors.push( rumor  ) unless rumor.empty?
-		end
-		return rumors
+		return people 
 	end
 
-  def self.followed_by(user)
+  #def self.followed_by(user)
    #area_ids = %(SELECT area_id FROM areas
    #               WHERE area_id = :user_id)
    #where("user_id IN (#{following_ids}) OR user_id = :user_id",
    #         { :user_id => user })
-  end
+  #end
+  
   # returns the first 50 characters or the first 5 words of a rumor
   def title
     f50 = self.content.length > 50 ? self.content[0..49] : self.content

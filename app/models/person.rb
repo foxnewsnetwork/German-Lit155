@@ -31,13 +31,19 @@ class Person < ActiveRecord::Base
 	
 	has_many :address_records, :foreign_key => :person_id, :dependent => :destroy
 	
+	attr_accessible :dist, :name, :age, :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
 	# TODO: use sphinx!
 	
 	# Call this function after spreading a rumor to update the averages
 	def update_averages( rumor )
-		count = self.rumors.count
-		self.lat_avg += (self.lat_avg - rumor.latitude) / count
-		self.lng_avg += (self.lng_avg - rumor.longitude ) / count
+		if self.rumors.empty? || self.rumors.nil?
+			self.lat_avg = rumor.latitude
+			self.lng_avg = rumor.longitude
+		else
+			count = self.rumors.count
+			self.lat_avg += (rumor.latitude - self.lat_avg) / count
+			self.lng_avg += (rumor.longitude - self.lng_avg ) / count
+		end
 		self.save
 	end
 		
@@ -50,6 +56,7 @@ class Person < ActiveRecord::Base
 		person.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
 		person.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
 		person.addresses_records.create( :address => keywords[:address]) unless keywords[:address].nil?
+		return person
 	end
 	
 	# The two functions to call from the rumor model
@@ -97,7 +104,8 @@ class Person < ActiveRecord::Base
 		unless keywords[:latitude].nil? || keywords[:longitude].nil?
 			internals = internals.merge( :latitude => keywords[:latitude], :longitude => keywords[:longitude] )
 			lat_tol = 1.0 # We're interested in an approximately 70 mile radius around the average
-			lng_tol = 1.0 / ( cosd keywords[:latitude] ) # People at the north and south poles are fucked
+			angle = keywords[:latitude].to_f * PI / 360.0
+			lng_tol = 1.0 / ( Math.cos angle ) # People at the north and south poles are fucked
 			statement += "lat_avg <= lat_avg + #{lat_tol} AND lat_avg >= lat_avg - #{lat_tol} AND 
 				lng_avg <= lng_avg + #{lng_tol} AND lng_avg >= lng_avg - #{lng_tol} AND "
 		end

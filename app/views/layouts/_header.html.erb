@@ -1,9 +1,5 @@
 <%= yield :head %>
 
 <div id='toolbar'>
-  <% if logged_in? %>
-    Welcome <%= link_to current_user.username, current_user %>!  |<%= link_to "Sign out", logout_path, :method=> :delete , :class=>'tb_button'%>
-  <% else %>
-    <%= link_to "Home", '/', :class=>'tb_button' %> | <%= link_to "Sign Up", signup_path, :class=>'tb_button' %> | <%= link_to "Sign In", login_path, :class=>'tb_button' %> 
-  <% end %>
+  Welcome to the Rumor Mill!
 </div>

@@ -20,9 +20,10 @@ class PagesController < ApplicationController
 	def index
 		@rumor = Rumor.new
 		search = params[:search]
-		spread = params[:spread]
+		spread = params[:rumor]
 		@result = Rumor.spread(spread) unless spread.nil?
-		@rumors = Rumor.search2(search) unless search.nil?
+		@people = Rumor.search2(search) unless search.nil?
+
 		
 		# We're currently not doing anything with these, although we should later
 		@location = get_coordinates

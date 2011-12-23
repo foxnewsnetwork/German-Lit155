@@ -21,7 +21,7 @@
 <div id='side_bar' class='link'>
 
 	<div class="simple_rumor_search">
-		<%= form_for root_path do %>
+		<%= form_for root_path, :method => :get do %>
 			<div class="content">
 				<%= hidden_field_tag "search[type]", "simple" %>
 				<%= hidden_field_tag "search[latitude]", @location[:lat] %>
@@ -35,7 +35,7 @@
 		<button class="advanced_search">Advanced Search...</button>
 	</div>
 	<div class="advanced_rumor_search">
-		<%= form_for root_path do %>
+		<%= form_for root_path, :method => :get do %>
 			<%= hidden_field_tag "search[type]", "advanced" %>
 			<%= hidden_field_tag "search[latitude]", @location[:lat] %>
 			<%= hidden_field_tag "search[longitude]", @location[:lng] %>
@@ -65,7 +65,7 @@
 		<% end %>
 	</div>
 	<div class="simple_rumor_spread">
-		<%= form_for new_rumor_path do %>
+		<%= form_for root_path do %>
 			<%= hidden_field_tag "rumor[type]", "simple" %>
 			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
 			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
@@ -79,7 +79,7 @@
 		<button class="advanced_spread">Advanced Spread...</button>
 	</div>
 	<div class="advanced_rumor_spread">
-		<%= form_for new_rumor_path do %>
+		<%= form_for root_path do %>
 			<%= hidden_field_tag "rumor[type]", "advanced" %>
 			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
 			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
@@ -115,9 +115,7 @@
 </div>
 <div class="right-content">
 <% unless @people.nil? || @people.empty? %>
-	<% @people.each do |person| %>
-		<%= render "shared/rumors", :rumors => person.rumors %>
-	<% end %>
+	<%= render "people/people", :people => @people %>
 <% else %>
 <h1>Nothing here yet! Do a search or spread something!</h1>
 <% end %>

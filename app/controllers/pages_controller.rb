@@ -19,10 +19,18 @@ class PagesController < ApplicationController
 
 	def index
 		@rumor = Rumor.new
+
+		unless params[:rumor].nil?
+			if params[:rumor][:type] == "#"
+				rmr = Rumor.create(params[:rumor])
+				rmr.rumor_records.create( :person_id => params[:rumor][:person] )
+			else
+				spread = params[:rumor]
+				@result = Rumor.spread(spread) unless spread.nil?
+			end
+		end
 		search = params[:search]
-		spread = params[:rumor]
-		@result = Rumor.spread(spread) unless spread.nil?
-		@people = Rumor.search2(search) unless search.nil?
+		@people = Rumor.search2(search).paginate(:page => 1) unless search.nil?
 
 		
 		# We're currently not doing anything with these, although we should later

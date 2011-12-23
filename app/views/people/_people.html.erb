@@ -1,0 +1,43 @@
+<%= will_paginate people %>
+<!-- Assumes I have an array of persons named people -->
+<% people.each do |person| %>
+<div class="person-container">
+	<%= form_for person do |f| %>
+		<%= render "shared/error_messages", :object => f.object %>
+		<!-- Uneditable section -->
+		<h2><%= person.name %></h2>
+		<h3>Rumor Geocenter</h3>
+		<p>Latitude: <%= person.lat_avg %> | Longitude: <%= person.lng_avg %></p>
+		<!-- Possible editables -->
+		<h3>Basic Information</h3>
+		<p><%= f.label "Age: " %><% if person.age == 0 %><%= f.number_field :age %><% else %><%= person.age %><% end %></p>
+		<p><%= f.label "Facebook: " %><% if person.facebook == "*" %><%= f.text_field :facebook %><% else %><%= person.facebook %><% end %></p>
+		<p><%= f.label "Twitter: " %><% if person.twitter == "*" %><%= f.text_field :twitter %><% else %><%= person.twitter %><% end %></p>
+		<p><%= f.label "Linkedin: " %><% if person.linkedin == "*" %><%= f.text_field :linkedin %><% else %><%= person.linkedin %><% end %></p>
+		<p><%= f.label "Wikipedia: " %><% if person.wikipedia == "*" %><%= f.text_field :wikipedia %><% else %><%= person.wikipedia %><% end %></p>
+		<p><%= f.label "Tumblr: " %><% if person.tumblr == "*" %><%= f.text_field :tumblr %><% else %><%= person.tumblr %><% end %></p>
+		<h3>Contact Information</h3>
+		<p>[NOT YET IMPLEMENTED]</p>
+		<%= f.submit "Update" %>
+	<% end %>
+</div>
+<%= will_paginate people %>
+<div class="rumor-container">
+	<%= render "shared/rumors", :rumors => person.rumors %>
+</div>
+<div class="new-rumor">
+	<%= form_for "#" do %>
+			<%= hidden_field_tag "rumor[type]", "#" %>
+			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
+			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
+			<%= hidden_field_tag "rumor[ip]", @ip %>
+			<%= hidden_field_tag "rumor[person]", person.id %>
+			<br />
+			<%= label_tag :content %>
+			<%= text_area :rumor, :content, :size => "40x5" %>
+			<br />
+			<%= submit_tag "Create Rumor!" %>
+	<% end %>
+</div>
+<% end %>
+

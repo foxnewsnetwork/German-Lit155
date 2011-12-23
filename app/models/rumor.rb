@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: rumors
+#
+#  id         :integer(4)      not null, primary key
+#  content    :text
+#  latitude   :decimal(15, 10)
+#  longitude  :decimal(15, 10)
+#  gmaps      :boolean(1)
+#  zoom_level :integer(4)      default(1)
+#  parent_id  :integer(4)
+#  pic        :string(255)
+#  user_id    :integer(4)
+#  created_at :datetime
+#  updated_at :datetime
+#  person_id  :integer(4)
+#
+
 class Rumor < ActiveRecord::Base
   attr_accessible :content, :latitude, :longitude, :pic, :gmaps
 
@@ -11,9 +29,10 @@ class Rumor < ActiveRecord::Base
 
   acts_as_gmappable :process_geocoding => false, :lat => "latitude", :lng => "longitude"
   
-  before_save :stagger_location
+#  before_save :stagger_location
   
-  belongs_to :user
+  has_many :rumor_records, :dependent => :destroy
+  has_many :people, :through => :rumor_records
 
 	# Sphinx-use index section
 	define_index do
@@ -22,6 +41,39 @@ class Rumor < ActiveRecord::Base
     
     # Attributes
     has created_at, updated_at, parent_id, latitude, longitude
+	end
+	
+	def self.spread( keywords ) 
+		# Step 1: Initialize the people in question
+		people = Person.find_by_magic( keywords )
+
+		if people.empty?
+			person = Person.build_with_magic( keywords )
+			rumor = person.rumors.new( :content => keywords[:content], :latitude => keywords[:lat], :longitude => keywords[:lng])
+			rumor.save!
+		else
+			rumor = Rumor.create( :content => keywords[:content], :latitude => keywords[:latitude], :longitude => keywords[:longitude] )
+			people.each do | person |
+				rumor_record = rumor.rumor_records.create( :person_id => person.id )
+			end
+		end
+	end
+	
+	def self.search2( keywords )
+		# Step 1: initialize the people who might be of interest
+		people = Person.find_by_magic( keywords )
+		if people.empty?
+			person = Person.build_with_magic( keywords )
+			people.add( person )
+		end
+		# Step 2: Pull out the rumors
+		# TODO: write this function so it's scalable lol
+		rumors = []
+		people.each do | person |
+			rumor = Rumor.find_by_person_id( person.id )
+			rumors.push( rumor  ) unless rumor.empty?
+		end
+		return rumors
 	end
 
   def self.followed_by(user)

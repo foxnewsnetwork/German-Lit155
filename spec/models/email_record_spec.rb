@@ -1,16 +1,17 @@
 # == Schema Information
 #
-# Table name: ips
+# Table name: email_records
 #
 #  id         :integer(4)      not null, primary key
-#  rumor_id   :integer(4)
-#  ip         :string(255)
+#  email      :string(255)
+#  person_id  :integer(4)
+#  count      :integer(4)
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 require 'spec_helper'
 
-describe Ip do
+describe EmailRecord do
   pending "add some examples to (or delete) #{__FILE__}"
 end

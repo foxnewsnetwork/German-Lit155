@@ -1,5 +1,7 @@
 Gossip::Application.routes.draw do
 
+  resources :people
+
   get "areas/create"
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -65,7 +67,7 @@ Gossip::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "pages#home"
+  root :to => "pages#index"
 
   # See how all your routes lay out with "rake routes"
 

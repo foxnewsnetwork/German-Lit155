@@ -17,5 +17,22 @@ class PagesController < ApplicationController
   def misc
   end
 
+	def index
+		@rumor = Rumor.new
+		search = params[:search]
+		spread = params[:spread]
+		@result = Rumor.spread(spread) unless spread.nil?
+		@rumors = Rumor.search2(search) unless search.nil?
+		
+		# We're currently not doing anything with these, although we should later
+		@location = get_coordinates
+		@ip = get_ip
+		
+		if @result.nil?
+			flash.now[:error] = "Sorry, something went wrong with spreading your rumor"
+		end
+	end
+	
+	
 
 end

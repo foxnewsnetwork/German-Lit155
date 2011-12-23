@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer(4)      not null, primary key
+#  username      :string(255)
+#  email         :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  admin         :boolean(1)      default(FALSE)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation
@@ -13,7 +27,6 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
   
-  has_many :rumor
   has_many :rumors
   has_many :areas
 

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer(4)      not null, primary key
+#  username      :string(255)
+#  email         :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  admin         :boolean(1)      default(FALSE)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe User do

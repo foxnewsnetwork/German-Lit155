@@ -29,6 +29,7 @@ GEM
       activesupport (= 3.0.10)
     activesupport (3.0.10)
     addressable (2.2.6)
+    annotate (2.4.0)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
@@ -133,6 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (= 2.4.0)
   bcrypt-ruby
   factory_girl (~> 2.1.0)
   faker (~> 1.0.0)

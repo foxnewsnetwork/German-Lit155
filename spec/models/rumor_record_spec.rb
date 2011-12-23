@@ -1,18 +1,16 @@
 # == Schema Information
 #
-# Table name: ips
+# Table name: rumor_records
 #
 #  id         :integer(4)      not null, primary key
+#  person_id  :integer(4)
 #  rumor_id   :integer(4)
-#  ip         :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Ip < ActiveRecord::Base
-  attr_accessible :rumor_id, :ip
-  
-  belongs_to :rumor
+require 'spec_helper'
 
-      
+describe RumorRecord do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

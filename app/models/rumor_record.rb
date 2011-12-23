@@ -1,18 +1,15 @@
 # == Schema Information
 #
-# Table name: ips
+# Table name: rumor_records
 #
 #  id         :integer(4)      not null, primary key
+#  person_id  :integer(4)
 #  rumor_id   :integer(4)
-#  ip         :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Ip < ActiveRecord::Base
-  attr_accessible :rumor_id, :ip
-  
-  belongs_to :rumor
-
-      
+class RumorRecord < ActiveRecord::Base
+	belongs_to :person
+	belongs_to :rumor
 end

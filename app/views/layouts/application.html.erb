@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gossip</title>
+  <title>Rumor Mill</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js", "button.js" %>
 
@@ -10,8 +10,13 @@
 </head>
 <body>
 <%= render "layouts/header" %>
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, :class => "flash #{key}") %>
+<% end %>
+<div class="container">
 <%= yield %>
-<%= render 'layouts/footer' %>
+<%= render "layouts/footer" %>
+</div>
 <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

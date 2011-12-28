@@ -1,0 +1,32 @@
+<%= form_for root_path do %>
+	<%= hidden_field_tag "rumor[type]", "advanced" %>
+	<%= hidden_field_tag "rumor[latitude]", location[:lat] %>
+	<%= hidden_field_tag "rumor[longitude]", location[:lng] %>
+	<%= hidden_field_tag "rumor[ip]", ip %>
+	<%= label_tag "Name: " %>
+	<%= text_field_tag "rumor[name]" %>
+	<br />
+	<%= label_tag "Phone: " %>
+	<%= telephone_field_tag "rumor[phone]" %>
+	<br />
+	<%= label_tag "Email: " %>
+	<%= email_field_tag "rumor[email]" %>
+	<br />
+	<%= label_tag "Gender: " %>
+	<%= label_tag "male" %>
+	<%= radio_button_tag "rumor[gender]", "male" %>
+	<%= label_tag "female" %>
+	<%= radio_button_tag "rumor[gender]", "female" %>
+	<br />
+	<%= label_tag "Age: " %>
+	<%= number_field_tag "rumor[age]" %>
+	<br />
+	<%= label_tag "Address: " %>
+	<%= text_field_tag "rumor[address]" %>
+	<br />
+	<%= label_tag :content %>
+	<%= text_area :rumor, :content, :size => "40x5" %>
+	<br />
+	<%= submit_tag "Create Rumor!" %>
+<% end %>
+

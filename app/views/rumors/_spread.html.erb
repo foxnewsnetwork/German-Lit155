@@ -1,0 +1,53 @@
+<!-- Variables in this hellhole: search, person -->
+<h2>New Rumor Profile!</h2>
+<ul class="spread_form">
+<%= form_for person do |f| %>
+	<!-- Usually necessary sections -->
+	<li>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</li>
+	<li>
+		<%= f.label :facebook %>
+		<%= f.text_field :facebook %>
+	</li>
+	<li>
+		<%= f.label :twitter %>
+		<%= f.text_field :twitter %>
+	</li>
+	<li>
+		<%= f.label :linkedin %>
+		<%= f.text_field :linkedin %>
+	</li>
+	<li>
+		<%= f.label :tumblr %>
+		<%= f.text_field :tumblr %>
+	</li>
+	<li>
+		<%= f.label :wikipedia %>
+		<%= f.text_field :wikipedia %>
+	</li>
+	<!-- Invisible sections -->
+	<%= hidden_field_tag "person[type]", "advanced" %>
+	<%= hidden_field_tag "person[latitude]", search[:latitude] unless search[:latitude].nil? %>
+	<%= hidden_field_tag "person[longitude]", search[:longitude] unless search[:longitude].nil? %>
+	<%= hidden_field_tag "person[ip]", search[:ip] unless search[:ip].nil? %>
+	<!-- Potentially unavailible sections -->
+	<li>
+		<%= label_tag "Phone" %>
+		<%= phone_field_tag "person[phone]",  search[:phone].nil? ? "" : search[:phone] %>
+	</li>
+	<li>
+		<%= label_tag "Email Address" %>
+		<%= text_field_tag "person[email]", search[:email].nil? ? "" : search[:email] %>
+	</li>
+	<li>
+		<%= label_tag "Address" %>
+		<%= text_field_tag "person[address]",  search[:address].nil? ? "" : search[:address] %>
+	</li>
+	<li>
+		<%= f.submit :submit, :class => "btn primary" %>
+	</li>
+<% end %>
+</ul>
+

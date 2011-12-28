@@ -46,16 +46,21 @@ class Person < ActiveRecord::Base
 		end
 		self.save
 	end
+	
+	# Makes new IP records and stuff
+	def update_with_magic( keywords )
+		self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
+		self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
+		self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
+		self.address_records.create( :address => keywords[:address]) unless keywords[:address].nil?	
+	end
 		
 	# Creates a person... with magic
 	def self.build_with_magic( keywords )
 		person = Person.new( keywords )
 		person.save
 		
-		person.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
-		person.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
-		person.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
-		person.addresses_records.create( :address => keywords[:address]) unless keywords[:address].nil?
+		person.update_with_magic( keywords )
 		return person
 	end
 	

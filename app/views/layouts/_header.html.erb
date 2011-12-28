@@ -1,5 +1,16 @@
 <%= yield :head %>
 
-<div id='toolbar'>
-  Welcome to the Rumor Mill!
+<header>
+<nav>
+<div class="topbar">
+  <div class="fill">
+    <div class="container">
+      <a class="brand" href="/">RumorMill</a>
+      <ul class="nav">
+        <li class="active"><%= link_to "Welcome to the Mill", root_path %></li>
+      </ul>
+    </div>
+  </div>
 </div>
+</nav>
+</header>

@@ -24,14 +24,21 @@ class PagesController < ApplicationController
 			if params[:rumor][:type] == "#"
 				rmr = Rumor.create(params[:rumor])
 				rmr.rumor_records.create( :person_id => params[:rumor][:person] )
+				prs = Person.find_by_id( params[:rumor][:person] )
+				prs.update_averages(rmr)
+				redirect_to :back
 			else
 				spread = params[:rumor]
 				@result = Rumor.spread(spread) unless spread.nil?
 			end
 		end
 		search = params[:search]
-		@people = Rumor.search2(search).paginate(:page => 1) unless search.nil?
 
+		unless search.nil?
+			@people = Rumor.search2(search).paginate(:page => 1) 
+		end
+		@search = search		
+		@person = Person.new(@search)
 		
 		# We're currently not doing anything with these, although we should later
 		@location = get_coordinates

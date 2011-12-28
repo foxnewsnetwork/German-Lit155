@@ -1,27 +1,68 @@
-<%= will_paginate people %>
 <!-- Assumes I have an array of persons named people -->
+<div class="row">
+<%= will_paginate people %>
+
 <% people.each do |person| %>
-<div class="person-container">
-	<%= form_for person do |f| %>
+<h1><%= person.name %></h1>
+</div>
+<div class="row">
+<div class="span-one-third">
+	<%= form_for person, :method => "put" do |f| %>
 		<%= render "shared/error_messages", :object => f.object %>
+		<%= hidden_field_tag "person[id]", person.id %>
 		<!-- Uneditable section -->
-		<h2><%= person.name %></h2>
 		<h3>Rumor Geocenter</h3>
 		<p>Latitude: <%= person.lat_avg %> | Longitude: <%= person.lng_avg %></p>
+		<!--Rendering the map -->
+		<%= render "shared/maps2", :rumors => person.rumors, :location => { :lat => person.lat_avg, :lng => person.lng_avg }, :initial_zoom => 14 %>		
+</div>
+<div class="span-one-third">
 		<!-- Possible editables -->
 		<h3>Basic Information</h3>
-		<p><%= f.label "Age: " %><% if person.age == 0 %><%= f.number_field :age %><% else %><%= person.age %><% end %></p>
-		<p><%= f.label "Facebook: " %><% if person.facebook == "*" %><%= f.text_field :facebook %><% else %><%= person.facebook %><% end %></p>
-		<p><%= f.label "Twitter: " %><% if person.twitter == "*" %><%= f.text_field :twitter %><% else %><%= person.twitter %><% end %></p>
-		<p><%= f.label "Linkedin: " %><% if person.linkedin == "*" %><%= f.text_field :linkedin %><% else %><%= person.linkedin %><% end %></p>
-		<p><%= f.label "Wikipedia: " %><% if person.wikipedia == "*" %><%= f.text_field :wikipedia %><% else %><%= person.wikipedia %><% end %></p>
-		<p><%= f.label "Tumblr: " %><% if person.tumblr == "*" %><%= f.text_field :tumblr %><% else %><%= person.tumblr %><% end %></p>
-		<h3>Contact Information</h3>
-		<p>[NOT YET IMPLEMENTED]</p>
-		<%= f.submit "Update" %>
+		<h4>Age</h4>
+		<p><% if person.age == 0 %><%= f.number_field :age %><% else %> <%= person.age %><% end %></p>
+		<h4>Facebook</h4>
+		<p><% if person.facebook == "*" %><%= f.text_field :facebook %><% else %> <%= link_to "Facebook Profile", person.facebook %><% end %></p>
+		<h4>Twitter</h4>
+		<p><% if person.twitter == "*" %><%= f.text_field :twitter %><% else %> <%= link_to "Twitter Profile", person.twitter %><% end %></p>
+		<h4>LinkedIn</h4>
+		<p><% if person.linkedin == "*" %><%= f.text_field :linkedin %><% else %> <%= link_to "LinkedIn Profile", person.linkedin %><% end %></p>
+		<h4>Wikipedia</h4>
+		<p><% if person.wikipedia == "*" %><%= f.text_field :wikipedia %><% else %> <%= link_to "Wikipedia Article", person.wikipedia %><% end %></p>
+		<h4>Tumblr</h4>
+		<p><% if person.tumblr == "*" %><%= f.text_field :tumblr %><% else %> <%= link_to "Tumblr Blog", person.tumblr %><% end %></p>
+		<p><%= f.submit "Update Basic Information", :class => "btn" %></p>
+	<% end %>
+</div>
+<div class="span-one-third">
+	<h3>Contact Information</h3>
+	<%= form_for person, :method => "put" do |f| %>
+		<!-- Meta data -->
+		<%= hidden_field_tag "person[type]", "contact" %>
+		<%= hidden_field_tag "person[id]", person.id %>
+		<!-- Actual data -->
+		<h4>Address</h4>
+		<% unless person.address_records.empty? %>
+			<p><% person.address_records.each do |r| %><%= r.address %> | <% end %></p>					
+		<% end %>
+		<%= text_field_tag "person[address]" %>
+		<h4>Phone</h4>
+		<% unless person.phone_records.empty? %>
+			<p><% person.phone_records.each do |r| %><%= r.phone_number %> | <% end %></p>					
+		<% end %>
+		<%= phone_field_tag "person[phone]" %>
+		<h4>Email</h4>
+		<% unless person.email_records.empty? %>
+			<p><% person.email_records.each do |r| %><%= r.email %> | <% end %></p>					
+		<% end %>
+		<%= text_field_tag "person[email]" %>
+		<!-- Submit -->
+		<p><%= f.submit "Update Contact Information", :class => "btn" %></p>
 	<% end %>
 </div>
 <%= will_paginate people %>
+</div>
+<div class="row">
 <div class="rumor-container">
 	<%= render "shared/rumors", :rumors => person.rumors %>
 </div>
@@ -34,10 +75,11 @@
 			<%= hidden_field_tag "rumor[person]", person.id %>
 			<br />
 			<%= label_tag :content %>
-			<%= text_area :rumor, :content, :size => "40x5" %>
+			<%= text_area :rumor, :content, :size => "70x3" %>
 			<br />
-			<%= submit_tag "Create Rumor!" %>
+			<%= submit_tag "Create Rumor!", :class => "btn" %>
 	<% end %>
 </div>
 <% end %>
+</div>
 

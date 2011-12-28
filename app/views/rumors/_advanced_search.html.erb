@@ -1,0 +1,28 @@
+<%= form_tag root_path, :method => "get" do %>
+	<%= hidden_field_tag "search[type]", "advanced" %>
+	<%= hidden_field_tag "search[latitude]", location[:lat] %>
+	<%= hidden_field_tag "search[longitude]", location[:lng] %>
+	<%= hidden_field_tag "search[ip]", ip %>
+	<%= label_tag "Name: " %>
+	<%= text_field_tag "search[name]" %>
+	<br />
+	<%= label_tag "Phone: " %>
+	<%= telephone_field_tag "search[phone]" %>
+	<br />
+	<%= label_tag "Email: " %>
+	<%= email_field_tag "search[email]" %>
+	<br />
+	<%= label_tag "Gender: " %>
+	<%= label_tag "male" %>
+	<%= radio_button_tag "search[gender]", "male" %>
+	<%= label_tag "female" %>
+	<%= radio_button_tag "search[gender]", "female" %>
+	<br />
+	<%= label_tag "Age: " %>
+	<%= number_field_tag "search[age]" %>
+	<br />
+	<%= label_tag "Address: " %>
+	<%= text_field_tag "search[address]" %>
+	<br />		
+	<%= submit_tag 'Search Person' %>		
+<% end %>

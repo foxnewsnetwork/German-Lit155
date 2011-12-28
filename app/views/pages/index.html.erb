@@ -2,12 +2,13 @@
 	$(document).ready( function( ){ 
 		$("div.advanced_rumor_search").hide( );		
 		$("div.advanced_rumor_spread").hide( );
+		$("div.simple_rumor_spread").hide( );
 				
-		$("button.advanced_search").click( function( ) { 
+		$(".advanced_search").click( function( ) { 
 			$("div.advanced_rumor_search").toggle( );
 		} );
 	
-		$("button.advanced_spread").click( function( ) {
+		$(".advanced_spread").click( function( ) {
 			$("div.advanced_rumor_spread").toggle( );
 		} );
 	} );
@@ -15,108 +16,86 @@
 
 </script>
 
-
-
-<div id='left'>
-<div id='side_bar' class='link'>
-
+<div class="hero-unit">
 	<div class="simple_rumor_search">
-		<%= form_for root_path, :method => :get do %>
-			<div class="content">
+		<p>
+			<%= form_tag( root_path, :method => "get" ) do %>
 				<%= hidden_field_tag "search[type]", "simple" %>
 				<%= hidden_field_tag "search[latitude]", @location[:lat] %>
 				<%= hidden_field_tag "search[longitude]", @location[:lng] %>
 				<%= hidden_field_tag "search[ip]", @ip %>
-				<%= label_tag "Name: " %>
-				<%= search_field_tag('search[name]') %>
-			</div>
-			<%= submit_tag 'Search Person' %>
-		<% end %>
-		<button class="advanced_search">Advanced Search...</button>
-	</div>
-	<div class="advanced_rumor_search">
-		<%= form_for root_path, :method => :get do %>
-			<%= hidden_field_tag "search[type]", "advanced" %>
-			<%= hidden_field_tag "search[latitude]", @location[:lat] %>
-			<%= hidden_field_tag "search[longitude]", @location[:lng] %>
-			<%= hidden_field_tag "search[ip]", @ip %>
-			<%= label_tag "*Name: " %>
-			<%= text_field_tag "search[name]" %>
-			<br />
-			<%= label_tag "Phone: " %>
-			<%= telephone_field_tag "search[phone]" %>
-			<br />
-			<%= label_tag "Email: " %>
-			<%= email_field_tag "search[email]" %>
-			<br />
-			<%= label_tag "Gender: " %>
-			<%= label_tag "male" %>
-			<%= radio_button_tag "search[gender]", "male" %>
-			<%= label_tag "female" %>
-			<%= radio_button_tag "search[gender]", "female" %>
-			<br />
-			<%= label_tag "Age: " %>
-			<%= number_field_tag "search[age]" %>
-			<br />
-			<%= label_tag "Address: " %>
-			<%= text_field_tag "search[address]" %>
-			<br />		
-			<%= submit_tag 'Search Person' %>		
-		<% end %>
+			<ul style="display: inline-block; list-style: none;">
+				<li>
+					<%= label_tag "Query: " %>
+					<%= search_field_tag('search[name]') %>
+				</li>
+				<li>
+					<%= submit_tag 'Search Person »', :class => "btn primary" %>
+					<%= submit_tag "Advanced Search...", :class => "advanced_search btn", :type => "button" %>
+				</li>
+				</ul>
+			<% end %>
+		</p>
 	</div>
 	<div class="simple_rumor_spread">
+	<p>
 		<%= form_for root_path do %>
 			<%= hidden_field_tag "rumor[type]", "simple" %>
 			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
 			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
 			<%= hidden_field_tag "rumor[ip]", @ip %>
-			<%= label_tag "Name: " %>
-			<%= text_field_tag "rumor[name]" %>
-			<%= label_tag "Rumor: " %>
-			<%= text_area :rumor, :content, :size => "40x5" %>
-			<%= submit_tag "Create rumor!" %>
+			<ul style="display: inline-block; list-style: none;">
+				<li>
+					<%= label_tag "Name: " %>
+					<%= text_field_tag "rumor[name]" %>
+				</li>
+				<li>
+					<%= label_tag "Rumor: " %>
+					<%= text_area :rumor, :content, :size => "40x1" %>
+				</li>
+				<li>
+					<%= submit_tag "Create Rumor »", :class => "btn primary" %>
+					<%= submit_tag "Advanced Spread...", :class => "advanced_spread btn", :type => "button" %>
+				</li>
+			</ul>
 		<% end %>
-		<button class="advanced_spread">Advanced Spread...</button>
+	</p>
+	</div>
+
+</div>
+
+<div id='row'>
+<div id='side_bar' class='link'>
+	<div class="advanced_rumor_search">
+		<%= render "rumors/advanced_search", :location => @location, :ip => @ip %>
 	</div>
 	<div class="advanced_rumor_spread">
-		<%= form_for root_path do %>
-			<%= hidden_field_tag "rumor[type]", "advanced" %>
-			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
-			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
-			<%= hidden_field_tag "rumor[ip]", @ip %>
-			<%= label_tag "*Name: " %>
-			<%= text_field_tag "rumor[name]" %>
-			<br />
-			<%= label_tag "Phone: " %>
-			<%= telephone_field_tag "rumor[phone]" %>
-			<br />
-			<%= label_tag "Email: " %>
-			<%= email_field_tag "rumor[email]" %>
-			<br />
-			<%= label_tag "Gender: " %>
-			<%= label_tag "male" %>
-			<%= radio_button_tag "rumor[gender]", "male" %>
-			<%= label_tag "female" %>
-			<%= radio_button_tag "rumor[gender]", "female" %>
-			<br />
-			<%= label_tag "Age: " %>
-			<%= number_field_tag "rumor[age]" %>
-			<br />
-			<%= label_tag "Address: " %>
-			<%= text_field_tag "rumor[address]" %>
-			<br />
-			<%= label_tag :content %>
-			<%= text_area :rumor, :content, :size => "40x5" %>
-			<br />
-			<%= submit_tag "Create Rumor!" %>
-		<% end %>
+		<%= render "rumors/advanced_spread", :location => @location, :ip => @ip %>
 	</div>
 </div>
 </div>
-<div class="right-content">
+
 <% unless @people.nil? || @people.empty? %>
+	<%= link_to "Start New Rumor Subject", "#lolcat_spread" %>
 	<%= render "people/people", :people => @people %>
+	<br />
+	<br />
+	<div class="row">
+		<div id="lolcat_spread">
+			<%= render "rumors/spread", :search => @search, :person => @person %>
+		</div>
+	</div>
 <% else %>
-<h1>Nothing here yet! Do a search or spread something!</h1>
-<% end %>
+<div class="row">
+	<% unless @search.nil? %>
+		<%= render "rumors/spread", :search => @search, :person => @person %>
+	<% else %>
+		<h3>HOWTO:</h3>
+		<p>Step 1: Do a search</p>
+		<p>Step 2a: Add to the person's profile if it exists</p>
+		<p>Step 2b: Start a person's profile if it doesn't exist</p>
+		<p>Step 3: Contribute what you know about your person</p>
+	<% end %>
 </div>
+<% end %>
+

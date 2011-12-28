@@ -1,0 +1,81 @@
+/* Forms use */
+ul.spread_form {
+	list-style: none;
+}
+
+/* Maps use */
+
+#map_canvas {
+	height: 250px;
+	width: 250px;
+}
+
+/* macropost styles */
+
+h1.macropost {
+  margin-bottom: 0.3em;
+}
+
+table.macroposts {
+  margin-top: 1em;
+}
+
+table.macroposts tr {
+  height: 70px;
+}
+
+table.macroposts tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.macroposts tr td.macropost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.macroposts tr td.macropost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+table.macroposts tr td.macropost span.title {
+  color: #848;
+  display: block;
+  font-size: 115%;
+}
+
+table.macroposts tr td.macropost span.location {
+  color: #666;
+  display: block;
+  font-size: 85%;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.macroposts {
+  font-size: 80%;
+}
+
+form.new_macropost {
+  margin-bottom: 2em;
+}
+
+form.new_macropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+

@@ -1,3 +1,8 @@
+== How to Use
+Step 1. Search for someone
+Step 2a. Contribute to this person's rumor if you think it's the correct person
+Step 2b. Start a new person if you think it's someone else
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
@@ -9,7 +14,7 @@ HTML tags. The model contains the "smart" domain objects (such as Account,
 Product, Person, Post) that holds all the business logic and knows how to
 persist themselves to a database. The controller handles the incoming requests
 (such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
+and directing data to the views
 
 In Rails, the model is handled by what's called an object-relational mapping
 layer entitled Active Record. This layer allows you to present the data from

@@ -1,0 +1,138 @@
+<script type="text/javascript">
+  var map;
+  var markersArray = [];
+  var infowindow;
+  var clickmarker; 
+
+  function initialize(){
+		var mylatlng = new google.maps.LatLng(<%= location[:lat] %>, <%= location[:lng] %> );
+		var myOptions = {
+			zoom: <%= initial_zoom %>,
+			center: mylatlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP					
+		 };
+		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+		<% unless rumors.nil? || rumors.nil? %>
+			<% for j in 0..rumors.count-1 %>
+				<% rumor = rumors[rumors.count-1-j] %>
+		  var location = new google.maps.LatLng(<%= rumor[:latitude] %>, <%= rumor[:longitude] %> );
+		  addMarkers(location, "<%= escape_javascript( "#{rumor.title}") %>","<%= escape_javascript("#{rumor.content}") %>" );
+			<% end %>
+		<% end %>
+    
+    // add listener for onclick marker adder
+    google.maps.event.addListener(map, 'click', function(event) { 
+      addClickMarker(event.latLng);
+    });
+    showMarkers();
+	}
+
+  function updateMarkerPosition(latLng) {
+    document.getElementById('submitLat').value = latLng.lat();
+    document.getElementById('submitLng').value = latLng.lng();
+  }
+  // add click maker 
+	function addClickMarker(location){
+      // ensures only one submit marker exists at any given time
+      if (clickmarker) {
+        clickmarker.setPosition(location);
+      } else {
+        clickmarker =  new google.maps.Marker({
+          position: location,
+          map: map,
+          title: 'submit me',
+          draggable: true,
+        });
+      }
+
+      // add the submit form in the dialog window
+      var content = '<%= render "shared/rumor_form_on_map_without_refresh" %>';
+      content = content.replace('latValue', location.lat());
+      content = content.replace('lngValue', location.lng());
+      if (infowindow) infowindow.close();
+      infowindow = new google.maps.InfoWindow({content: content, position: location});
+      infowindow.open(map, clickmarker);
+      map.setCenter(location);
+   
+     google.maps.event.addListener(clickmarker, 'drag', function() {
+        updateMarkerPosition(clickmarker.getPosition());
+      });     
+      google.maps.event.addListener(clickmarker, 'dragend', function() {
+        updateMarkerPosition(clickmarker.getPosition());
+      });
+  }
+
+  // remove the click(submission) marker
+  function removeClickMarker(){
+    clickmarker.setMap(null);
+    clickmarker = null;
+  }
+
+	function addMarkers(location, title,content){
+      var marker =  new google.maps.Marker({
+        position: location,
+        map: map,
+        title: title,
+      });
+
+      markersArray.push(marker);
+      google.maps.event.addListener(marker, "click", function() {
+        if (infowindow) infowindow.close();
+        infowindow = new google.maps.InfoWindow({content: content});
+        infowindow.open(map, marker);
+        map.setCenter(location);
+
+      });
+
+      google.maps.event.addListener(marker, 'rightclick', function() {
+        marker.setMap(null);
+      });
+  }
+
+  function showMarkers(){
+      if (markersArray) {
+      for (i in markersArray) {
+        markersArray[i].setMap(map);
+      }
+    }
+
+  }
+
+ 	function patchMarkers(latitude,longitude,title,content){
+    var location = new google.maps.LatLng(latitude,longitude);
+    var marker =  new google.maps.Marker({
+      position: location,
+      map: map,
+      title: title,
+    });
+
+    markersArray.push(marker);
+    google.maps.event.addListener(marker, "click", function() {
+      if (infowindow) infowindow.close();
+      infowindow = new google.maps.InfoWindow({content: content});
+      infowindow.open(map, marker);
+      map.setCenter(location);
+    });
+//    marker.setMap(map);
+  }
+
+  function showJustSubmitted(content){
+    var marker = markersArray[markersArray.length-1];
+    if (infowindow) infowindow.close();
+    infowindow = new google.maps.InfoWindow({content: content});
+    infowindow.open(map, marker); 
+  }
+
+  function removeMarker(count) {
+    var i = (markersArray.length -1) - count;
+    if(markersArray){
+      markersArray[i].setMap(null);
+      markersArray.splice(i,1);
+    }
+  }
+
+</script>
+<body onload="initialize()" />
+<div id="map_canvas"> </div>
+

@@ -1,0 +1,116 @@
+<!-- Basic Information Section -->
+<ul style="list-style: none;">
+	<li><h4>Birthdate</h4></li>
+	<li>
+		<% unless person.birthmonth.nil? || person.birthmonth.month == 0 %>
+			<%= person.birthmonth.month %> / 
+		<% else %>
+			?? / 
+		<% end %>
+		<% unless person.birthday.nil? || person.birthday.day == 0 %>
+			<%= person.birthday.day %> / 
+		<% else %>
+			?? /
+		<% end %>
+		<% unless person.birthyear.nil? || person.birthyear.year == 0 %>
+			<%= person.birthyear.year %>
+		<% else %>
+			????
+		<% end %>
+	</li>
+	<li>
+	<% if person.birthmonth.nil? || person.birthmonth.month == 0 %>
+		<%= form_for person, :method => "put" do |f| %>
+			
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= select_month nil, :field_name => "person[birthmonth]", :prompt => "Choose month", :include_blank => true %>	
+			<%= f.submit "Update" %>
+		<% end %>
+	<% end %>
+	</li>
+	<li>
+	<% if person.birthday.nil? || person.birthday.day == 0 %>
+		<%= form_for person, :method => "put" do |f| %>
+			
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= select_day nil, :field_name => "person[birthday]", :prompt => "Choose day", :include_blank => true %>	
+			<%= f.submit "Update" %>
+		<% end %>
+	<% end %>
+	</li>	
+	<li>
+	<% if person.birthyear.nil? || person.birthyear.year == 0 %>
+		<%= form_for person, :method => "put" do |f| %>
+			
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= select_year nil, :field_name => "person[birthyear]", :start_year => 1920, :end_year => Date.today.year, :prompt => "Choose year", :include_blank => true %> 
+			<%= f.submit "Update" %>
+		<% end %>
+	<% end %>
+	</li>	
+	<li><h4>Facebook</h4></li>
+	<li>
+		<% if person.facebook == "*" %>
+			<%= form_for person, :method => "put" do |f| %>
+				
+				<%= f.text_field :facebook %>
+				<%= hidden_field_tag "person[id]", person.id %>
+				<%= f.submit "Update" %>
+			<% end %>
+		<% else %> 
+			<%= link_to "Facebook Profile", person.facebook %>
+		<% end %>
+	</li>
+	<li><h4>Twitter</h4></li>
+	<li>
+		<% if person.twitter == "*" %>
+			<%= form_for person, :method => "put" do |f| %>
+				
+				<%= f.text_field :twitter %>
+				<%= hidden_field_tag "person[id]", person.id %>
+				<%= f.submit "Update" %>
+			<% end %>
+		<% else %> 
+			<%= link_to "Twitter Profile", person.twitter %>
+		<% end %>
+	</li>	
+	<li><h4>LinkedIn</h4></li>
+	<li>
+		<% if person.linkedin == "*" %>
+			<%= form_for person, :method => "put" do |f| %>
+				
+				<%= f.text_field :linkedin %>
+				<%= hidden_field_tag "person[id]", person.id %>
+				<%= f.submit "Update" %>
+			<% end %>
+		<% else %> 
+			<%= link_to "LinkedIn Profile", person.linkedin %>
+		<% end %>
+	</li>
+	<li><h4>Wikipedia</h4></li>
+	<li>
+		<% if person.wikipedia == "*" %>
+			<%= form_for person, :method => "put" do |f| %>
+
+				<%= f.text_field :wikipedia %>
+				<%= hidden_field_tag "person[id]", person.id %>
+				<%= f.submit "Update" %>
+			<% end %>
+		<% else %> 
+			<%= link_to "Wikipedia Article", person.wikipedia %>
+		<% end %>
+	</li>
+	<li><h4>Tumblr</h4></li>
+	<li>
+		<% if person.tumblr == "*" %>
+			<%= form_for person, :method => "put" do |f| %>
+				
+				<%= f.text_field :tumblr %>
+				<%= hidden_field_tag "person[id]", person.id %>
+				<%= f.submit "Update" %>
+			<% end %>
+		<% else %> 
+			<%= link_to "Tumblr Blog", person.tumblr %>
+		<% end %>
+	</li>
+</ul>

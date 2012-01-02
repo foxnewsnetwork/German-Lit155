@@ -15,6 +15,8 @@ Gossip::Application.routes.draw do
 
   match '/about' , :to => "pages#about"
   match '/misc' , :to => "pages#misc"
+  match "/developer", :to => "pages#developer"
+  match "/contact", :to => "pages#contact"
   
   resources :rumors
 

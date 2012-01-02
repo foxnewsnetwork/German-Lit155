@@ -3,20 +3,21 @@
 <head>
   <title>Rumor Mill</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js", "button.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" %>
 
 	<%= render 'layouts/javascripts' %>	
   <%= csrf_meta_tag %>
 </head>
 <body>
 <%= render "layouts/header" %>
-<% flash.each do |key, value| %>
-  <%= content_tag(:div, value, :class => "flash #{key}") %>
-<% end %>
 <div class="container">
+
 <%= yield %>
 <%= render "layouts/footer" %>
 </div>
 <%= debug(params) if Rails.env.development? %>
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, :class => "flash #{key}") %>
+<% end %>
 </body>
 </html>

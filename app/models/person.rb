@@ -7,15 +7,17 @@
 #  updated_at :datetime
 #  dist       :integer(4)      default(0)
 #  name       :string(255)     default("*")
-#  age        :integer(4)      default(0)
 #  gender     :boolean(1)      default(FALSE)
 #  twitter    :string(255)     default("*")
 #  facebook   :string(255)     default("*")
 #  linkedin   :string(255)     default("*")
 #  wikipedia  :string(255)     default("*")
 #  tumblr     :string(255)     default("*")
-#  lat_avg    :integer(10)
-#  lng_avg    :integer(10)
+#  lat_avg    :decimal(15, 10) default(0.0)
+#  lng_avg    :decimal(15, 10) default(0.0)
+#  birthyear  :date
+#  birthmonth :date
+#  birthday   :date
 #
 
 class Person < ActiveRecord::Base
@@ -31,7 +33,13 @@ class Person < ActiveRecord::Base
 	
 	has_many :address_records, :foreign_key => :person_id, :dependent => :destroy
 	
-	attr_accessible :dist, :name, :age, :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
+	has_many :city_records, :foreign_key => :person_id, :dependent => :destroy
+	
+	has_many :state_records, :foreign_key => :person_id, :dependent => :destroy
+
+	has_many :country_records, :foreign_key => :person_id, :dependent => :destroy
+	
+	attr_accessible :dist, :name, :birthyear, :birthmonth, :birthday, :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
 	# TODO: use sphinx!
 	
 	# Call this function after spreading a rumor to update the averages
@@ -49,10 +57,29 @@ class Person < ActiveRecord::Base
 	
 	# Makes new IP records and stuff
 	def update_with_magic( keywords )
-		self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
-		self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
-		self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
-		self.address_records.create( :address => keywords[:address]) unless keywords[:address].nil?	
+		if keywords[:type].nil? || keywords[:type] != "contact"
+			self.update_attributes( keywords )
+			unless keywords[:birthyear].nil?
+				a = Date.new( Integer(keywords[:birthyear]), 1, 1 ) 
+				self.update_attributes :birthyear => a
+			end
+			unless keywords[:birthmonth].nil?
+				b = Date.new( 0, Integer(keywords[:birthmonth]), 1 ) 
+				self.update_attributes :birthmonth => b
+			end
+			unless keywords[:birthday].nil?
+				c = Date.new( 0, 1, Integer(keywords[:birthday]) )
+				self.update_attributes :birthday => c
+			end
+		else
+			self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
+			self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
+			self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
+			self.address_records.create( :address => keywords[:address]) unless keywords[:address].nil?	
+			self.city_records.create( :city => keywords[:city]) unless keywords[:city].nil?
+			self.state_records.create( :state => keywords[:state]) unless keywords[:state].nil?
+			self.country_records.create( :country => keywords[:country]) unless keywords[:country].nil?
+		end
 	end
 		
 	# Creates a person... with magic
@@ -75,10 +102,6 @@ class Person < ActiveRecord::Base
 		unless keywords[:name].nil?
 			internals = internals.merge( :name => keywords[:name] ) 
 			statement += "name = :name OR name = :wildcard_s AND "
-		end
-		unless keywords[:age].nil?
-			internals = internals.merge( :age => keywords[:age] ) 
-			statement += "age = :age OR age = :wildcard_i AND "
 		end
 		unless keywords[:gender].nil?
 			internals = internals.merge( :gender => keywords[:gender] ) 
@@ -114,6 +137,21 @@ class Person < ActiveRecord::Base
 			statement += "lat_avg <= lat_avg + #{lat_tol} AND lat_avg >= lat_avg - #{lat_tol} AND 
 				lng_avg <= lng_avg + #{lng_tol} AND lng_avg >= lng_avg - #{lng_tol} AND "
 		end
+		
+		# Handling dates
+		unless keywords[:birthyear].nil?
+			internals = internals.merge( :birthyear => keywords[:birthyear] )
+			statement += "birthyear = :birthyear OR birthyear = :wildcard_i AND "
+		end
+		unless keywords[:birthmonth].nil?
+			internals = internals.merge( :birthmonth => keywords[:birthmonth] )
+			statement += "birthmonth = :birthmonth OR birthmonth = :wildcard_i AND "
+		end
+		unless keywords[:birthday].nil?
+			internals = internals.merge( :birthday => keywords[:birthday] )
+			statement += "birthday = :birthday OR birthday = :wildcard_i AND "
+		end
+		
 		statement = statement[0..statement.length - 6]
 		@people = Person.where( statement, internals ) unless internals.empty?
 		
@@ -138,7 +176,9 @@ class Person < ActiveRecord::Base
 		weight = 5
 		result += self.lolcat( person1.name, person2.name ) * weight
 		result += self.lolcat( person1.gender, person2.gender) * weight
-		result += self.lolcat( person1.age, person2.age) * weight
+		result += self.lolcat( person1.birthyear, person2.birthyear) * weight
+		result += self.lolcat( person1.birthmonth, person2.birthmonth) * weight
+		result += self.lolcat( person1.birthday, person2.birthday) * weight
 		
 		# Step 3: We measure the other factors
 		weight = 1
@@ -146,6 +186,9 @@ class Person < ActiveRecord::Base
 		result += self.arraycat( person1.addresses, person2.addresses ) * weight
 		result += self.arraycat( person1.email_addresses, person2.email_addresses) * weight
 		result += self.arraycat( person1.phone_numbers, person2.phone_numbers ) * weight
+		result += self.arraycat( person1.country, person2.country ) * weight
+		result += self.arraycat( person1.state, person2.state ) * weight
+		result += self.arraycat( person1.city, person2.city ) * weight
 	end
 	
 	# A more general version of the lolcat thing which works on arrays

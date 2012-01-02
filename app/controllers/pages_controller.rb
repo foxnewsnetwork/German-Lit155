@@ -34,8 +34,13 @@ class PagesController < ApplicationController
 		end
 		search = params[:search]
 
+		unless params[:date].nil? || params[:date].empty?
+			temp = params[:date][:search]
+			search = search.merge( temp )		
+		end
+
 		unless search.nil?
-			@people = Rumor.search2(search).paginate(:page => 1) 
+			@people = Rumor.search2(search).paginate( :page => params[:page], :per_page => 1 )
 		end
 		@search = search		
 		@person = Person.new(@search)

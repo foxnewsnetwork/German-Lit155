@@ -1,0 +1,66 @@
+<!-- Country -->
+<h4>Country</h4>
+<% unless person.country_records.empty? %>
+	<p><% person.country_records.each do |r| %><%= r.country %> | <% end %></p>
+<% end %>
+<%= form_for person, :method => "put" do |f| %>
+	<%= hidden_field_tag "person[type]", "contact" %>
+	<%= hidden_field_tag "person[id]", person.id %>
+	<%= text_field_tag "person[country]" %>
+	<%= f.submit "Update" %>
+<% end %>
+<!-- State -->
+<h4>State / Province</h4>
+<% unless person.state_records.empty? %>
+	<p><% person.state_records.each do |r| %><%= r.state %> | <% end %></p>
+<% end %>
+<%= form_for person, :method => "put" do |f| %>
+	<%= hidden_field_tag "person[type]", "contact" %>
+	<%= hidden_field_tag "person[id]", person.id %>
+	<%= text_field_tag "person[state]" %>
+	<%= f.submit "Update" %>
+<% end %>
+<!-- City -->
+<h4>City</h4>
+<% unless person.city_records.empty? %>
+	<p><% person.city_records.each do |r| %><%= r.city %> | <% end %></p>
+<% end %>
+<%= form_for person, :method => "put" do |f| %>
+	<%= hidden_field_tag "person[type]", "contact" %>
+	<%= hidden_field_tag "person[id]", person.id %>
+	<%= text_field_tag "person[city]" %>
+	<%= f.submit "Update" %>
+<% end %>
+<!-- Address -->
+<h4>Address</h4>
+<% unless person.address_records.empty? %>
+	<p><% person.address_records.each do |r| %><%= r.address %> | <% end %></p>
+<% end %>
+<%= form_for person, :method => "put" do |f| %>
+	<%= hidden_field_tag "person[type]", "contact" %>
+	<%= hidden_field_tag "person[id]", person.id %>
+	<%= text_field_tag "person[address]" %>
+	<%= f.submit "Update" %>
+<% end %>
+<!-- Phone -->
+<h4>Phone</h4>
+<% unless person.phone_records.empty? %>
+	<p><% person.phone_records.each do |r| %><%= r.phone_number %> | <% end %></p>
+<% end %>
+<%= form_for person, :method => "put" do |f| %>
+	<%= hidden_field_tag "person[type]", "contact" %>
+	<%= hidden_field_tag "person[id]", person.id %>
+	<%= phone_field_tag "person[phone]" %>
+	<%= f.submit "Update" %>
+<% end %>
+<!-- Email -->
+<h4>Phone</h4>
+<% unless person.email_records.empty? %>
+	<p><% person.email_records.each do |r| %><%= r.email %> | <% end %></p>
+<% end %>
+<%= form_for person, :method => "put" do |f| %>
+	<%= hidden_field_tag "person[type]", "contact" %>
+	<%= hidden_field_tag "person[id]", person.id %>
+	<%= email_field_tag "person[email]" %>
+	<%= f.submit "Update" %>
+<% end %>

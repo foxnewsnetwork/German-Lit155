@@ -13,18 +13,28 @@ class PeopleController < ApplicationController
 	
 	# Put request
 	def update
-		person = Person.find_by_id( params[:id] )
-		if params[:person][:type].nil? || params[:person][:type] != "contact"
-			if person.update_attributes( params[:person] )
-				flash[:success] = "Update successful!"
+		person = Person.find_by_id( params[:id] ) 
+
+		# Construct the update vector
+		update = params[:person]
+		
+		# Parse the params		
+		unless params[:date].nil? || params[:date].empty? || params[:date][:person].nil?
+			update = update.merge( params[:date][:person] )
+			flash[:notice] = update
+		end
+		
+		if update[:type].nil? || update[:type] != "contact"
+			if person.update_with_magic( update )
+				flash[:success] = "Update lolcat successful!"
 			else
-				flash[:error] = "Update unsuccessful..."
+				flash[:error] = "Something went wrong in lolcat"
 			end
-		else
-			if person.update_with_magic( params[:person] )
-				flash[:success] = "Contact info updated"
+		else 
+			if person.update_with_magic( update )
+				flash[:success] = "Update happycat successful!"
 			else
-				flash[:error] = "Something went wrong"
+				flash[:error] = "Something went wrong elsewhere"
 			end
 		end
 		redirect_to :back

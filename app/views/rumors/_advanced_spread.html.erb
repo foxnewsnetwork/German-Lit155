@@ -18,8 +18,10 @@
 	<%= label_tag "female" %>
 	<%= radio_button_tag "rumor[gender]", "female" %>
 	<br />
-	<%= label_tag "Age: " %>
-	<%= number_field_tag "rumor[age]" %>
+	<%= label_tag "Birthdate: " %>
+	<%= select_month Date.today, :include_blank => true, :field_name => "search[birthmonth]", :prompt => "Select month" %>
+	<%= select_day Date.today, :include_blank => true, :field_name => "search[birthday]", :prompt => "Select day" %>
+	<%= select_year Date.today, :include_blank => true, :field_name => "search[year]", :prompt => "Select year", :start_year => Date.new( 1920 ), :end_year => Date.today %>
 	<br />
 	<%= label_tag "Address: " %>
 	<%= text_field_tag "rumor[address]" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111223061424) do
+ActiveRecord::Schema.define(:version => 20120101175836) do
 
   create_table "address_records", :force => true do |t|
     t.string   "address"
@@ -34,6 +34,28 @@ ActiveRecord::Schema.define(:version => 20111223061424) do
   end
 
   add_index "areas", ["user_id"], :name => "index_areas_on_user_id"
+
+  create_table "city_records", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "city_records", ["city"], :name => "index_city_records_on_city"
+  add_index "city_records", ["person_id", "city"], :name => "index_city_records_on_person_id_and_city", :unique => true
+  add_index "city_records", ["person_id"], :name => "index_city_records_on_person_id"
+
+  create_table "country_records", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "country_records", ["country"], :name => "index_country_records_on_country"
+  add_index "country_records", ["person_id", "country"], :name => "index_country_records_on_person_id_and_country", :unique => true
+  add_index "country_records", ["person_id"], :name => "index_country_records_on_person_id"
 
   create_table "email_records", :force => true do |t|
     t.string   "email"
@@ -64,22 +86,23 @@ ActiveRecord::Schema.define(:version => 20111223061424) do
   create_table "people", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "dist",                                      :default => 0
-    t.string   "name",                                      :default => "*"
-    t.integer  "age",                                       :default => 0
-    t.boolean  "gender",                                    :default => false
-    t.string   "twitter",                                   :default => "*"
-    t.string   "facebook",                                  :default => "*"
-    t.string   "linkedin",                                  :default => "*"
-    t.string   "wikipedia",                                 :default => "*"
-    t.string   "tumblr",                                    :default => "*"
-    t.decimal  "lat_avg",    :precision => 10, :scale => 0, :default => 0
-    t.decimal  "lng_avg",    :precision => 10, :scale => 0, :default => 0
+    t.integer  "dist",                                       :default => 0
+    t.string   "name",                                       :default => "*"
+    t.boolean  "gender",                                     :default => false
+    t.string   "twitter",                                    :default => "*"
+    t.string   "facebook",                                   :default => "*"
+    t.string   "linkedin",                                   :default => "*"
+    t.string   "wikipedia",                                  :default => "*"
+    t.string   "tumblr",                                     :default => "*"
+    t.decimal  "lat_avg",    :precision => 15, :scale => 10, :default => 0.0
+    t.decimal  "lng_avg",    :precision => 15, :scale => 10, :default => 0.0
+    t.date     "birthyear"
+    t.date     "birthmonth"
+    t.date     "birthday"
   end
 
   add_index "people", ["dist"], :name => "index_people_on_dist"
   add_index "people", ["facebook"], :name => "index_people_on_facebook"
-  add_index "people", ["lat_avg", "lng_avg"], :name => "index_people_on_lat_avg_and_lng_avg"
   add_index "people", ["linkedin"], :name => "index_people_on_linkedin"
   add_index "people", ["name"], :name => "index_people_on_name"
   add_index "people", ["tumblr"], :name => "index_people_on_tumblr"
@@ -132,6 +155,17 @@ ActiveRecord::Schema.define(:version => 20111223061424) do
 
   add_index "rumors", ["person_id"], :name => "index_rumors_on_person_id"
   add_index "rumors", ["user_id"], :name => "index_rumors_on_user_id"
+
+  create_table "state_records", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "state_records", ["person_id", "state"], :name => "index_state_records_on_person_id_and_state", :unique => true
+  add_index "state_records", ["person_id"], :name => "index_state_records_on_person_id"
+  add_index "state_records", ["state"], :name => "index_state_records_on_state"
 
   create_table "users", :force => true do |t|
     t.string   "username"

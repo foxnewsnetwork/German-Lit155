@@ -1,28 +1,54 @@
+<ul style="list-style: none;">
 <%= form_tag root_path, :method => "get" do %>
 	<%= hidden_field_tag "search[type]", "advanced" %>
 	<%= hidden_field_tag "search[latitude]", location[:lat] %>
 	<%= hidden_field_tag "search[longitude]", location[:lng] %>
 	<%= hidden_field_tag "search[ip]", ip %>
-	<%= label_tag "Name: " %>
-	<%= text_field_tag "search[name]" %>
-	<br />
-	<%= label_tag "Phone: " %>
-	<%= telephone_field_tag "search[phone]" %>
-	<br />
-	<%= label_tag "Email: " %>
-	<%= email_field_tag "search[email]" %>
-	<br />
-	<%= label_tag "Gender: " %>
-	<%= label_tag "male" %>
-	<%= radio_button_tag "search[gender]", "male" %>
-	<%= label_tag "female" %>
-	<%= radio_button_tag "search[gender]", "female" %>
-	<br />
-	<%= label_tag "Age: " %>
-	<%= number_field_tag "search[age]" %>
-	<br />
-	<%= label_tag "Address: " %>
-	<%= text_field_tag "search[address]" %>
-	<br />		
-	<%= submit_tag 'Search Person' %>		
+	<li><h4>Name</h4></li>
+	<li>
+		<%= text_field_tag "search[name]", nil, :placeholder => "First Last" %>
+	</li>
+	<li><h4>Phone</h4></li>
+	<li>
+		<%= telephone_field_tag "search[phone]", nil, :placeholder => "000 000 0000" %>
+	</li>
+	<li><h4>Email</h4></li>
+	<li>
+		<%= email_field_tag "search[email]", nil, :placeholder => "notoriouslawyers@yahoo.com" %>
+	</li>
+	<li><h4>Gender</h4></li>
+	<li>
+		<%= label_tag "male" %>
+		<%= radio_button_tag "search[gender]", "male" %>
+	</li>
+	<li>
+		<%= label_tag "female" %>
+		<%= radio_button_tag "search[gender]", "female" %>
+	</li>
+	<li><h4>Birthdate</h4></li>
+	<li>
+		<%= select_month nil, :include_blank => true, :field_name => "search[birthmonth]", :prompt => "Select month" %>
+	</li>
+	<li>
+		<%= select_day nil, :include_blank => true, :field_name => "search[birthday]", :prompt => "Select day" %>
+	</li>
+	<li>
+		<%= select_year nil, :include_blank => true, :field_name => "search[birthyear]", :prompt => "Select year", :start_year => 1920, :end_year => Date.today.year %>
+	</li>
+	<li><h4>Country</h4></li>
+		<%= text_field_tag "search[country]", nil,  :placeholder => "United States" %>
+	</li>
+	<li><h4>State / Province</h4></li>
+		<%= text_field_tag "search[state]", nil, :placeholder => "California" %>
+	</li>
+	<li><h4>City</h4></li>
+		<%= text_field_tag "search[city]", nil, :placeholder => "Berkeley" %>
+	</li>	
+	<li><h4>Address</h4></li>
+		<%= text_field_tag "search[address]", nil, :placeholder => "1780 Spruce Street" %>
+	</li>
+	<li>
+		<%= submit_tag 'Search Person' %>		
+	</li>
 <% end %>
+</ul>

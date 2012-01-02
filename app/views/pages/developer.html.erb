@@ -1,9 +1,53 @@
 <!-- Developer advocate page -->
 <div class="hero-unit">
-	<h2>Are you a dev?</h2>
-	<h3>Do you spread rumors?</h3>
-	<h4>Do you know ruby on rails?</h4>
+	<% if moderator_signed_in? %>
+		<h2>Welcome, <%= current_moderator.username %>!</h2>
+		<p><%= link_to "Moderator Sign Out", destroy_moderator_session_path, :method => :delete %></p>
+	<% else %>
+		<h2>Are you a dev?</h2>
+		<h3>Do you spread rumors?</h3>
+		<h4>Can you program, design, or do anything useful?</h4>
+		<p><%= link_to "Moderator Sign In", new_moderator_session_path %></p>
+	<% end %>
 </div>
 <div class="row">
-	<p></p> 
+	<div class="span-one-third">
+		<h4>In the Works</h4>
+		<% if @mp0.nil? || @mp0.empty? %>
+			<p>Nothing here yet!</p>
+		<% else %>
+			<%= will_paginate @mp0 %>
+			<%= render "macroposts/macroposts", :macroposts => @mp0 %>
+		<% end %>
+		<% if moderator_signed_in? %>
+			<% @meta = { :board => "developer", :section => "a" } %>
+			<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+		<% end %>
+	</div>
+	<div class="span-one-third">
+		<h4>Future Features</h4>
+		<% if @mp1.nil? || @mp1.empty? %>
+			<p>Nothing here yet!</p>
+		<% else %>
+			<%= will_paginate @mp1 %>
+			<%= render "macroposts/macroposts", :macroposts => @mp1 %>
+		<% end %>
+		<% if moderator_signed_in? %>
+			<% @meta = { :board => "developer", :section => "b" } %>
+			<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+		<% end %>
+	</div>
+	<div class="span-one-third">
+		<h4>Bug Reports</h4>
+		<% if @mp2.nil? || @mp2.empty? %>
+			<p>Nothing here yet!</p>
+		<% else %>
+			<%= will_paginate @mp2 %>
+			<%= render "macroposts/macroposts", :macroposts => @mp2 %>
+		<% end %>
+		<% if moderator_signed_in? %>
+			<% @meta = { :board => "developer", :section => "c" } %>
+			<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+		<% end %>
+	</div>
 </div>

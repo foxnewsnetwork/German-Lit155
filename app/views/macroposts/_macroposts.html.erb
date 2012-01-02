@@ -1,0 +1,19 @@
+<!-- Renders macroposts -->
+<table class="macroposts">
+<% macroposts.each do | macropost| %>
+<tr>
+  <td class="macroposts">
+    <span class="subject"><h4><%= macropost.moderator.username %></h4></span>
+    <span class="content"><p><%= macropost.content %></p></span>
+    <span class="timestamp">
+      <p>Posted <%= time_ago_in_words(macropost.created_at) %> ago.</p>
+    </span>
+    <% if moderator_signed_in? %>
+		<span class="misc">
+			<%= link_to "delete", macropost, :method => :delete %> | <%= link_to "edit", edit_macropost_path(macropost) %>
+		</span>
+    <% end %>
+  </td>
+</tr>
+<% end %>
+</table>

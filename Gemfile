@@ -10,6 +10,7 @@ gem "geokit-rails3", "~>0.1.5"
 gem "thinking-sphinx", "~>2.0.4"
 gem "flying-sphinx" , "~>0.6.0"
 gem "jquery-rails", "~> 1.0.19"
+gem 'devise'
 
 group :development do
   gem 'rspec-rails', '2.0.1'

@@ -11,15 +11,49 @@ class PagesController < ApplicationController
 
   end
 
-  def about
-  end
+	def contact
+		if moderator_signed_in?	
+			@macropost = current_moderator.macroposts.new
+			@moderator = current_moderator
+		end
+		@mp0 = Macropost.where("board = ? AND section = ?", "contact", "a").paginate( :page => params[:page], :per_page => 10 )
+		@mp1 = Macropost.where("board = ? AND section = ?", "contact", "b").paginate( :page => params[:page], :per_page => 10 )
+		@mp2 = Macropost.where("board = ? AND section = ?", "contact", "c").paginate( :page => params[:page], :per_page => 10 )
+	end
+	
+	def developer
+		if moderator_signed_in?	
+			@macropost = current_moderator.macroposts.new
+			@moderator = current_moderator			
+		end
+		@mp0 = Macropost.where("board = ? AND section = ?", "developer", "a").paginate( :page => params[:page], :per_page => 10 )
+		@mp1 = Macropost.where("board = ? AND section = ?", "developer", "b").paginate( :page => params[:page], :per_page => 10 )
+		@mp2 = Macropost.where("board = ? AND section = ?", "developer", "c").paginate( :page => params[:page], :per_page => 10 )
+	end
+	
+	def about
+		if moderator_signed_in?	
+			@macropost = current_moderator.macroposts.new
+			@moderator = current_moderator			
+		end
+		@mp0 = Macropost.where("board = ? AND section = ?", "about", "a").paginate( :page => params[:page], :per_page => 10 )
+		@mp1 = Macropost.where("board = ? AND section = ?", "about", "b").paginate( :page => params[:page], :per_page => 10 )
+		@mp2 = Macropost.where("board = ? AND section = ?", "about", "c").paginate( :page => params[:page], :per_page => 10 )
+	end
 
-  def misc
-  end
+	def misc
+		if moderator_signed_in?	
+			@macropost = current_moderator.macroposts.new
+			@moderator = current_moderator			
+		end
+		@mp0 = { :people => Person.count, :rumors => Rumor.count }
+		@mp1 = Macropost.where("board = ? AND section = ?", "misc", "b").paginate( :page => params[:page], :per_page => 10 )
+		@mp2 = Macropost.where("board = ? AND section = ?", "misc", "c").paginate( :page => params[:page], :per_page => 10 )
+	end
 
 	def index
 		@rumor = Rumor.new
-
+		@latest_rumors = Rumor.find(:all, :order => "created_at DESC", :limit => 3)
 		unless params[:rumor].nil?
 			if params[:rumor][:type] == "#"
 				rmr = Rumor.create(params[:rumor])
@@ -50,7 +84,7 @@ class PagesController < ApplicationController
 		@ip = get_ip
 		
 		if @result.nil?
-			flash.now[:error] = "Sorry, something went wrong with spreading your rumor"
+			flash.now[:notice] = "You haven't spread any rumors yet!"
 		end
 	end
 	

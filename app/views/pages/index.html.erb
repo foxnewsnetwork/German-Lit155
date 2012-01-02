@@ -91,11 +91,8 @@
 	<% unless @search.nil? %>
 		<%= render "rumors/spread", :search => @search, :person => @person %>
 	<% else %>
-		<h3>HOWTO:</h3>
-		<p>Step 1: Do a search</p>
-		<p>Step 2a: Add to the person's profile if it exists</p>
-		<p>Step 2b: Start a person's profile if it doesn't exist</p>
-		<p>Step 3: Contribute what you know about your person</p>
+		<h3>Latest</h3>
+		<%= render "shared/rumors", :rumors => @latest_rumors %>
 	<% end %>
 </div>
 <% end %>

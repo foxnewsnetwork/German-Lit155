@@ -1,0 +1,8 @@
+<!-- Form for making macroposts -->
+<%= form_for macropost do |f| %>
+	<%= hidden_field_tag "moderator[:id]", moderator.id %>
+	<%= hidden_field_tag "macropost[board]", meta[:board] %>
+	<%= hidden_field_tag "macropost[section]", meta[:section] %>
+	<%= f.text_area :content %>
+	<%= f.submit "Post", :class => "btn" %>
+<% end %> 

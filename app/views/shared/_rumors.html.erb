@@ -3,7 +3,7 @@
 <% rumors.each do | rumor| %>
 <tr>
   <td class="macroposts">
-    <span class="subject"><h3><% rumor.people.each do |person| %><%= "#{person.name}, " %><% end %></h3></span>
+    <span class="subject"><h3><% rumor.people.each do |person| %><%= link_to person.name, person  %><% end %></h3></span>
     <span class="content"><p><%= rumor.content %></p></span>
     <span class="timestamp">
       <p>Spread <%= time_ago_in_words(rumor.created_at) %> ago.</p>

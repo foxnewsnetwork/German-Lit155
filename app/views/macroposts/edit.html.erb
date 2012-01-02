@@ -1,0 +1,7 @@
+<!-- Edit page for macroposts -->
+<div class="hero-unit">
+<%= form_for @macropost, :method => "put" do |f| %>
+	<%= f.text_area :content %>
+	<%= f.submit "Update" %>
+<% end %>
+</div>

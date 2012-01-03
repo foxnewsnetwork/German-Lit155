@@ -36,6 +36,7 @@ class PeopleController < ApplicationController
 		@origin = "address" if params[:person].include?( :address )
 		@origin = "phone" if params[:person].include?( :phone )								
 		@origin = "email" if params[:person].include?( :email )								
+		@origin = "nickname" if params[:person].include?( :nickname )
 
 		# Parse the params		
 		unless params[:date].nil? || params[:date].empty? || params[:date][:person].nil?

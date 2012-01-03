@@ -74,14 +74,7 @@ class Person < ActiveRecord::Base
 				self.update_attributes :birthday => c
 			end
 		else
-			self.nickname_records.create( :nickname => keywords[:nickname]) unless keywords[:nickname].nil?
-			self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
-			self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
-			self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
-			self.address_records.create( :address => keywords[:address]) unless keywords[:address].nil?	
-			self.city_records.create( :city => keywords[:city]) unless keywords[:city].nil?
-			self.state_records.create( :state => keywords[:state]) unless keywords[:state].nil?
-			self.country_records.create( :country => keywords[:country]) unless keywords[:country].nil?
+			self.magic_update_internals( keywords )
 		end
 	end
 		
@@ -212,4 +205,16 @@ class Person < ActiveRecord::Base
 	def distance( person )
 		self.distance( self, person )
 	end
+	
+ 	#private
+		def magic_update_internals( keywords )
+			self.nickname_records.create( :nickname => keywords[:nickname]) unless keywords[:nickname].nil?
+			self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
+			self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
+			self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
+			self.address_records.create( :address => keywords[:address]) unless keywords[:address].nil?	
+			self.city_records.create( :city => keywords[:city]) unless keywords[:city].nil?
+			self.state_records.create( :state => keywords[:state]) unless keywords[:state].nil?
+			self.country_records.create( :country => keywords[:country]) unless keywords[:country].nil?
+		end
 end

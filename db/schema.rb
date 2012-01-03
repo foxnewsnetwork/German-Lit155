@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120102080736) do
+ActiveRecord::Schema.define(:version => 20120103202514) do
 
   create_table "address_records", :force => true do |t|
     t.string   "address"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120102080736) do
     t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "count",      :default => 1
   end
 
   add_index "city_records", ["city"], :name => "index_city_records_on_city"
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120102080736) do
     t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "count",      :default => 1
   end
 
   add_index "country_records", ["country"], :name => "index_country_records_on_country"
@@ -75,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120102080736) do
 
   add_index "ip_records", ["ip_address"], :name => "index_ip_records_on_ip_address"
   add_index "ip_records", ["person_id", "ip_address"], :name => "index_ip_records_on_person_id_and_ip_address", :unique => true
+  add_index "ip_records", ["person_id"], :name => "index_ip_records_on_person_id"
 
   create_table "ips", :force => true do |t|
     t.integer  "rumor_id"
@@ -112,6 +115,18 @@ ActiveRecord::Schema.define(:version => 20120102080736) do
   add_index "moderators", ["reset_password_token"], :name => "index_moderators_on_reset_password_token", :unique => true
   add_index "moderators", ["username"], :name => "index_moderators_on_username"
 
+  create_table "nickname_records", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "nickname"
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nickname_records", ["nickname"], :name => "index_nickname_records_on_nickname"
+  add_index "nickname_records", ["person_id", "nickname"], :name => "index_nickname_records_on_person_id_and_nickname", :unique => true
+  add_index "nickname_records", ["person_id"], :name => "index_nickname_records_on_person_id"
+
   create_table "people", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -147,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20120102080736) do
   end
 
   add_index "phone_records", ["person_id", "phone_number"], :name => "index_phone_records_on_person_id_and_phone_number", :unique => true
+  add_index "phone_records", ["person_id"], :name => "index_phone_records_on_person_id"
   add_index "phone_records", ["phone_number"], :name => "index_phone_records_on_phone_number"
 
   create_table "relationships", :force => true do |t|
@@ -190,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20120102080736) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "count",      :default => 1
   end
 
   add_index "state_records", ["person_id", "state"], :name => "index_state_records_on_person_id_and_state", :unique => true

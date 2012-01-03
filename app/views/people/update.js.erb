@@ -19,6 +19,8 @@
 		$("#wikipedia").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "wikipedia" ) %>');
 	<% when "tumblr" %>
 		$("#tumblr").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "tumblr" ) %>');
+	<% when "nickname" %>
+		$("#nickname").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "nickname" ) %>');
 	<% when "country" %>
 		$("#country").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "country" ) %>');
 	<% when "state" %>

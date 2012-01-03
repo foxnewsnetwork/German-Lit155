@@ -25,6 +25,8 @@ class Person < ActiveRecord::Base
 	has_many :rumor_records, :dependent => :destroy
 	has_many :rumors, :through => :rumor_records
 	
+	has_many :nickname_records, :foreign_key => :person_id, :dependent => :destroy
+	
 	has_many :phone_records, :foreign_key => :person_id, :dependent => :destroy
 	
 	has_many :email_records, :foreign_key => :person_id, :dependent => :destroy
@@ -72,6 +74,7 @@ class Person < ActiveRecord::Base
 				self.update_attributes :birthday => c
 			end
 		else
+			self.nickname_records.create( :nickname => keywords[:nickname]) unless keywords[:nickname].nil?
 			self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
 			self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
 			self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?

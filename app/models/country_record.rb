@@ -7,6 +7,7 @@
 #  country    :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  count      :integer(4)      default(1)
 #
 
 class CountryRecord < ActiveRecord::Base

@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: city_records
+# Table name: nickname_records
 #
 #  id         :integer(4)      not null, primary key
 #  person_id  :integer(4)
-#  city       :string(255)
+#  nickname   :string(255)
+#  count      :integer(4)
 #  created_at :datetime
 #  updated_at :datetime
-#  count      :integer(4)      default(1)
 #
 
-class CityRecord < ActiveRecord::Base
+class NicknameRecord < ActiveRecord::Base
 	belongs_to :person
 end

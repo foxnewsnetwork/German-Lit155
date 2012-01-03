@@ -1,5 +1,15 @@
 <!-- has person and category -->
 <% case category %>
+	<% when "nickname" %>
+		<% unless person.nickname_records.empty? %>
+			<p><% person.nickname_records.each do |r| %><%= r.nickname %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[nickname]" %>
+			<%= f.submit "Update" %>
+		<% end %>
 	<% when "country" %>
 		<% unless person.country_records.empty? %>
 			<p><% person.country_records.each do |r| %><%= r.country %> | <% end %></p>

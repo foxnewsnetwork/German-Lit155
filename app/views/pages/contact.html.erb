@@ -11,41 +11,53 @@
 <div class="row">
 	<div class="span-one-third">
 		<h4>Emails</h4>
-		<% if @mp0.nil? || @mp0.empty? %>
-			<p>Nothing here yet!</p>
-		<% else %>
-			<%= will_paginate @mp0 %>
-			<%= render "macroposts/macroposts", :macroposts => @mp0 %>
-		<% end %>
-		<% if moderator_signed_in? %>
-			<% @meta = { :board => "contact", :section => "a" } %>
-			<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
-		<% end %>
+		<div id="emails-display">
+			<% if @mp0.nil? || @mp0.empty? %>
+				<p>Nothing here yet!</p>
+			<% else %>
+				<%= will_paginate @mp0 %>
+				<%= render "macroposts/macroposts", :macroposts => @mp0 %>
+			<% end %>
+		</div>
+		<div id="emails-form">
+			<% if moderator_signed_in? %>
+				<% @meta = { :board => "contact", :section => "a" } %>
+				<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+			<% end %>
+		</div>
 	</div>
 	<div class="span-one-third">
 		<h4>IRC</h4>
-		<% if @mp1.nil? || @mp1.empty? %>
-			<p>Nothing here yet!</p>
-		<% else %>
-			<%= will_paginate @mp1 %>
-			<%= render "macroposts/macroposts", :macroposts => @mp1 %>
-		<% end %>
-		<% if moderator_signed_in? %>
-			<% @meta = { :board => "contact", :section => "b" } %>
-			<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
-		<% end %>	
+		<div id="irc-display">
+			<% if @mp1.nil? || @mp1.empty? %>
+				<p>Nothing here yet!</p>
+			<% else %>
+				<%= will_paginate @mp1 %>
+				<%= render "macroposts/macroposts", :macroposts => @mp1 %>
+			<% end %>
+		</div>
+		<div id="irc-form">
+			<% if moderator_signed_in? %>
+				<% @meta = { :board => "contact", :section => "b" } %>
+				<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+			<% end %>	
+		</div>
 	</div>
 	<div class="span-one-third">
 		<h4>Miscellanious Methods</h4>
-		<% if @mp2.nil? || @mp2.empty? %>
-			<p>Nothing here yet!</p>
-		<% else %>
-			<%= will_paginate @mp2 %>
-			<%= render "macroposts/macroposts", :macroposts => @mp2 %>
+		<div id="miscellanious-methods-display">
+			<% if @mp2.nil? || @mp2.empty? %>
+				<p>Nothing here yet!</p>
+			<% else %>
+				<%= will_paginate @mp2 %>
+				<%= render "macroposts/macroposts", :macroposts => @mp2 %>
 			<% end %>
-		<% if moderator_signed_in? %>
-			<% @meta = { :board => "contact", :section => "c" } %>
-			<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
-		<% end %>
+		</div>
+		<div id="miscellanious-methods-form">		
+			<% if moderator_signed_in? %>
+				<% @meta = { :board => "contact", :section => "c" } %>
+				<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -1,0 +1,8 @@
+<!-- forms to be used in the auxiliary pages -->
+<!-- availible variables: macroposts -->
+<% if macroposts.nil? || macroposts.empty? %>
+	<p>Nothing here yet!</p>
+<% else %>
+	<%= will_paginate macroposts %>
+	<%= render "macroposts/macroposts", :macroposts => macroposts %>
+<% end %>

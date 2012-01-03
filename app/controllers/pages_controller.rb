@@ -46,7 +46,9 @@ class PagesController < ApplicationController
 			@macropost = current_moderator.macroposts.new
 			@moderator = current_moderator			
 		end
-		@mp0 = { :people => Person.count, :rumors => Rumor.count }
+		temp = Macropost.first
+		time = temp.nil? ? DateTime.now : temp.created_at
+		@mp0 = { :people => Person.count, :rumors => Rumor.count, :time => time }
 		@mp1 = Macropost.where("board = ? AND section = ?", "misc", "b").paginate( :page => params[:page], :per_page => 10 )
 		@mp2 = Macropost.where("board = ? AND section = ?", "misc", "c").paginate( :page => params[:page], :per_page => 10 )
 	end

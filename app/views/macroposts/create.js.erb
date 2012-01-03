@@ -1,0 +1,41 @@
+<% case @origin[:board] %>
+	<% when "about" %>
+		<% case @origin[:section] %>
+			<% when "a" %>
+				<% @category = "faqs" %>
+			<% when "b" %>
+				<% @category = "terms-of-service" %>
+			<% when "c" %>
+				<% @category = "the-staff" %>
+		<% end %>
+	<% when "contact" %>
+		<% case @origin[:section] %>
+			<% when "a" %>
+				<% @category = "emails" %>
+			<% when "b" %>
+				<% @category = "irc" %>
+			<% when "c" %>
+				<% @category = "miscellanious-methods" %>			
+		<% end %>
+	<% when "developer" %>
+		<% case @origin[:section] %>
+			<% when "a" %>
+				<% @category = "in-the-works" %>
+			<% when "b" %>
+				<% @category = "future-features" %>			
+			<% when "c" %>
+				<% @category = "bug-reports" %>			
+		<% end %>
+	<% when "misc" %>
+		<% case @origin[:section] %>
+			<% when "a" %>
+				<% @category = "site-stats" %>				
+			<% when "b" %>
+				<% @category = "banlist" %>			
+			<% when "c" %>
+				<% @category = "updates" %>
+		<% end %>
+<% end %>
+
+$("#<%= escape_javascript( @category ) %>-display").html('<%= escape_javascript( render "pages/ajaxpost", :macroposts => @macroposts ) %>');
+$("#<%= escape_javascript( @category ) %>-form")[0].reset( );

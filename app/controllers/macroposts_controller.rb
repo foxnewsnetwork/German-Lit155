@@ -41,8 +41,9 @@ class MacropostsController < ApplicationController
 		end
 		
 		moderator = current_moderator
-		@macropost = Macropost.find_by_id( params[:id] )
-		if @macropost.destroy
+		@mp = Macropost.find_by_id( params[:id] )
+		@id = @mp.id
+		if @mp.destroy
 			flash[:success] = "Macropost successfully deleted"
 		else
 			flash[:error] = "Something went wrong with deleting"

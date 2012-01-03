@@ -1,7 +1,7 @@
 Gossip::Application.routes.draw do
 
 
-  resources :macroposts, :only => [:destroy, :update, :edit]
+  resources :macroposts, :only => [:destroy, :update, :edit, :new]
 
   devise_for :moderators
 	resource :moderators, :only => [:show, :index] do

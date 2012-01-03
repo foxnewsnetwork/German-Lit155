@@ -1,0 +1,35 @@
+// ajax code to handle updating
+<% case @origin %>
+	<% when "birthday-month" %>
+		$("#birthday-display").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "birthday-display" ) %>');
+		$("#birthday-month").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "birthday-month" ) %>');
+	<% when "birthday-day" %>
+		$("#birthday-display").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "birthday-display" ) %>');	
+		$("#birthday-day").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "birthday-day" ) %>');
+	<% when "birthday-year" %>
+		$("#birthday-display").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "birthday-display" ) %>');	
+		$("#birthday-year").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "birthday-year" ) %>');
+	<% when "facebook" %>
+		$("#facebook").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "facebook" ) %>');
+	<% when "twitter" %>
+		$("#twitter").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "twitter" ) %>');
+	<% when "linkedin" %>
+		$("#linkedin").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "linkedin" ) %>');
+	<% when "wikipedia" %>
+		$("#wikipedia").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "wikipedia" ) %>');
+	<% when "tumblr" %>
+		$("#tumblr").html('<%= escape_javascript( render "people/basic_forms", :person => @person, :category => "tumblr" ) %>');
+	<% when "country" %>
+		$("#country").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "country" ) %>');
+	<% when "state" %>
+		$("#state").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "state" ) %>');
+	<% when "city" %>
+		$("#city").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "city" ) %>');
+	<% when "address" %>
+		$("#address").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "address" ) %>');
+	<% when "phone" %>
+		$("#phone").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "phone" ) %>');
+	<% when "email" %>
+		$("#email").html('<%= escape_javascript( render "people/contact_forms", :person => @person, :category => "email" ) %>');
+<% end %>
+

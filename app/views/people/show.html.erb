@@ -1,0 +1,8 @@
+<!-- The show page for people -->
+<div class="hero-unit">
+	<h3><%= @person.name %></h3>
+	<%= link_to "Back to Main", root_path, :class => "btn primary large" %>
+</div>
+<div class="row">
+	<%= render "people/person", :person => @person %>
+</div>

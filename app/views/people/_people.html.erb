@@ -1,47 +1,8 @@
 <!-- Assumes I have an array of persons named people -->
 <%= will_paginate people %>
 <div class="row">
-
-
 <% people.each do |person| %>
-<h1><%= person.name %></h1>
-</div>
-<div class="row">
-<div class="span-one-third">
-	<!-- Map section -->
-	<h3>Rumor Geocenter</h3>
-	<p>Latitude: <%= person.lat_avg %> | Longitude: <%= person.lng_avg %></p>
-	<!--Rendering the map -->
-	<%= render "shared/maps2", :rumors => person.rumors, :location => { :lat => person.lat_avg, :lng => person.lng_avg }, :initial_zoom => 14 %>		
-</div>
-<div class="span-one-third">
-	<h3>Basic Information</h3>
-	<%= render "people/basic", :person => person %>
-</div>
-<div class="span-one-third">
-	<h3>Contact Information</h3>
-	<%= render "people/contacts", :person => person %>
-</div>
-
-</div>
-<div class="row">
-<div class="rumor-container">
-	<%= render "shared/rumors", :rumors => person.rumors %>
-</div>
-<div class="new-rumor">
-<ul style="list-style: none;">
-	<%= form_for "#" do %>
-			<%= hidden_field_tag "rumor[type]", "#" %>
-			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
-			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
-			<%= hidden_field_tag "rumor[ip]", @ip %>
-			<%= hidden_field_tag "rumor[person]", person.id %>
-			<li><h4><%= person.name %> is a...</h4></li>
-			<li><%= text_area :rumor, :content, :size => "70x3",  %></li>
-			<li><%= submit_tag "Post", :class => "btn" %></li>
-	<% end %>
-</ul>
-</div>
+	<%= render "people/person", :person => person %>
 <% end %>
 </div>
 <%= will_paginate people %>

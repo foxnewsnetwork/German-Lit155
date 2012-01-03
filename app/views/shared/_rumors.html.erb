@@ -8,6 +8,11 @@
     <span class="timestamp">
       <p>Spread <%= time_ago_in_words(rumor.created_at) %> ago.</p>
     </span>
+    <% if moderator_signed_in? %>
+		<span class="moderator-commands">
+			<%= link_to "Delete", rumor_path(rumor), :method => :delete, :remote => true %>
+		</span>
+    <% end %>
   </td>
 </tr>
 <% end %>

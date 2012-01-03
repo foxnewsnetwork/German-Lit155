@@ -1,7 +1,4 @@
 
-$(".rumor").html("<%= escape_javascript( render @rumors)%>");
-$("#new_rumor")[0].reset();
-patchMarkers("<%= escape_javascript( "#{@lat}")%>","<%= escape_javascript( "#{@long}") %>","<%= escape_javascript( "#{@rmr.content}") %>","<%= escape_javascript("#{@rmr.content}") %>" );
-if (infowindow) infowindow.close();
-removeClickMarker();
-showJustSubmitted("<%= escape_javascript( "#{@rmr.content}") %>");
+
+$(".rumor-container").html('<%= escape_javascript( render "shared/rumors", :rumors => @person.rumors ) %>');
+$(".new-rumor")[0].reset( );

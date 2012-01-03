@@ -1,2 +1,3 @@
-$(".rumor").html("<%= escape_javascript( render @rumors)%>");
-removeMarker("<%= escape_javascript( "#{@count}") %>");
+
+
+$(".rumor-container").html('<%= escape_javascript( render "shared/rumors", :rumors => @person.rumors ) %>');

@@ -1,0 +1,63 @@
+<!-- has person and category -->
+<% case category %>
+	<% when "country" %>
+		<% unless person.country_records.empty? %>
+			<p><% person.country_records.each do |r| %><%= r.country %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[country]" %>
+			<%= f.submit "Update" %>
+		<% end %>
+	<% when "state" %>
+		<% unless person.state_records.empty? %>
+			<p><% person.state_records.each do |r| %><%= r.state %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[state]" %>
+			<%= f.submit "Update" %>
+		<% end %>
+	<% when "city" %>
+		<% unless person.city_records.empty? %>
+			<p><% person.city_records.each do |r| %><%= r.city %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[city]" %>
+			<%= f.submit "Update" %>
+		<% end %>		
+	<% when "address" %>
+		<% unless person.address_records.empty? %>
+			<p><% person.address_records.each do |r| %><%= r.address %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[address]" %>
+			<%= f.submit "Update" %>
+		<% end %>	
+	<% when "phone" %>
+		<% unless person.phone_records.empty? %>
+			<p><% person.phone_records.each do |r| %><%= r.phone_number %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= phone_field_tag "person[phone]" %>
+			<%= f.submit "Update" %>
+		<% end %>	
+	<% when "email" %>
+		<% unless person.email_records.empty? %>
+			<p><% person.email_records.each do |r| %><%= r.email %> | <% end %></p>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= email_field_tag "person[email]" %>
+			<%= f.submit "Update" %>
+		<% end %>	
+<% end %>

@@ -27,7 +27,7 @@ Gossip::Application.routes.draw do
   match "/developer", :to => "pages#developer"
   match "/contact", :to => "pages#contact"
   
-  resources :rumors
+  resources :rumors, :only => [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

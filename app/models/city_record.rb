@@ -12,4 +12,14 @@
 
 class CityRecord < ActiveRecord::Base
 	belongs_to :person
+	attr_accessible :person_id, :city
+	
+	def increment_count
+		if self.count.nil?
+			self.count = 1
+		else
+			self.count += 1
+		end
+		self.save!
+	end	
 end

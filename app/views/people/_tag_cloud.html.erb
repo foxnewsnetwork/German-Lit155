@@ -1,0 +1,7 @@
+<!-- Generates a tag cloud -->
+<!-- phrases, limit -->
+<% @cap = phrases.count > limit ? limit : phrases.count %>
+<% for k in 0..@cap-1 %>
+<% phrase = phrases[k] %>
+	<span style="font-size: <%= phrase[:count] %>;"><%= phrase[:word] %></span>
+<% end %>

@@ -1,8 +1,15 @@
 <!-- has person and category -->
+<% lim = 5 %>
 <% case category %>
 	<% when "nickname" %>
 		<% unless person.nickname_records.empty? %>
-			<p><% person.nickname_records.each do |r| %><%= r.nickname %> | <% end %></p>
+			<% records = person.nickname_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.nickname %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>
@@ -12,7 +19,13 @@
 		<% end %>
 	<% when "country" %>
 		<% unless person.country_records.empty? %>
-			<p><% person.country_records.each do |r| %><%= r.country %> | <% end %></p>
+			<% records = person.country_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.country %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>
@@ -22,7 +35,13 @@
 		<% end %>
 	<% when "state" %>
 		<% unless person.state_records.empty? %>
-			<p><% person.state_records.each do |r| %><%= r.state %> | <% end %></p>
+			<% records = person.state_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.state %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>
@@ -32,7 +51,13 @@
 		<% end %>
 	<% when "city" %>
 		<% unless person.city_records.empty? %>
-			<p><% person.city_records.each do |r| %><%= r.city %> | <% end %></p>
+			<% records = person.city_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.city %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>
@@ -42,7 +67,13 @@
 		<% end %>		
 	<% when "address" %>
 		<% unless person.address_records.empty? %>
-			<p><% person.address_records.each do |r| %><%= r.address %> | <% end %></p>
+			<% records = personaddress_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.address %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>
@@ -52,7 +83,13 @@
 		<% end %>	
 	<% when "phone" %>
 		<% unless person.phone_records.empty? %>
-			<p><% person.phone_records.each do |r| %><%= r.phone_number %> | <% end %></p>
+			<% records = person.phone_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.phone_number %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>
@@ -62,7 +99,13 @@
 		<% end %>	
 	<% when "email" %>
 		<% unless person.email_records.empty? %>
-			<p><% person.email_records.each do |r| %><%= r.email %> | <% end %></p>
+			<% records = person.email_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.email %> </span>
+			<% end %>
 		<% end %>
 		<%= form_for person, :method => "put", :remote => true do |f| %>
 			<%= hidden_field_tag "person[type]", "contact" %>

@@ -208,13 +208,61 @@ class Person < ActiveRecord::Base
 	
  	#private
 		def magic_update_internals( keywords )
-			self.nickname_records.create( :nickname => keywords[:nickname]) unless keywords[:nickname].nil?
-			self.phone_records.create( :phone_number => keywords[:phone]) unless keywords[:phone].nil?
-			self.email_records.create( :email => keywords[:email]) unless keywords[:email].nil?
-			self.ip_records.create( :ip_address => keywords[:ip]) unless keywords[:ip].nil?
-			self.address_records.create( :address => keywords[:address]) unless keywords[:address].nil?	
-			self.city_records.create( :city => keywords[:city]) unless keywords[:city].nil?
-			self.state_records.create( :state => keywords[:state]) unless keywords[:state].nil?
-			self.country_records.create( :country => keywords[:country]) unless keywords[:country].nil?
+			unless keywords[:nickname].nil?
+				if record = self.nickname_records.find_by_nickname( keywords[:nickname] ) 
+					record.increment_count
+				else
+					self.nickname_records.create( :nickname => keywords[:nickname] ) 
+				end
+			end
+			unless keywords[:phone].nil?
+				if record = self.phone_records.find_by_phone_number( keywords[:phone] ) 
+					record.increment_count
+				else
+					self.phone_records.create( :phone_number => keywords[:phone] ) 
+				end
+			end
+			unless keywords[:email].nil?
+				if record = self.email_records.find_by_email( keywords[:email] ) 
+					record.increment_count
+				else
+					self.email_records.create( :email => keywords[:email]) 
+				end
+			end
+			unless keywords[:ip].nil?
+				if record = self.ip_records.find_by_ip_address( keywords[:ip] ) 
+					record.increment_count
+				else
+					self.ip_records.create( :ip_address => keywords[:ip]) 
+				end
+			end
+			unless keywords[:address].nil?	
+				if record = self.address_records.find_by_address( keywords[:address] ) 
+					record.increment_count
+				else
+					self.address_records.create( :address => keywords[:address]) 
+				end
+			end
+			unless keywords[:city].nil?
+				if record = self.city_records.find_by_city( keywords[:city] ) 
+					record.increment_count
+				else
+					self.city_records.create( :city => keywords[:city]) 
+				end
+			end
+			unless keywords[:state].nil?
+				if record = self.state_records.find_by_state( keywords[:state] ) 
+					record.increment_count
+				else
+					self.state_records.create( :state => keywords[:state]) 
+				end
+			end	
+			unless keywords[:country].nil?
+				if record = self.country_records.find_by_country( keywords[:country] ) 
+					record.increment_count
+				else			
+					self.country_records.create( :country => keywords[:country]) 
+				end
+			end
 		end
 end

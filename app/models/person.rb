@@ -43,7 +43,28 @@ class Person < ActiveRecord::Base
 	
 	attr_accessible :dist, :name, :birthyear, :birthmonth, :birthday, :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
 	# TODO: use sphinx!
-	
+
+	# Call this function to get a summary on this faggot
+	def summary
+		out_string = ""
+		country = self.country_records.order( "count DESC" ).limit(1).first
+		state = self.state_records.order("count DESC").limit(1).first
+		city = self.city_records.order("count DESC").limit(1).first
+		
+		out_string += "probably from " + country.country.capitalize unless country.nil?
+		out_string += " current @ " + state.state.capitalize unless state.nil?
+		out_string += " in " + city.city.capitalize unless city.nil?
+		
+		nickname = self.nickname_records.order( "count DESC" ).limit(1).first
+		rumor = self.rumors.order( "created_at DESC" ).limit(1).first
+		
+		out_string += "... also known as \"" + nickname.nickname + "\"" unless nickname.nil?
+		out_string += "... latest rumor: " + rumor.content unless rumor.nil? 
+		
+		out_string += "We've got nothing on this character" if out_string.empty?
+		return out_string
+	end
+		
 	# Call this function after spreading a rumor to update the averages
 	def update_averages( rumor )
 		if self.rumors.empty? || self.rumors.nil?

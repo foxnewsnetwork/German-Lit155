@@ -76,13 +76,16 @@
 </div>
 
 <% unless @people.nil? || @people.empty? %>
-	<%= link_to "Start New Rumor Subject", "#lolcat_spread" %>
-	<%= render "people/people", :people => @people %>
+	<%= link_to "Start New Rumor Subject", "#lolcat_spread", :class => "btn primary large" %>
+	<%= will_paginate @people %>
+	<% @people.each do |p| %>
+		<%= render "people/preview", :person => p %>
+	<% end %>
 	<br />
 	<br />
 	<div class="row">
 		<div id="lolcat_spread">
-			<h3>We've got nothing on your person... you start something!</h3>
+			<h3>If you can't find who you're looking for... you start something!</h3>
 			<%= render "rumors/spread", :search => @search, :person => @person %>
 		</div>
 	</div>

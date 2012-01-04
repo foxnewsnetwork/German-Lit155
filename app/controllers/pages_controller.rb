@@ -62,6 +62,7 @@ class PagesController < ApplicationController
 				rmr.rumor_records.create( :person_id => params[:rumor][:person] )
 				prs = Person.find_by_id( params[:rumor][:person] )
 				prs.update_averages(rmr)
+				
 				redirect_to :back
 			else
 				spread = params[:rumor]
@@ -76,7 +77,7 @@ class PagesController < ApplicationController
 		end
 
 		unless search.nil?
-			@people = Rumor.search2(search).paginate( :page => params[:page], :per_page => 1 )
+			@people = Rumor.search2(search).paginate( :page => params[:page], :per_page => 10 )
 		end
 		@search = search		
 		@person = Person.new(@search)
@@ -88,6 +89,7 @@ class PagesController < ApplicationController
 		if @result.nil?
 			flash.now[:notice] = "You haven't spread any rumors yet!"
 		end
+		
 	end
 	
 	

@@ -38,5 +38,6 @@ production:
   database: gossip_production
   pool: 5
   username: root
-  password:
-host: 127.0.0.1
+  password: bitnami
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
+

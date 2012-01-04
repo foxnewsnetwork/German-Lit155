@@ -35,13 +35,13 @@ class Rumor < ActiveRecord::Base
   has_many :people, :through => :rumor_records
 
 	# Sphinx-use index section
-	define_index do
+	#define_index do
     # Fields
-    indexes content
+    #indexes content
     
     # Attributes
-    has created_at, updated_at, parent_id, latitude, longitude
-	end
+   # has created_at, updated_at, parent_id, latitude, longitude
+#	end
 	
 	def self.spread( keywords ) 
 		# Step 1: Initialize the people in question

@@ -9,5 +9,7 @@ test:
   indexer_binary_name: indexer
 
 production:  
-  version: 1.10-beta  
+  bin_path: "/opt/bitnami/sphinx/bin"
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
   

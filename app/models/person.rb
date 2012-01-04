@@ -42,6 +42,23 @@ class Person < ActiveRecord::Base
 	has_many :country_records, :foreign_key => :person_id, :dependent => :destroy
 	
 	attr_accessible :dist, :name, :birthyear, :birthmonth, :birthday, :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
+	
+	# Validations
+	validates :twitter, :format => 
+		{ :with => /((https?:\/\/[a-zA-Z0-9\.\-_]{0,}twitter.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))/ , 
+		 :message => "not a twitter profile" }
+	validates :facebook, :format => 
+		{ :with => /((https?:\/\/[a-zA-Z0-9\.\-_]{0,}facebook.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))/ ,
+		 :message => "not a facebook profile" }
+	validates :linkedin, :format => 
+		{ :with => /((https?:\/\/[a-zA-Z0-9\.\-_]{0,}linkedin.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))/ ,
+		 :message => "not a linkedin profile" }
+	 validates :wikipedia, :format => 
+		{ :with => /((https?:\/\/[a-zA-Z0-9\.\-_]{0,}wikipedia.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))/ ,
+		 :message => "not a wikipedia profile" }
+	 validates :tumblr, :format => 
+		{ :with => /((https?:\/\/[a-zA-Z0-9\.\-_]{0,}tumblr.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))/ ,
+		 :message => "not a tumblr profile" }
 	# TODO: use sphinx!
 
 	# Call this function to get a summary on this faggot

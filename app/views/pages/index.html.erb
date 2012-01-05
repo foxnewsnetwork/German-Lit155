@@ -1,15 +1,16 @@
 <script type="text/javascript">
 	$(document).ready( function( ){ 
-		$("div.advanced_rumor_search").hide( );		
-		$("div.advanced_rumor_spread").hide( );
-		$("div.simple_rumor_spread").hide( );
+		$("div.advanced_people_search").hide( );		
+		$("div.advanced_people_spread").hide( );
+		$("div.simple_people_spread").hide( );
 				
 		$(".advanced_search").click( function( ) { 
-			$("div.advanced_rumor_search").toggle( );
+			$("div.advanced_people_search").toggle( );
+			$("div.simple_people_search").toggle( );
 		} );
 	
 		$(".advanced_spread").click( function( ) {
-			$("div.advanced_rumor_spread").toggle( );
+			$("div.advanced_people_spread").toggle( );
 		} );
 	} );
 	
@@ -17,86 +18,14 @@
 </script>
 
 <div class="hero-unit">
-	<div class="simple_rumor_search">
-		<p>
-			<%= form_tag( root_path, :method => "get" ) do %>
-				<%= hidden_field_tag "search[type]", "simple" %>
-				<%= hidden_field_tag "search[latitude]", @location[:lat] %>
-				<%= hidden_field_tag "search[longitude]", @location[:lng] %>
-				<%= hidden_field_tag "search[ip]", @ip %>
-			<ul style="display: inline-block; list-style: none;">
-				<li>
-					<%= label_tag "Name: " %>
-					<%= search_field_tag('search[name]', nil, :placeholder => "First Last") %>
-				</li>
-				<li>
-					<%= submit_tag 'Search »', :class => "btn primary" %>
-					<%= submit_tag "Advanced Search...", :class => "advanced_search btn", :type => "button" %>
-				</li>
-				</ul>
-			<% end %>
-		</p>
+	<div class="simple_people_search">
+		<%= render "people/simple_search", :location => @location, :ip => @ip %>
 	</div>
-	<div class="simple_rumor_spread">
-	<p>
-		<%= form_for root_path do %>
-			<%= hidden_field_tag "rumor[type]", "simple" %>
-			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
-			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
-			<%= hidden_field_tag "rumor[ip]", @ip %>
-			<ul style="display: inline-block; list-style: none;">
-				<li>
-					<%= label_tag "Name: " %>
-					<%= text_field_tag "rumor[name]" %>
-				</li>
-				<li>
-					<%= label_tag "Rumor: " %>
-					<%= text_area :rumor, :content, :size => "40x1" %>
-				</li>
-				<li>
-					<%= submit_tag "Create Rumor »", :class => "btn primary" %>
-					<%= submit_tag "Advanced Spread...", :class => "advanced_spread btn", :type => "button" %>
-				</li>
-			</ul>
-		<% end %>
-	</p>
-	</div>
-
-</div>
-
-<div id='row'>
-<div id='side_bar' class='link'>
-	<div class="advanced_rumor_search">
-		<%= render "rumors/advanced_search", :location => @location, :ip => @ip %>
-	</div>
-	<div class="advanced_rumor_spread">
-		
+	<div class="advanced_people_search">
+		<%= render "people/advanced_search", :location => @location, :ip => @ip %>
 	</div>
 </div>
-</div>
 
-<% unless @people.nil? || @people.empty? %>
-	<%= link_to "Start New Rumor Subject", "#lolcat_spread", :class => "btn primary large" %>
-	<%= will_paginate @people %>
-	<% @people.each do |p| %>
-		<%= render "people/preview", :person => p %>
-	<% end %>
-	<br />
-	<br />
-	<div class="row">
-		<div id="lolcat_spread">
-			<h3>If you can't find who you're looking for... you start something!</h3>
-			<%= render "rumors/spread", :search => @search, :person => @person %>
-		</div>
-	</div>
-<% else %>
-<div class="row">
-	<% unless @search.nil? %>
-		<%= render "rumors/spread", :search => @search, :person => @person %>
-	<% else %>
-		<h3>Latest</h3>
-		<%= render "shared/rumors", :rumors => @latest_rumors %>
-	<% end %>
+<div id="people-container">
+	<%= render "pages/people-container", :people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors %>
 </div>
-<% end %>
-

@@ -1,0 +1,1 @@
+$("#people-container").html('<div class="row"><%= escape_javascript( render "pages/people-container", :people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors ) %></div>');

@@ -54,42 +54,27 @@ class PagesController < ApplicationController
 	end
 
 	def index
-		@rumor = Rumor.new
+		# Section 1: Initializing Required Instances
 		@latest_rumors = Rumor.find(:all, :order => "created_at DESC", :limit => 3)
-		unless params[:rumor].nil?
-			if params[:rumor][:type] == "#"
-				rmr = Rumor.create(params[:rumor])
-				rmr.rumor_records.create( :person_id => params[:rumor][:person] )
-				prs = Person.find_by_id( params[:rumor][:person] )
-				prs.update_averages(rmr)
-				
-				redirect_to :back
-			else
-				spread = params[:rumor]
-				@result = Rumor.spread(spread) unless spread.nil?
-			end
-		end
-		search = params[:search]
-
-		unless params[:date].nil? || params[:date].empty?
-			temp = params[:date][:search]
-			search = search.merge( temp )		
-		end
-
-		unless search.nil?
-			@people = Rumor.search2(search).paginate( :page => params[:page], :per_page => 10 )
-		end
-		@search = search		
-		@person = Person.new(@search)
-		
-		# We're currently not doing anything with these, although we should later
 		@location = get_coordinates
 		@ip = get_ip
+		@search = params[:search]
 		
-		if @result.nil?
-			flash.now[:notice] = "You haven't spread any rumors yet!"
+		# Parsing the date section
+		unless params[:date].nil? || params[:date].empty?
+			temp = params[:date][:search]
+			@search = @search.merge( temp )		
 		end
+
+		unless @search.nil?
+			@people = Person.find_by_magic(@search).paginate( :page => params[:page], :per_page => 10 )
+		end
+		@person = Person.new(@search)
 		
+		respond_to do |format|
+			format.html 
+			format.js
+		end
 	end
 	
 	

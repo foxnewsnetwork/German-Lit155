@@ -41,7 +41,8 @@ class Person < ActiveRecord::Base
 
 	has_many :country_records, :foreign_key => :person_id, :dependent => :destroy
 	
-	attr_accessible :dist, :name, :birthyear, :birthmonth, :birthday, :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
+	attr_accessible :dist, :name, :birthyear, :birthmonth, :birthday,
+		 :gender, :twitter, :facebook, :linkedin, :wikipedia, :tumblr
 	
 	# Validations
 	validates :twitter, :format => 
@@ -163,14 +164,16 @@ class Person < ActiveRecord::Base
 		end
 		
 		# We deal with the location
-		unless keywords[:latitude].nil? || keywords[:longitude].nil?
-			internals = internals.merge( :latitude => keywords[:latitude], :longitude => keywords[:longitude] )
-			lat_tol = 1.0 # We're interested in an approximately 70 mile radius around the average
-			angle = keywords[:latitude].to_f * PI / 360.0
-			lng_tol = 1.0 / ( Math.cos angle ) # People at the north and south poles are fucked
-			statement += "lat_avg <= lat_avg + #{lat_tol} AND lat_avg >= lat_avg - #{lat_tol} AND 
-				lng_avg <= lng_avg + #{lng_tol} AND lng_avg >= lng_avg - #{lng_tol} AND "
-		end
+		#unless keywords[:latitude].nil? || keywords[:longitude].nil?
+		#	internals = internals.merge( :latitude => keywords[:latitude], :longitude => keywords[:longitude] )
+		#	lat_tol = 1.0 # We're interested in an approximately 70 mile radius around the average
+		#	angle = keywords[:latitude].to_f * PI / 360.0
+		#	lng_tol = 1.0 / ( Math.cos angle ) # People at the north and south poles are fucked
+		#	statement += "lat_avg <= lat_avg + #{lat_tol} AND lat_avg >= lat_avg - #{lat_tol} AND 
+		#		lng_avg <= lng_avg + #{lng_tol} AND lng_avg >= lng_avg - #{lng_tol} AND "
+		#end
+		
+		
 		
 		# Handling dates
 		unless keywords[:birthyear].nil?
@@ -187,8 +190,41 @@ class Person < ActiveRecord::Base
 		end
 		
 		statement = statement[0..statement.length - 6]
-		@people = Person.where( statement, internals ) unless internals.empty?
+		unless internals.empty?
+			@people = Person.where( statement, internals ) 
+		end
+		return @people if @people.empty?
 		
+		# Dealing with location and other complicated things
+		join_vec = []
+		where_hash = {}
+		unless keywords[:nickname].nil?
+			join_vec.push( :nickname )
+			where_hash[:nickname_records] = { :person_id => @people, :nickname => keywords[:nickname] }
+		end
+		unless keywords[:address].nil?
+			join_vec.push( :address )
+			where_hash[:address_records] = { :person_id => @people, :address => keywords[:address] }
+		end
+		unless keywords[:city].nil?
+			join_vec.push( :city )
+			where_hash[:city_records] = { :person_id => @people, :city => keywords[:city] }
+		end
+		unless keywords[:state].nil?
+			join_vec.push( :state )
+			where_hash[:state_records] = { :person_id => @people, :state => keywords[:state] }
+		end
+		unless keywords[:country].nil?
+			join_vec.push( :country )
+			where_hash[:country_records] = { :person_id => @people, :country => keywords[:country] }
+		end
+		
+		unless join_vec.empty? || where_hash.empty?
+			@people2 = Person.joins( join_vec ).where( where_hash )
+			return @people2
+		end
+			
+		return @people
 		# TODO: filter by IP address
 	end
 	

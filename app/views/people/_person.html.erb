@@ -1,5 +1,5 @@
 <!-- Rendering for a signle person -->
-<h1><%= person.name %></h1>
+<h1><%= link_to person.name, person %></h1>
 </div>
 <div class="row">
 <div class="span-one-third">
@@ -29,11 +29,11 @@
 <ul style="list-style: none;">
 	<%= form_tag rumors_path, :remote => true do %>
 			<%= hidden_field_tag "rumor[type]", "#" %>
-			<%= hidden_field_tag "rumor[latitude]", @location[:lat] %>
-			<%= hidden_field_tag "rumor[longitude]", @location[:lng] %>
-			<%= hidden_field_tag "rumor[ip]", @ip %>
+			<%= hidden_field_tag "rumor[latitude]", location[:lat] %>
+			<%= hidden_field_tag "rumor[longitude]", location[:lng] %>
+			<%= hidden_field_tag "rumor[ip]", ip %>
 			<%= hidden_field_tag "rumor[person]", person.id %>
-			<li><h4><%= person.name %> is a...</h4></li>
+			<li><h4><%= person.name %>...</h4></li>
 			<li><%= text_area :rumor, :content, :size => "70x3",  %></li>
 			<li><%= submit_tag "Post", :class => "btn" %></li>
 	<% end %>

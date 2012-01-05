@@ -1,7 +1,7 @@
 <!-- Variables in this hellhole: search, person -->
 <h2>New Rumor Profile!</h2>
 <ul class="spread_form">
-<%= form_for person do |f| %>
+<%= form_for person, :remote => true do |f| %>
 	<!-- Usually necessary sections -->
 	<li>
 		<%= f.label :name %>
@@ -34,6 +34,10 @@
 	<%= hidden_field_tag "person[ip]", search[:ip] unless search[:ip].nil? %>
 	<!-- Potentially unavailible sections -->
 	<li>
+		<%= label_tag "Nickname" %>
+		<%= phone_field_tag "person[nickname]",  search[:nickname].nil? ? "" : search[:nickname] %>
+	</li>
+	<li>
 		<%= label_tag "Phone" %>
 		<%= phone_field_tag "person[phone]",  search[:phone].nil? ? "" : search[:phone] %>
 	</li>
@@ -41,6 +45,18 @@
 		<%= label_tag "Email Address" %>
 		<%= text_field_tag "person[email]", search[:email].nil? ? "" : search[:email] %>
 	</li>
+	<li>
+		<%= label_tag "Country" %>
+		<%= text_field_tag "person[country]",  search[:country].nil? ? "" : search[:country] %>
+	</li>
+	<li>
+		<%= label_tag "State" %>
+		<%= text_field_tag "person[state]",  search[:state].nil? ? "" : search[:state] %>
+	</li>
+	<li>
+		<%= label_tag "City" %>
+		<%= text_field_tag "person[city]",  search[:city].nil? ? "" : search[:city] %>
+	</li>	
 	<li>
 		<%= label_tag "Address" %>
 		<%= text_field_tag "person[address]",  search[:address].nil? ? "" : search[:address] %>

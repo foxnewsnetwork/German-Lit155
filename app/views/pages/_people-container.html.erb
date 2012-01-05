@@ -1,0 +1,27 @@
+<!-- Container for rendering people -->
+<!-- people, search, person, latest_rumors -->
+<% unless people.nil? || people.empty? %>
+	<%= link_to "Start New Rumor Subject", "#lolcat_spread", :class => "btn primary large" %>
+	<%= will_paginate people %>
+	<% people.each do |p| %>
+		<%= render "people/preview", :person => p %>
+	<% end %>
+	<br />
+	<br />
+	<div class="row">
+		<div id="lolcat_spread">
+			<h3>If you can't find who you're looking for... you start something!</h3>
+			<%= render "rumors/spread", :search => search, :person => person %>
+		</div>
+	</div>
+<% else %>
+<div class="row">
+	<% unless search.nil? %>
+		<h3>If you can't find who you're looking for... you start something!</h3>
+		<%= render "rumors/spread", :search => search, :person => person %>
+	<% else %>
+		<h3>Latest</h3>
+		<%= render "shared/rumors", :rumors => latest_rumors %>
+	<% end %>
+</div>
+<% end %>

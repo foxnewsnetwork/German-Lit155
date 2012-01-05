@@ -1,5 +1,6 @@
+<!-- Advanced search -->
 <ul style="list-style: none;">
-<%= form_tag root_path, :method => "get" do %>
+<%= form_tag root_path, :method => "get" , :remote => true do %>
 	<%= hidden_field_tag "search[type]", "advanced" %>
 	<%= hidden_field_tag "search[latitude]", location[:lat] %>
 	<%= hidden_field_tag "search[longitude]", location[:lng] %>
@@ -7,6 +8,10 @@
 	<li><h4>Name</h4></li>
 	<li>
 		<%= text_field_tag "search[name]", nil, :placeholder => "First Last" %>
+	</li>
+	<li><h4>Nickname</h4></li>
+	<li>
+		<%= text_field_tag "search[nickname]", nil, :placeholder => "ffn" %>
 	</li>
 	<li><h4>Phone</h4></li>
 	<li>
@@ -48,7 +53,8 @@
 		<%= text_field_tag "search[address]", nil, :placeholder => "1780 Spruce Street" %>
 	</li>
 	<li>
-		<%= submit_tag 'Search Person' %>		
+		<%= submit_tag 'Search »', :class => "btn primary" %>
+		<%= submit_tag "Simple Search...", :class => "advanced_search btn", :type => "button" %>		
 	</li>
 <% end %>
 </ul>

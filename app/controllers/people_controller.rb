@@ -8,13 +8,18 @@ class PeopleController < ApplicationController
 		
 	# Post request
 	def create
-		person = Person.build_with_magic( params[:person] )
-		unless person.nil?
+		@person = Person.build_with_magic( params[:person] )
+		@location = get_coordinates
+		@ip = get_ip
+		unless @person.nil?
 			flash[:success] = "New person successfully seeded!"
 		else
 			flash[:error] = "Couldn't save person for some reason"
 		end
-		redirect_to :back
+		respond_to do |format|
+			format.html { redirect_to @person }
+			format.js
+		end
 	end
 	
 	# Put request

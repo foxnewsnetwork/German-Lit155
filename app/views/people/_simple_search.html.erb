@@ -1,0 +1,18 @@
+<!-- Simple rumor search -->
+<!-- location, ip -->
+<%= form_tag( root_path, :method => "get" , :remote => true) do %>
+	<%= hidden_field_tag "search[type]", "simple" %>
+	<%= hidden_field_tag "search[latitude]", location[:lat] %>
+	<%= hidden_field_tag "search[longitude]", location[:lng] %>
+	<%= hidden_field_tag "search[ip]", ip %>
+<ul style="display: inline-block; list-style: none;">
+	<li>
+		<%= label_tag "Name: " %>
+		<%= search_field_tag('search[name]', nil, :placeholder => "First Last") %>
+	</li>
+	<li>
+		<%= submit_tag 'Search »', :class => "btn primary" %>
+		<%= submit_tag "Advanced Search...", :class => "advanced_search btn", :type => "button" %>
+	</li>
+	</ul>
+<% end %>

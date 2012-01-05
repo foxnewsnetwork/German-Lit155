@@ -11,6 +11,7 @@ gem "thinking-sphinx", "~>2.0.4"
 gem "flying-sphinx" , "~>0.6.0"
 gem "jquery-rails", "~> 1.0.19"
 gem 'devise'
+gem "activerecord-import", "~> 0.2.8"
 
 group :development do
   gem 'rspec-rails', '2.0.1'

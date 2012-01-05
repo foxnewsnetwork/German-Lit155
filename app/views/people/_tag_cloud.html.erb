@@ -1,7 +1,22 @@
 <!-- Generates a tag cloud -->
-<!-- phrases, limit -->
-<% @cap = phrases.count > limit ? limit : phrases.count %>
-<% for k in 0..@cap-1 %>
-<% phrase = phrases[k] %>
-	<span style="font-size: <%= phrase[:count] %>;"><%= phrase[:word] %></span>
+<!-- tags -->
+<% if tags.nil? || tags.empty? %>
+	<h6>Spread some rumors to generate the cloud!</h6>
+<% else %>
+	<% lim = tags.count %>
+	<% for k in 0..lim-1 do %>
+	<% tag = tags[k] %>
+		<% color = (240 * ( k.to_f / lim )).floor %>
+		<% unless tag.nil? %>
+			<span class="tag-cloud" >
+				<h<%= k+3 %>>
+				
+					<%= link_to tag.tag, "#map_information", :style => "font-size: #{18-k}; color: rgb(#{color}, #{color}, #{color});"  %>
+				
+				</h<%= k+3 %>>
+			</span>
+		<% end %>
+	<% end %>
 <% end %>
+
+

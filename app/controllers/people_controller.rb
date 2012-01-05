@@ -1,7 +1,25 @@
 class PeopleController < ApplicationController
+
+	# DELETE request
+	def destroy
+		if moderator_signed_in?
+			@person = Person.find_by_id( params[:id] ).destroy
+		end
+		respond_to do |format|
+			format.html { redirect_to root_path }
+			format.js
+		end
+	end
+	
+	# GET request
+	def index
+		@people = Person.order( "name DESC" ).paginate( :page => params[:page], :per_page => 50 )
+	end
+
 	# Get request
 	def show
 		@person = Person.find_by_id( params[:id] )
+		@rumors = @person.rumors.paginate( :page => params[:page], :per_page => 50 )
 		@location = get_coordinates
 		@ip = get_ip
 	end
@@ -9,6 +27,7 @@ class PeopleController < ApplicationController
 	# Post request
 	def create
 		@person = Person.build_with_magic( params[:person] )
+		@rumors = @person.rumors.paginate( :page => params[:page], :per_page => 50 )
 		@location = get_coordinates
 		@ip = get_ip
 		unless @person.nil?
@@ -67,7 +86,7 @@ class PeopleController < ApplicationController
 			end
 		end
 		@person = person
-
+		@rumors = @person.rumors.paginate( :page => params[:page], :per_page => 50 )
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js

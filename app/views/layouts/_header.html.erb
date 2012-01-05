@@ -8,6 +8,9 @@
       <a class="brand" href="/">The Rumor Mill</a>
       <ul class="nav">
         <li class="active"><%= link_to "Do It Faggot!", root_path %></li>
+        <% if moderator_signed_in? %>
+	        <li class="active"><%= link_to "Index", people_path %></li>
+	     <% end %>
       </ul>
     </div>
   </div>

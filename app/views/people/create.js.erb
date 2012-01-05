@@ -1,2 +1,2 @@
-$("#people-container").html('<%= escape_javascript( render "people/person", :person => @person, :location => @location, :ip => @ip ) %>');
+$("#people-container").html('<%= escape_javascript( render "people/person", :person => @person, :rumors => @rumors, :location => @location, :ip => @ip ) %>');
 $(".hero-unit").html('<%= escape_javascript( link_to "Go Back", root_path, :class => "btn primary" ) %>');

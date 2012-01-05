@@ -2,7 +2,12 @@
 <%= will_paginate people %>
 <div class="row">
 <% people.each do |person| %>
-	<%= render "people/person", :person => person %>
+	<div id="person-id-<%= person.id %>">
+		<%= render "people/person", :person => person, :rumors => rumor %>
+		<% if moderator_signed_in? %>
+			<%= link_to "delete person", person_path(person), :method => :delete, :remote => true %>
+		<% end %>
+	</div>
 <% end %>
 </div>
 <%= will_paginate people %>

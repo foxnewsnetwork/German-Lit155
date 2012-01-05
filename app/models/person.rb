@@ -25,6 +25,8 @@ class Person < ActiveRecord::Base
 	has_many :rumor_records, :dependent => :destroy
 	has_many :rumors, :through => :rumor_records
 	
+	has_many :tag_records, :foreign_key => :person_id, :dependent => :destroy
+	
 	has_many :nickname_records, :foreign_key => :person_id, :dependent => :destroy
 	
 	has_many :phone_records, :foreign_key => :person_id, :dependent => :destroy
@@ -61,6 +63,11 @@ class Person < ActiveRecord::Base
 		{ :with => /((https?:\/\/[a-zA-Z0-9\.\-_]{0,}tumblr.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))/ ,
 		 :message => "not a tumblr profile" }
 	# TODO: use sphinx!
+	
+	# Call this function to get a hash cloud
+	def tag_cloud( limit )
+		self.tag_records.order( "count DESC").limit(limit)
+	end
 
 	# Call this function to get a summary on this faggot
 	def summary
@@ -93,6 +100,8 @@ class Person < ActiveRecord::Base
 			self.lat_avg += (rumor.latitude - self.lat_avg) / count
 			self.lng_avg += (rumor.longitude - self.lng_avg ) / count
 		end
+		# Now to build a tag cloud
+		TagRecord.build_with_magic( self, rumor )
 		self.save
 	end
 	

@@ -1,0 +1,11 @@
+<% case @origin %>
+	<% when "a" %>
+		$("#thoughts-display").html('<%= escape_javascript( render "comments/comments", :comments => @comments ) %> ');
+		$("#thoughts-form").html('<%= escape_javascript( render "comments/forms", :comment => @cnew, :section => "a" ) %>' );
+	<% when "b" %>
+		$("#criticisms-display").html('<%= escape_javascript( render "comments/comments", :comments => @comments ) %> ');
+		$("#criticisms-form").html('<%= escape_javascript( render "comments/forms", :comment => @cnew, :section => "b" ) %>' );
+	<% when "c" %>
+		$("#everything-display").html('<%= escape_javascript( render "comments/comments", :comments => @comments ) %> ');
+		$("#everything-form").html('<%= escape_javascript( render "comments/forms", :comment => @cnew, :section => "c" ) %>' );
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105003910) do
+ActiveRecord::Schema.define(:version => 20120106045614) do
 
   create_table "address_records", :force => true do |t|
     t.string   "address"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(:version => 20120105003910) do
   add_index "city_records", ["city"], :name => "index_city_records_on_city"
   add_index "city_records", ["person_id", "city"], :name => "index_city_records_on_person_id_and_city", :unique => true
   add_index "city_records", ["person_id"], :name => "index_city_records_on_person_id"
+
+  create_table "comments", :force => true do |t|
+    t.string   "username"
+    t.text     "content"
+    t.string   "section"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["section"], :name => "index_comments_on_section"
 
   create_table "country_records", :force => true do |t|
     t.integer  "person_id"

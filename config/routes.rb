@@ -1,6 +1,7 @@
 Gossip::Application.routes.draw do
 
 
+  resources :comments, :only => [:create, :destroy]
   resources :macroposts, :only => [:destroy, :update, :edit, :new]
 
   devise_for :moderators
@@ -26,6 +27,7 @@ Gossip::Application.routes.draw do
   match '/misc' , :to => "pages#misc"
   match "/developer", :to => "pages#developer"
   match "/contact", :to => "pages#contact"
+  match "/b", :to => "pages#discussion"
   
   resources :rumors, :only => [:create, :destroy]
 

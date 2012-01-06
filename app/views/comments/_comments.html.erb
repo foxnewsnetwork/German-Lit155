@@ -1,0 +1,10 @@
+<!-- Shows all the comments -->
+<% if comments.nil? || comments.empty? %>
+	<h6>Noting here yet!</h6>
+<% else %>
+	<%= will_paginate comments %>
+	<% comments.each do |comment| %>
+		<%= render "comments/comment", :comment => comment %>
+	<% end %>
+	<%= will_paginate comments %>
+<% end %>

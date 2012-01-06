@@ -1,0 +1,17 @@
+<!-- display comment -->
+<% name = /\A[0-9\.]{1,}\z/ === comment.username ? "anonymous" : comment.username %>
+<tr id="comment-id-<%= comment.id %>">
+  <td class="comments">
+    <span class="subject"><h5><%=  name %></h5></span>
+    <span class="content"><p><%= comment.content %></p></span>
+    <span class="timestamp">
+      <p>Posted <%= time_ago_in_words(comment.created_at) %> ago.</p>
+    </span>
+    <% if moderator_signed_in? %>
+		<span class="misc">
+			<%= link_to "delete", comment, :method => :delete, :remote => true %>
+		</span>
+    <% end %>
+  </td>
+</tr>
+

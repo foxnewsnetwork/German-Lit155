@@ -1,0 +1,38 @@
+<!-- Page to use for user-side discussion -->
+<div class="hero-unit">
+	<h2>Discussion Board!</h2>
+	<p>Have ideas, criticisms, suggestions, threats, etc.? Post them here!</p>
+</div>
+
+<div class="row">
+	<div class="span-one-third">
+		<h3>thoughts, ideas, suggestions</h3>
+		<%= link_to "New comment", "#thougts-form" %>
+		<div id="thoughts-display">
+			<%= render "comments/comments", :comments => @c1 %> 
+		</div>
+		<div id="thoughts-form">
+			<%= render "comments/forms", :comment => @cnew, :section => "a" %>
+		</div>
+	</div>
+	<div class="span-one-third">
+		<h3>criticisms, insults, threats</h3>
+		<%= link_to "New comment", "#criticisms-form" %>
+		<div id="criticisms-display">
+			<%= render "comments/comments", :comments => @c2 %>
+		</div>
+		<div id="criticisms-form">
+			<%= render "comments/forms", :comment => @cnew, :section => "b" %>		
+		</div>
+	</div>
+	<div class="span-one-third">
+		<h3>everything else (except spam)</h3>
+		<%= link_to "New comment", "#everything-form" %>
+		<div id="everything-display">
+			<%= render "comments/comments", :comments => @c3 %>
+		</div>
+		<div id="everything-form">
+			<%= render "comments/forms", :comment => @cnew, :section => "c" %>		
+		</div>
+	</div>
+</div>

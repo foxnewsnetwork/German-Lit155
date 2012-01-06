@@ -77,6 +77,12 @@ class PagesController < ApplicationController
 		end
 	end
 	
+	def discussion
+		@c1 = Comment.where(:section => "a").limit(100).paginate( :page => params[:page], :per_page => 25 )
+		@c2 = Comment.where(:section => "b").limit(100).paginate( :page => params[:page], :per_page => 25 )
+		@c3 = Comment.where(:section => "c").limit(100).paginate( :page => params[:page], :per_page => 25 )
+		@cnew = Comment.new
+	end	
 	
 
 end

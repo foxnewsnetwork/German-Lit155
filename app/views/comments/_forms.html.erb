@@ -1,0 +1,6 @@
+<!-- Form for making more comments -->
+<%= form_for comment, :remote => true do |f| %>
+	<%= hidden_field_tag "comment[section]", section %>
+	<%= f.text_area :content %>
+	<%= f.submit "Comment", :class => "btn" %>
+<% end %>

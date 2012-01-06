@@ -113,15 +113,15 @@ class PeopleController < ApplicationController
 		def check_valid?( match, url )
 			 case match
 			 	when :tumblr
-					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}\.[a-zA-Z]{1,8}\S{0,})|(\*))\z/
 				when :wikipedia
-					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}wikipedia\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}wikipedia\.[a-zA-Z]{1,8}\S{0,})|(\*))\z/
 				when :facebook
-					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}facebook\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}facebook\.[a-zA-Z]{1,8}\S{0,})|(\*))\z/
 				when :twitter
-					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}twitter\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}twitter\.[a-zA-Z]{1,8}\S{0,})|(\*))\z/
 				when :linkedin
-					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}linkedin\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}linkedin\.[a-zA-Z]{1,8}\S{0,})|(\*))\z/
 			end
 			return regex === url
 		end

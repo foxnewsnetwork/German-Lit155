@@ -49,11 +49,11 @@ class PeopleController < ApplicationController
 		update = params[:person]
 		
 		# Setting up the @origin string
-		@origin = "wikipedia" if params[:person].include?( :wikipedia )
-		@origin = "tumblr" if params[:person].include?( :tumblr )
-		@origin = "twitter" if params[:person].include?( :twitter )
+		@origin = "wikipedia" if params[:person].include?( :wikipedia ) 
+		@origin = "tumblr" if params[:person].include?( :tumblr ) 
+		@origin = "twitter" if params[:person].include?( :twitter ) 
 		@origin = "facebook" if params[:person].include?( :facebook )
-		@origin = "linkedin" if params[:person].include?( :linkedin )
+		@origin = "linkedin" if params[:person].include?( :linkedin ) 
 		@origin = "country" if params[:person].include?( :country )
 		@origin = "state" if params[:person].include?( :state )
 		@origin = "city" if params[:person].include?( :city )
@@ -71,27 +71,58 @@ class PeopleController < ApplicationController
 			@origin = "birthday-year" if update.include?( :birthyear )
 		end
 		
-		# AJAX implementation
-		if update[:type].nil? || update[:type] != "contact"
-			if person.update_with_magic( update )
-				flash[:success] = "Update lolcat successful!"
-			else
-				flash[:error] = "Something went wrong in lolcat"
+		@validity = true
+		@validity = check_valid?( :wikipedia, params[:person][:wikipedia] ) if params[:person].include?( :wikipedia )
+		@validity = check_valid?( :tumblr, params[:person][:tumblr] ) if params[:person].include?( :tumblr ) 
+		@validity = check_valid?( :twitter, params[:person][:twitter] ) if params[:person].include?( :twitter ) 
+		@validity = check_valid?( :facebook, params[:person][:facebook] ) if params[:person].include?( :facebook ) 
+		@validity = check_valid?( :linkedin, params[:person][:linkedin] ) if params[:person].include?( :linkedin ) 
+		
+		if @validity
+			if update[:type].nil? || update[:type] != "contact"
+				if person.update_with_magic( update )
+					flash[:success] = "Update lolcat successful!"
+				else
+					flash[:error] = "Something went wrong in lolcat"
+				end
+			else 
+				if person.update_with_magic( update )
+					flash[:success] = "Update happycat successful!"
+				else
+					flash[:error] = "Something went wrong elsewhere"
+				end
 			end
-		else 
-			if person.update_with_magic( update )
-				flash[:success] = "Update happycat successful!"
-			else
-				flash[:error] = "Something went wrong elsewhere"
+			@person = person
+			@rumors = @person.rumors.paginate( :page => params[:page], :per_page => 50 )
+			respond_to do |format|
+				format.html { redirect_to :back }
+				format.js
+			end
+		else
+			respond_to do |format|
+				format.html { redirect_to :back, :notice => "sorry, invalid input" }
+				format.js
 			end
 		end
-		@person = person
-		@rumors = @person.rumors.paginate( :page => params[:page], :per_page => 50 )
-		respond_to do |format|
-			format.html { redirect_to :back }
-			format.js
-		end
+		
 		
 	end
 	
+	private
+		# checks validitiy in terms of site names
+		def check_valid?( match, url )
+			 case match
+			 	when :tumblr
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+				when :wikipedia
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}wikipedia\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+				when :facebook
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}facebook\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+				when :twitter
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}twitter\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+				when :linkedin
+					regex = /\A((https?:\/\/[a-zA-Z0-9\.\-_]{0,}linkedin\.[a-zA-Z]{1,8}\/[a-zA-Z0-9\-_\?\.#&\/\'\"]{1,})|(\*))\z/
+			end
+			return regex === url
+		end
 end

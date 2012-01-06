@@ -43,11 +43,14 @@ class TagRecord < ActiveRecord::Base
 		TagRecord.import( [:person_id, :tag, :count], value_vec,  :on_duplicate_key_update => [:count], :validate => false )
 	end
 	
+	
 	# Parses the string into chunks
 	def self.chunk_parse( string )
 		modifiers = ["a", "the","of","and","or","either","neither","nor"]
 		fag_verbs = ["is","are","am","were","be","has","have","having","had","been","to","from","in","as","isn't","wasn't","weren't","ain't","won't","will","hasn't","haven't","hadn't","did","do","didn't","don't","with"]
-		fag_adverbs = ["should","would","could","can","shouldn't","wouldn't","couldn't","can't","cannot","very"]
+		fag_adverbs = ["should","would","could","can","shouldn't","wouldn't","couldn't","can't","cannot",
+			"very","really","seriously","totally","highly","extremely","completely","entirely","absolutely",
+			"majorly","vastly", "generally","slightly","kinda","sorta","maybe","hopelessly","hopefully","incredibly","currently"]
 		pronouns = ["I","you","he","she","they","them","these","those","that","this","her","him","his","their","theirs","your","yours","me","mine"]
 		
 		combine = modifiers + fag_verbs + fag_adverbs + pronouns

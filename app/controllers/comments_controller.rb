@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   	end
   	params[:comment][:content] = "I'm a stupid faggot who tries to blank post" if params[:comment][:content].empty?
   	if moderator_signed_in?
-	  	@comment = Comment.new( :username => "admin => toche", :section => params[:comment][:section], :content => params[:comment][:content]  )
+	  	@comment = Comment.new( :username => "admin", :section => params[:comment][:section], :content => params[:comment][:content]  )
 	else
 		ip = get_ip
 		@comment = Comment.new( :username => ip, :section => params[:comment][:section], :content => params[:comment][:content]  )

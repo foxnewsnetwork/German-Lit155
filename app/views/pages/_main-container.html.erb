@@ -1,0 +1,38 @@
+<!-- Used the new person form, search results, and person rumors -->
+<!-- Variables purpose, people, person, search rumors, rumor, latest_rumors -->
+<% case purpose %>
+	<% when "search results" %>
+		<!-- people, search, and person must be availble-->
+		<div class="people-preview">
+			<%= will_paginate people %>
+			<% people.each do |p| %>
+				<%= render "people/preview", :person => p %>
+			<% end %>
+			<%= will_paginate people %>
+			<h6>Total Results: <%= people.count %></h6>
+		</div>
+		<%= link_to "Create New Profile", "#person-form", :class => "person-form-button" %>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<div id="person-form">
+			<%= render "people/new_form", :person => person, :search => search %>
+		</div>
+	<% when "person rumors" %>
+		<!-- rumors, person, and rumor must be availble -->
+		<%= link_to "Start New Rumor", "#rumor-form", :class => "rumor-form-button" %>
+		<div class="rumors-display">
+			<%= will_paginate rumors %>
+			<%= render "shared/rumors", :rumors => rumors %>
+			<%= will_paginate rumors %>
+		</div>
+		<div id="rumor-form">
+			<%= render "rumors/new_form", :person => person %>
+		</div>
+	<% else %>
+		<!-- Displays the main page -->
+		<div class="rumors-display">
+			<h3>Latest Rumors</h3>
+			<%= render "shared/rumors", :rumors => latest_rumors %>
+		</div>
+<% end %>

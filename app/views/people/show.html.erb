@@ -1,8 +1,22 @@
 <!-- The show page for people -->
-<div class="hero-unit">
-	<h3><%= @person.name %></h3>
-	<%= link_to "Back to Main", root_path, :class => "btn primary large" %>
-</div>
-<div class="row">
-	<%= render "people/person", :person => @person, :rumors => @rumors, :location => @location, :ip => @ip %>
+
+<div class="content">
+	<div class="page-header">
+		<h3><%= @person.name %></h3>
+	</div>
+	<div class="row">
+		<div class="span10">
+			<div id="main-content">
+				<%= render "pages/main-container", :purpose => @purpose, :rumors => @rumors, :person => @person %>
+			</div>			
+		</div>
+		<div class="span4">
+      		<div class="advanced_people_search">
+				<%= render "people/advanced_search", :location => @location, :ip => @ip %>
+			</div>
+        	<div id="secondary-content">
+	        	<%= render "pages/secondary-container", :purpose => @purpose, :person => @person %>
+        	</div>
+		</div>
+	</div>
 </div>

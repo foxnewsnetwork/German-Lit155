@@ -1,0 +1,25 @@
+<!-- Responsible for showing the following -->
+<!-- person stats info, possibly ads and miscellanious stuff-->
+<% case purpose %>
+	<% when "person rumors" %>
+		<!-- in this case, we assume person is availble -->
+		<h2><%= person.name %></h2>
+		<div id="map_information">
+			<!-- Map section -->
+			<h3>Rumor Geocenter</h3>
+			<p>Latitude: <%= person.lat_avg %> | Longitude: <%= person.lng_avg %></p>
+			<!--Rendering the map -->
+			<%= render "shared/maps2", :rumors => person.rumors, :location => { :lat => person.lat_avg, :lng => person.lng_avg }, :initial_zoom => 14 %>		
+		</div>	
+		<div id="person-tag-cloud">
+			<h2>Rumor Cloud</h2>
+			<%= render "people/tag_cloud", :tags => person.tag_cloud( 8 ) %>
+		</div>
+		<h3>Basic Information</h3>
+		<div id="basic-information"><%= render "people/basic", :person => person %></div>
+		<h3>Contact Information</h3>
+		<div id="contact-information"><%= render "people/contacts", :person => person %></div>
+		
+	<% else  %>
+		<!-- Displays the secondary column in the main page -->
+<% end %>

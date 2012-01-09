@@ -9,19 +9,19 @@
 	<li>
 		<%= text_field_tag "search[name]", nil, :placeholder => "First Last" %>
 	</li>
-	<li><h4>Nickname</h4></li>
+	<li><h4>Nickname (optional)</h4></li>
 	<li>
 		<%= text_field_tag "search[nickname]", nil, :placeholder => "ffn" %>
 	</li>
-	<li><h4>Phone</h4></li>
+	<li><h4>Phone (optional)</h4></li>
 	<li>
 		<%= telephone_field_tag "search[phone]", nil, :placeholder => "000 000 0000" %>
 	</li>
-	<li><h4>Email</h4></li>
+	<li><h4>Email (optional)</h4></li>
 	<li>
 		<%= email_field_tag "search[email]", nil, :placeholder => "notoriouslawyers@yahoo.com" %>
 	</li>
-	<li><h4>Gender</h4></li>
+	<li><h4>Gender (optional)</h4></li>
 	<li>
 		<%= label_tag "male" %>
 		<%= radio_button_tag "search[gender]", "male" %>
@@ -30,7 +30,7 @@
 		<%= label_tag "female" %>
 		<%= radio_button_tag "search[gender]", "female" %>
 	</li>
-	<li><h4>Birthdate</h4></li>
+	<li><h4>Birthdate (optional)</h4></li>
 	<li>
 		<%= select_month nil, :include_blank => true, :field_name => "search[birthmonth]", :prompt => "Select month" %>
 	</li>
@@ -40,21 +40,20 @@
 	<li>
 		<%= select_year nil, :include_blank => true, :field_name => "search[birthyear]", :prompt => "Select year", :start_year => 1920, :end_year => Date.today.year %>
 	</li>
-	<li><h4>Country</h4></li>
+	<li><h4>Country (optional)</h4></li>
 		<%= text_field_tag "search[country]", nil,  :placeholder => "United States" %>
 	</li>
-	<li><h4>State / Province</h4></li>
+	<li><h4>State / Province (optional)</h4></li>
 		<%= text_field_tag "search[state]", nil, :placeholder => "California" %>
 	</li>
-	<li><h4>City</h4></li>
+	<li><h4>City (optional)</h4></li>
 		<%= text_field_tag "search[city]", nil, :placeholder => "Berkeley" %>
 	</li>	
-	<li><h4>Address</h4></li>
+	<li><h4>Address (optional)</h4></li>
 		<%= text_field_tag "search[address]", nil, :placeholder => "1780 Spruce Street" %>
 	</li>
 	<li>
 		<%= submit_tag 'Search »', :class => "btn primary" %>
-		<%= submit_tag "Simple Search...", :class => "advanced_search btn", :type => "button" %>		
 	</li>
 <% end %>
 </ul>

@@ -1,1 +1,5 @@
-$("#people-container").html('<div class="row"><%= escape_javascript( render "pages/people-container", :people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors ) %></div>');
+
+$("#main-content").html('<%= escape_javascript( render "pages/main-container", :purpose => @purpose, 
+				:people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors) %>');
+$("#secondary-content").html('<%= escape_javascript( render "pages/secondary-container", :purpose => @purpose, 
+	        	:people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors) %>');

@@ -19,9 +19,10 @@ class PeopleController < ApplicationController
 	# Get request
 	def show
 		@person = Person.find_by_id( params[:id] )
-		@rumors = @person.rumors.paginate( :page => params[:page], :per_page => 50 )
+		@rumors = @person.rumors.order( "created_at ASC" ).paginate( :page => params[:page], :per_page => 50 )
 		@location = get_coordinates
 		@ip = get_ip
+		@purpose = "person rumors"
 	end
 		
 	# Post request

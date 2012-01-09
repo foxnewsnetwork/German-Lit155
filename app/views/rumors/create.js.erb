@@ -1,5 +1,5 @@
 
-$("#person-tag-cloud").html('<%= escape_javascript( render "people/tag_cloud", :tags => @person.tag_cloud( 8 ) ) %>')
-$(".rumor-container").html('<%= escape_javascript( render "shared/rumors", :rumors => @person.rumors ) %>');
-$(".new-rumor")[0].reset( );
+$("#person-tag-cloud").html('<%= escape_javascript( render "people/tag_cloud", :tags => @person.tag_cloud( 8 ) ) %>');
+$("#rumors-holder").append('<%= escape_javascript( render "shared/rumor", :rumor => @rumor ) %>');
+$(".rumor-form")[0].reset( );
 

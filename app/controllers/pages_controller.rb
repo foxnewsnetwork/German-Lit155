@@ -68,6 +68,7 @@ class PagesController < ApplicationController
 
 		unless @search.nil?
 			@people = Person.find_by_magic(@search).paginate( :page => params[:page], :per_page => 10 )
+			@purpose = "search results"
 		end
 		@person = Person.new(@search)
 		

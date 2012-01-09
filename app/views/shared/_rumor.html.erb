@@ -1,0 +1,16 @@
+<!-- renders an individual rumor -->
+<tr id="rumor-id-<%= rumor.id %>">
+  <td class="macroposts">
+    <span class="subject"><h3><% rumor.people.each do |person| %><%= link_to person.name, person  %><% end %></h3></span>
+    <span class="content"><p><%= rumor.content %></p></span>
+    <span class="timestamp">
+      <p>Spread <%= time_ago_in_words(rumor.created_at) %> ago.</p>
+    </span>
+    <% if moderator_signed_in? %>
+		<span class="moderator-commands">
+			<%= link_to "Delete", rumor_path(rumor), :method => :delete, :remote => true %>
+		</span>
+    <% end %>
+  </td>
+</tr>
+

@@ -2,4 +2,25 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false">
 </script>
 
-
+<script type="text/javascript">
+	$(document).ready( function( ){ 
+		$("div.advanced_people_search").hide( );		
+		$("div.advanced_people_spread").hide( );
+		$("div.simple_people_spread").hide( );
+		$("div.person-form").hide( );
+		
+		$(".person-form-button").click( function( ) { 
+			$("div.person-form").toggle( );
+		} );
+		
+		$(".advanced_search").click( function( ) { 
+			$("div#secondary-content").toggle( );
+			$("div.advanced_people_search").toggle( );
+		} );
+	
+		$(".advanced_spread").click( function( ) {
+			$("div.advanced_people_spread").toggle( );
+		} );
+	} );
+	
+</script>

@@ -1,31 +1,29 @@
-<script type="text/javascript">
-	$(document).ready( function( ){ 
-		$("div.advanced_people_search").hide( );		
-		$("div.advanced_people_spread").hide( );
-		$("div.simple_people_spread").hide( );
-				
-		$(".advanced_search").click( function( ) { 
-			$("div.advanced_people_search").toggle( );
-			$("div.simple_people_search").toggle( );
-		} );
-	
-		$(".advanced_spread").click( function( ) {
-			$("div.advanced_people_spread").toggle( );
-		} );
-	} );
-	
+<!-- Index page -->
 
-</script>
 
-<div class="hero-unit">
-	<div class="simple_people_search">
-		<%= render "people/simple_search", :location => @location, :ip => @ip %>
+<!-- page content-->
+<div class="content">
+	<div class="page-header">
+		<h1>Rumofile Main <small>Free speech with reckless abandon</small></h1>
 	</div>
-	<div class="advanced_people_search">
-		<%= render "people/advanced_search", :location => @location, :ip => @ip %>
+	<div class="row">
+		<div class="span10">
+			<div id="main-content">
+				<%= render "pages/main-container", :purpose => @purpose, 
+				:people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors %>
+			</div>			
+		</div>
+		<div class="span4">
+      		<div class="advanced_people_search">
+				<%= render "people/advanced_search", :location => @location, :ip => @ip %>
+			</div>
+        	<div id="secondary-content">
+	        	<%= render "pages/secondary-container", :purpose => @purpose, 
+	        	:people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors %>
+        	</div>
+		</div>
 	</div>
 </div>
 
-<div id="people-container">
-	<%= render "pages/people-container", :people => @people, :person => @person, :search => @search, :latest_rumors => @latest_rumors %>
-</div>
+
+

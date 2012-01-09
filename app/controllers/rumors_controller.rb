@@ -2,7 +2,11 @@ class RumorsController < ApplicationController
  	before_filter :check_mod, :only => :destroy
  	
 	def create
-		@rumor = Rumor.create(params[:rumor])
+		@rumor = Rumor.new(params[:rumor])
+		unless @rumor.save!
+			@error = "Unable to save"
+			 redirect_to @person, :notice => @error
+		end
 		@rumor.rumor_records.create( :person_id => params[:rumor][:person] )
 		@person = Person.find_by_id( params[:rumor][:person] )
 		@person.update_averages(@rumor)

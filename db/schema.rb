@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106045614) do
+ActiveRecord::Schema.define(:version => 20120110223756) do
 
   create_table "address_records", :force => true do |t|
     t.string   "address"
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(:version => 20120106045614) do
     t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "phone_number"
+    t.string   "phone_number"
   end
 
   add_index "phone_records", ["person_id", "phone_number"], :name => "index_phone_records_on_person_id_and_phone_number", :unique => true

@@ -13,7 +13,7 @@ class PeopleController < ApplicationController
 	
 	# GET request
 	def index
-		@people = Person.order( "name DESC" ).paginate( :page => params[:page], :per_page => 50 )
+		@people = Person.order( "name ASC" ).paginate( :page => params[:page], :per_page => 50 )
 	end
 
 	# Get request

@@ -1,4 +1,4 @@
-
+$("#flash-message").fadeOut( );
 $("#person-tag-cloud").html('<%= escape_javascript( render "people/tag_cloud", :tags => @person.tag_cloud( 8 ) ) %>');
 $("#rumors-holder").append('<%= escape_javascript( render "shared/rumor", :rumor => @rumor ) %>');
 $(".rumor-form")[0].reset( );

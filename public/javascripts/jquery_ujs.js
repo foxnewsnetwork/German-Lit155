@@ -370,4 +370,5 @@
     if (this == event.target) rails.enableFormElements($(this));
   });
 
+	
 })( jQuery );

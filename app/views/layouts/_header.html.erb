@@ -10,14 +10,14 @@
       <ul class="nav">
         <li class="active"><%= link_to "Rumor Profiles", root_path %></li>
         <li class="active"><%= link_to "Index", people_path %></li>
-      
-		<% flash.each do |key, value| %>
-			<%= content_tag(:li, value, :class => "flash #{key} active") %>
-		<% end %>
 	</ul>
-      <%= render "people/simple_search", :location => get_coordinates, :ip => get_ip %>
+      <%= render "people/simple_search", :location => get_coordinates, :ip => get_ip, :remote => false %>
     </div>
   </div>
 </div>
 </header>
 </nav>
+<br />
+<br />
+<br />
+

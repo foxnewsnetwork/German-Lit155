@@ -23,6 +23,7 @@ class PeopleController < ApplicationController
 		@location = get_coordinates
 		@ip = get_ip
 		@purpose = "person rumors"
+		@remote = true
 	end
 		
 	# Post request

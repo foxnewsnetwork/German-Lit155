@@ -1,0 +1,137 @@
+<!-- has person and category -->
+<% lim = 5 %>
+<% case category %>
+	<% when "nickname" %>
+		<% unless person.nickname_records.empty? %>
+			<% records = person.nickname_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.nickname %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[nickname]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>
+	<% when "country" %>
+		<% unless person.country_records.empty? %>
+			<% records = person.country_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.country %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[country]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>
+	<% when "state" %>
+		<% unless person.state_records.empty? %>
+			<% records = person.state_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.state %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[state]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>
+	<% when "city" %>
+		<% unless person.city_records.empty? %>
+			<% records = person.city_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.city %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[city]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>		
+	<% when "address" %>
+		<% unless person.address_records.empty? %>
+			<% records = personaddress_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.address %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= text_field_tag "person[address]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>	
+	<% when "phone" %>
+		<% unless person.phone_records.empty? %>
+			<% records = person.phone_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.phone_number %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= phone_field_tag "person[phone]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>	
+	<% when "email" %>
+		<% unless person.email_records.empty? %>
+			<% records = person.email_records.order( "count DESC" ) %>
+			<% lim = lim > records.count ? records.count : lim %>
+			<% for k in 0..lim-1 do %>
+				<% r = records[k] %>
+				<% color = (240 * ( k.to_f / lim )).floor %>
+				<span style="font-size: <%= lim - k %>; color: rgb(<%= color %>, <%= color %>, <%= color %>);"><%= r.email %> </span>
+			<% end %>
+		<% end %>
+		<%= form_for person, :method => "put", :remote => true do |f| %>
+			<%= hidden_field_tag "person[type]", "contact" %>
+			<%= hidden_field_tag "person[id]", person.id %>
+			<%= email_field_tag "person[email]",
+:onblur => remote_function(:update => "form",
+:with => 'Form.serialize(this.form)',
+:url => { :action => :update }) %>
+			
+		<% end %>	
+<% end %>

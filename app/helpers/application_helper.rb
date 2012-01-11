@@ -9,7 +9,7 @@ module ApplicationHelper
 		location =	Geokit::Geocoders::MultiGeocoder.geocode(my_ip)
 		latitude = location.hash[:lat]
 		longitude = location.hash[:lng]
-		unless latitude.nil? && longitude.nil?
+		unless latitude.nil? || longitude.nil?
 			return { :lat => location.hash[:lat], :lng => location.hash[:lng] } 
 		else
 			return { :lat => 0.0, :lng => 0.0 }  

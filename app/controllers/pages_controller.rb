@@ -55,7 +55,7 @@ class PagesController < ApplicationController
 
 	def index
 		# Section 1: Initializing Required Instances
-		@latest_rumors = Rumor.find(:all, :order => "created_at DESC", :limit => 3)
+		@latest_rumors = Rumor.find(:all, :order => "created_at ASC", :limit => 3).reverse
 		@location = get_coordinates
 		@ip = get_ip
 		@search = params[:search]
@@ -72,6 +72,7 @@ class PagesController < ApplicationController
 		end
 		@person = Person.new(@search)
 		
+		@remote = true
 		respond_to do |format|
 			format.html 
 			format.js

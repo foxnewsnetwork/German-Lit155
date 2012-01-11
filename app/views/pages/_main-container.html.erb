@@ -32,7 +32,19 @@
 	<% else %>
 		<!-- Displays the main page -->
 		<div class="rumors-display">
-			<h3>Latest Rumors</h3>
-			<%= render "shared/rumors", :rumors => latest_rumors %>
+			<div id="latest-rumors-labels">
+				<%= link_to "Latest Rumors", "#", :class => "latest-rumors-button btn primary" %>
+				<%= link_to "Latest People", "#", :class => "latest-people-button btn" %>
+			</div>
+			<div id="latest-people-labels">
+				<%= link_to "Latest Rumors", "#", :class => "latest-rumors-button btn" %>
+				<%= link_to "Latest People", "#", :class => "latest-people-button btn primary" %>
+			</div>
+			<div id="latest-rumors-display">
+				<%= render "shared/rumors", :rumors => latest_rumors %>
+			</div>
+			<div id="latest-people-display">
+				<%= render "shared/previews", :people => latest_people %>
+			</div>
 		</div>
 <% end %>

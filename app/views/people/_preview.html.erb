@@ -1,5 +1,6 @@
 <!-- A preview page for the purposes of showing on the index -->
 <ul style="list-style: none;">
 	<li class="person-name"><h3><%= link_to person.name, person %></h3></li>
-	<li class="person-summary"><%= person.summary %>	</li>
+	<li class="person-summary"><h6><%= person.summary %></h6></li>
+	<li class="person-updated-at">Updated at: <%= time_ago_in_words( person.updated_at ) %></li>
 </ul>

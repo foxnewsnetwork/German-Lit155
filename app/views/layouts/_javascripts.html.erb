@@ -8,6 +8,8 @@
 		$("div.advanced_people_spread").hide( );
 		$("div.simple_people_spread").hide( );
 		$("div.person-form").hide( );
+		$("div#latest-people-display").hide();
+		$("div#latest-people-labels").hide();
 		
 		$(".person-form-button").click( function( ) { 
 			$("div.person-form").toggle( );
@@ -22,6 +24,19 @@
 			$("div.advanced_people_spread").toggle( );
 		} );
 		
+		$(".latest-rumors-button").click( function( ) { 
+			$("#latest-rumors-labels").show();
+			$("#latest-people-labels").hide();
+			$("#latest-rumors-display").fadeIn();
+			$("#latest-people-display").toggle();
+		} );
+		
+		$(".latest-people-button").click( function( ) { 
+			$("#latest-rumors-labels").hide();
+			$("#latest-people-labels").show();
+			$("#latest-rumors-display").fadeOut();
+			$("#latest-people-display").fadeIn();
+		} );
 	} );
 	
 	  
